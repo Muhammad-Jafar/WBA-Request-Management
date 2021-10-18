@@ -13,7 +13,7 @@
             <?php } ?>
             <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/data_master/add_new/nama_izin");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Tambah baru</button>
+                <button type="button" onclick="javascript:top.location.href='<?=base_url("/data_master/add_new/keluhan");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Tambah baru</button>
               </div>
             </div>
             <div class="table-responsive">

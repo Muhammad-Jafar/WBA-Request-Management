@@ -11,14 +11,14 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('data_master/add_new/nama_izin', array('method'=>'post'));?>
-                <div class="row">
+              <?=form_open('data_master/add_new/keluhan', array('method'=>'post'));?>
+                <!-- <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Type Keluhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Keluhan</label>
                       <div class="col-sm-9">
                         <select name="type" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
+                          <option disabled selected>-- Silahkan Pilih --</option>
                           <?php
                             $izin = array(
                               array(
@@ -28,6 +28,10 @@
                               array(
                                 'id'    => 'Penggajian',
                                 'nama'  => 'Penggajian'
+                              ),
+                              array(
+                                'id'    => 'Lainnya',
+                                'nama'  => 'Lainnya'
                               )
                             );
                             foreach($izin as $iz) {
@@ -40,13 +44,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Keluhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Keluhan</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_izin" class="form-control" />
+                        <input type="text" name="type" class="form-control" />
                       </div>
                     </div>
                   </div>

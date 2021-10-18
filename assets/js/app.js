@@ -227,25 +227,56 @@ function data_namaizin_index() {
                 data: 'no'
             },
             {
-                title: "Type Izin",
+                title: "Jenis kebutuhan",
                 data: 'type'
             },
             {
-                title: "Nama Izin",
-                data: 'nama_izin'
+                title: "Nama Kebutuhan",
+                data: 'nama_kebutuhan'
             },
             {
                 title: "Action",
-                data: 'id_namaizin'
+                data: 'id_kebutuhan'
             }
         ],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_namaizin']) {
-                var id = data['id_namaizin'],
+            if (data['id_kebutuhan']) {
+                var id = data['id_kebutuhan'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/nama_izin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/nama_izin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function data_keluhan_index() {
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'data_master/keluhan_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Action",
+                data: 'id_keluhan'
+            }
+        ],
+        createdRow: function(row, data, index) {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_keluhan']) {
+                var id = data['id_keluhan'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/keluhan/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/keluhan/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -468,6 +499,9 @@ $(document).ready(function() {
             break;
         case (window.location.href.indexOf('/data_master/nama_izin') != -1):
             data_namaizin_index();
+            break;
+        case (window.location.href.indexOf('/data_master/keluhan') != -1):
+            data_keluhan_index();
             break;
         case (window.location.href.indexOf('/konfirmasi_izin') != -1):
             konfirmasi_izin_index();

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_DataMaster extends CI_Model {
 
+	//Menampilkan List semua Data per pilihan menu
 	public function admin_list_all() {
 		$q=$this->db->select('*')->get('tb_admin');
 		return $q->result();
@@ -18,7 +19,8 @@ class M_DataMaster extends CI_Model {
 		return $q->result();
 	}
 
-	public function pegawai_list_all() {
+	public function pegawai_list_all() 
+	{
 		$q=$this->db->select('*')
 				->from('tb_pegawai as p')
 				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
@@ -28,17 +30,13 @@ class M_DataMaster extends CI_Model {
 	}
 
 	public function namaizin_list_all() {
-		$q=$this->db->select('*')->get('tb_namaizin');
+		$q=$this->db->select('*')->get('tb_kebutuhan');//ini tabel awalnya
 		return $q->result();
 	}
 
-	public function get_list_bidang() {
-		$q=$this->db->select('*')->get('tb_bidang');
-		return $q->result();
-	}
-
-	public function get_list_jabatan() {
-		$q=$this->db->select('*')->get('tb_jabatan');
+	public function keluhan_list_all()
+	{
+		$q=$this->db->select('*')->get('tb_keluhan');
 		return $q->result();
 	}
 
@@ -58,10 +56,21 @@ class M_DataMaster extends CI_Model {
 		return $q->row();
 	}
 
-	public function get_data_namaizin($id) {
-		$q=$this->db->select('*')->from('tb_namaizin')->where('id_namaizin', $id)->limit(1)->get();
+	public function get_data_namaizin($id) { 
+		$q=$this->db->select('*')->from('tb_kebutuhan')->where('id_kebutuhan', $id)->limit(1)->get();
 		if( $q->num_rows() < 1 ) {
-			redirect( base_url('/data_master/cuti') );
+			redirect( base_url('/data_master/nama_izin') );
+		}
+		return $q->row();
+	}
+	
+	//tambah data keluhan disini
+	public function get_data_keluhan($id)
+	{
+		$q=$this->db->select('*')->from('tb_keluhan')->where('id_keluhan', $id)->limit(1)->get();
+		if($q->num_rows() < 1) 
+		{
+			redirect( base_url('/data_master/keluhan'));
 		}
 		return $q->row();
 	}
@@ -87,7 +96,9 @@ class M_DataMaster extends CI_Model {
 		}
 		return $q->row();
 	}
+	//GET SEMUA DATA
 
+	//FUNGSI APDET DATA
 	public function jabatan_update($id,$nama_jabatan) {
 		$d_t_d = array(
 			'nama_jabatan' => $nama_jabatan
@@ -104,13 +115,21 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data bidang berhasil diubah');
 	}
 
-	public function namaizin_update($id_namaizin,$type,$nama_izin) {
+	public function namaizin_update($id_kebutuhan,$type,$nama_kebutuhan) {
 		$d_t_d = array(
 			'type' => $type,
-			'nama_izin' => $nama_izin
+			'nama_kebutuhan' => $nama_kebutuhan
 		);
-		$this->db->where('id_namaizin', $id_namaizin)->update('tb_namaizin', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data nama izin berhasil diubah');
+		$this->db->where('id_kebutuhan', $id_kebutuhan)->update('tb_kebutuhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data Daftar Kebutuhan berhasil diubah');
+	}
+
+	public function keluhan_update($id_keluhan,$type) {
+		$d_t_d = array(
+			'type' => $type
+		);
+		$this->db->where('id_keluhan', $id_keluhan)->update('tb_keluhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data Daftar Keluhan berhasil diubah');
 	}
 
 	public function admin_update($id_user,$username, $email, $namalengkap, $password, $type, $avatar) {
@@ -135,7 +154,8 @@ class M_DataMaster extends CI_Model {
 		$id,$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$pendidikan_terakhir,$status_perkawinan,
 		$status_pegawai,$id_jabatan,$id_bidang,$agama,$alamat,$no_ktp,$no_rumah,$no_handphone,$email,
 		$password,$id_user,$tanggal_pengangkatan,$avatar
-	) {
+	) 
+	{
 		$d_t_d = array(
 			'nama' => $nama,
 			'nip' => $nip,
@@ -165,7 +185,9 @@ class M_DataMaster extends CI_Model {
 		$this->db->where('id', $id)->update('tb_pegawai', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Data pegawai berhasil diubah');
 	}
+	//FUNGSI APDET DATA
 
+	//FUNGSI HAPUS DATA
 	public function admin_delete($id) {
 		$this->db->delete('tb_admin', array('id_user' => $id));
 	}
@@ -183,20 +205,25 @@ class M_DataMaster extends CI_Model {
 	}
 
 	public function namaizin_delete($id) {
-		$this->db->delete('tb_namaizin', array('id_namaizin' => $id));
+		$this->db->delete('tb_kebutuhan', array('id_kebutuhan' => $id));
 	}
 
-	public function admin_add_new(
-		$username, $email, $namalengkap, $password, $type, $avatar=0
-	) {
+	public function keluhan_delete($id) {
+		$this->db->delete('tb_keluhan', array('id_keluhan' => $id));
+	}
+	//FUNGSI HAPUS DATA
+
+	//FUNGSI TAMBAH DATA BARU
+	public function admin_add_new( $username, $email, $namalengkap, $password, $type, $avatar=0 ) 
+	{
 		$d_t_d = array(
-			'username' => $username,
-			'email' => $email,
-			'namalengkap' => $namalengkap,
-			'password' => md5($password),
-			'type' => $type,
-			'avatar' => $avatar
-		);
+						'username' => $username,
+						'email' => $email,
+						'namalengkap' => $namalengkap,
+						'password' => md5($password),
+						'type' => $type,
+						'avatar' => $avatar
+					);
 		if( empty($avatar) ) {
 			$d_t_d['avatar'] = 'avatar.png';
 		}
@@ -204,9 +231,8 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Admin baru berhasil ditambahkan');
 	}
 
-	public function jabatan_add_new(
-		$nama_jabatan
-	) {
+	public function jabatan_add_new( $nama_jabatan) 
+	{
 		$d_t_d = array(
 			'nama_jabatan' => $nama_jabatan
 		);
@@ -214,9 +240,8 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Jabatan baru berhasil ditambahkan');
 	}
 
-	public function bidang_add_new(
-		$nama_bidang
-	) {
+	public function bidang_add_new($nama_bidang) 
+	{
 		$d_t_d = array(
 			'nama_bidang' => $nama_bidang
 		);
@@ -224,22 +249,29 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Bidang baru berhasil ditambahkan');
 	}
 
-	public function namaizin_add_new(
-		$type,$nama_izin
-	) {
+	public function namaizin_add_new( $type,$nama_kebutuhan) 
+	{
 		$d_t_d = array(
 			'type' => $type,
-			'nama_izin' => $nama_izin
+			'nama_kebutuhan' => $nama_kebutuhan
 		);
-		$this->db->insert('tb_namaizin', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Nama izin baru berhasil ditambahkan');
+		$this->db->insert('tb_kebutuhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data kebutuhan baru berhasil ditambahkan');
 	}
 
-	public function pegawai_add_new(
-		$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$pendidikan_terakhir,$status_perkawinan,
-		$status_pegawai,$id_jabatan,$id_bidang,$agama,$alamat,$no_ktp,$no_rumah,$no_handphone,$email,
-		$password,$id_user,$tanggal_pengangkatan,$avatar=0
-	) {
+	public function keluhan_add_new( $type) 
+	{
+		$d_t_d = array(
+			'type' => $type
+		);
+		$this->db->insert('tb_keluhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data keluhan baru berhasil ditambahkan');
+	}
+
+	public function pegawai_add_new( 	$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$pendidikan_terakhir,$status_perkawinan,
+										$status_pegawai,$id_jabatan,$id_bidang,$agama,$alamat,$no_ktp,$no_rumah,$no_handphone,$email,
+										$password,$id_user,$tanggal_pengangkatan,$avatar=0) 
+	{
 		$d_t_d = array(
 			'nama' => $nama,
 			'nip' => $nip,
@@ -268,6 +300,7 @@ class M_DataMaster extends CI_Model {
 		$this->db->insert('tb_pegawai', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Pegawai baru berhasil ditambahkan');
 	}
+	//FUNGSI TAMBAH DATA BARU
 
 }
 

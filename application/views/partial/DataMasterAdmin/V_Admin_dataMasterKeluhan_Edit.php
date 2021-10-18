@@ -11,12 +11,12 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('data_master/edit/nama_izin/' . $data_namaizin->id_namaizin, array('method'=>'post'));?>
-                <input type="hidden" name="id_namaizin" value="<?=$data_namaizin->id_namaizin;?>">
-                <div class="row">
+              <?=form_open('data_master/edit/keluhan/' . $data_keluhan->id_keluhan, array('method'=>'post'));?>
+                <input type="hidden" name="id_keluhan" value="<?=$data_keluhan->id_keluhan;?>">
+                <!-- <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Type Keluhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Keluhan</label>
                       <div class="col-sm-9">
                         <select name="type" class="form-control">
                           <option disabled selected>-- Pilih --</option>
@@ -41,13 +41,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Keluhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Keluhan</label>
                       <div class="col-sm-9">
-                        <input type="text" value="<?=$data_namaizin->nama_izin;?>" name="nama_izin" class="form-control" />
+                        <input type="text" value="<?=$data_keluhan->type;?>" name="type" class="form-control" />
                       </div>
                     </div>
                   </div>

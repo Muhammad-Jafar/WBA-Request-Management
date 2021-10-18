@@ -15,10 +15,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Type Izin</label>
+                      <label class="col-sm-3 col-form-label">Jenis Izin</label>
                       <div class="col-sm-9">
                         <select name="type" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
+                          <option disabled selected>-- Silahkan Pilih --</option>
                           <?php
                             $izin = array(
                               array(
@@ -26,8 +26,8 @@
                                 'nama'  => 'Cuti'
                               ),
                               array(
-                                'id'    => 'sekolah',
-                                'nama'  => 'Sekolah'
+                                'id'    => 'Pembuatan Surat',
+                                'nama'  => 'Pembuatan Surat'
                               ),
                               array(
                                 'id'    => 'seminar',
@@ -48,9 +48,9 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Izin</label>
+                      <label class="col-sm-3 col-form-label">Nama Kebutuhan</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nama_izin" class="form-control" />
+                        <input type="text" name="nama_kebutuhan" class="form-control" />
                       </div>
                     </div>
                   </div>

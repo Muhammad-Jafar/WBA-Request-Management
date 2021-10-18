@@ -3,15 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data_Keluhan extends CI_Controller {
 
-	private $m_dataizin;
+	private $m_datakeluhan;
 
 	function __construct() {
 		parent::__construct();
 		isnt_adminbaak(function() {
 			redirect( base_url('auth/login') );
 		});
-		$this->load->model('M_DataIzin');
-		$this->m_dataizin = $this->M_DataIzin;
+		$this->load->model('M_DataKeluhan');
+		$this->m_datakeluhan = $this->M_DataKeluhan;
 		if( $this->session->userdata('user_type') == 'admin' ) {
 			$this->user_type = 'Admin';
 		} else if( $this->session->userdata('user_type') == 'baak' ) {
@@ -20,16 +20,16 @@ class Data_Keluhan extends CI_Controller {
 	}
 
 	public function index() {
-		$data = generate_page('Data Izin', 'data_izin', $this->user_type);
+		$data = generate_page('Data Keluhan', 'data_keluhan', $this->user_type);
 
-			$data_content['title_page'] = 'Data Izin';
+			$data_content['title_page'] = 'Data Keluhan';
 		$data['content'] = $this->load->view('partial/DataIzinAdmin/V_Admin_DataIzin_Read', $data_content, true);
 		$this->load->view('V_DataIzin_Admin', $data);
 	}
 
 	public function list_ajax() {
 		json_dump(function() {
-			$result=$this->m_dataizin->izin_list_ajax( $this->m_dataizin->izin_list_all() );
+			$result=$this->m_datakeluhan->izin_list_ajax( $this->m_datakeluhan->izin_list_all() );
 			return array('data' => $result);
 		});
 	}
@@ -37,7 +37,7 @@ class Data_Keluhan extends CI_Controller {
 	public function nama_izin_ajax($type) {
 		$this->c_type=$type;
 		json_dump(function() {
-			$result=$this->m_dataizin->get_namaizin($this->c_type);
+			$result=$this->m_datakeluhan->get_namaizin($this->c_type);
 			return $result;
 		});
 	}
@@ -61,15 +61,16 @@ class Data_Keluhan extends CI_Controller {
 				$this->session->set_flashdata('msg_alert', validation_errors());
 				redirect( base_url('data_izin/add_new/' . $name) );
 			}
-			$this->m_dataizin->add_new(
+
+			$this->m_datakeluhan->add_new(
 				$id_namaizin,$id,$tglawal,$tglakhir,$tempat,$status
 			);
 			redirect( base_url('data_izin') );
 		}
-		$data = generate_page('Entry Data Izin', 'data_izin/add_new', $this->user_type);
+		$data = generate_page('Entry Data Keluhan', 'data_izin/add_new', $this->user_type);
 
-			$data_content['title_page'] = 'Entry Data Izin';
-			$data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();
+			$data_content['title_page'] = 'Entry Data Keluhan';
+			$data_content['pegawai_list_all'] = $this->m_datakeluhan->pegawai_list_all();
 		$data['content'] = $this->load->view('partial/DataIzinAdmin/V_Admin_DataIzin_Create', $data_content, true);
 		$this->load->view('V_DataIzin_Admin', $data);
 	}
@@ -96,14 +97,14 @@ class Data_Keluhan extends CI_Controller {
 				$this->session->set_flashdata('msg_alert', validation_errors());
 				redirect( base_url('data_izin/edit/' . $name . '/' . $id) );
 			}
-			$this->m_dataizin->update(
+			$this->m_datakeluhan->update(
 				$id_izin,$id_namaizin,$id_pgn,$tglawal,$tglakhir,$tempat,$status
 			);
 			redirect( base_url('data_izin') );
 		}
-		$data = generate_page('Edit Data Izin', 'data_izin/edit/' . $id, $this->user_type);
+		$data = generate_page('Edit Data Keluhan', 'data_izin/edit/' . $id, $this->user_type);
 
-			$data_content['title_page'] = 'Edit Data Izin';
+			$data_content['title_page'] = 'Edit Data Keluhan';
 			$data_content['data_izin'] = $this->m_dataizin->get_data_izin($id);
 			$data_content['namaizin_list'] = $this->m_dataizin->get_namaizin( $data_content['data_izin']->type );
 			$data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();

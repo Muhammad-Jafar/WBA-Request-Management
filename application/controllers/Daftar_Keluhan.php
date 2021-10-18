@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Daftar_Keluhan extends CI_Controller {
 
-	private $m_di;
+	private $m_dk;
 
 	public function __construct()
 	{
@@ -13,7 +13,7 @@ class Daftar_Keluhan extends CI_Controller {
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_DaftarKeluhan');
-		$this->m_di = $this->M_DaftarKeluhan;
+		$this->m_dk = $this->M_DaftarKeluhan;
 	}
 
 	public function index() {
@@ -26,7 +26,7 @@ class Daftar_Keluhan extends CI_Controller {
 
 	public function list_ajax() {
 		json_dump(function() {
-			$result=$this->m_di->izin_list_ajax( $this->m_di->izin_list_all() );
+			$result=$this->m_dk->izin_list_ajax( $this->m_dk->izin_list_all() );
 			return array('data' => $result);
 		});
 	}
@@ -34,7 +34,7 @@ class Daftar_Keluhan extends CI_Controller {
 	public function nama_izin_ajax($type) {
 		$this->c_type=$type;
 		json_dump(function() {
-			$result=$this->m_di->get_namaizin($this->c_type);
+			$result=$this->m_dk->get_namaizin($this->c_type);
 			return $result;
 		});
 	}
@@ -54,7 +54,7 @@ class Daftar_Keluhan extends CI_Controller {
 				$this->session->set_flashdata('msg_alert', validation_errors());
 				redirect( base_url('daftar_izin/ajukan/' . $name) );
 			}
-			$this->m_di->add_new(
+			$this->m_dk->add_new(
 				$id_namaizin,$tglawal,$tglakhir,$tempat
 			);
 			redirect( base_url('daftar_keluhan') );
@@ -90,22 +90,22 @@ class Daftar_Keluhan extends CI_Controller {
 			);
 			redirect( base_url('daftar_izin') );
 		}
-		$data = generate_page('Edit Data Izin', 'daftar_izin/edit/' . $id, 'Pegawai');
+		$data = generate_page('Edit Data Keluhan', 'daftar_izin/edit/' . $id, 'Pegawai');
 
-			$data_content['title_page'] = 'Edit Data Izin';
-			$data_content['data_izin'] = $this->m_di->get_data_izin($id);
-			$data_content['namaizin_list'] = $this->m_di->get_namaizin( $data_content['data_izin']->type );
+			$data_content['title_page'] = 'Edit Data Keluhan';
+			$data_content['data_izin'] = $this->m_dk->get_data_izin($id);
+			$data_content['namaizin_list'] = $this->m_dk->get_namaizin( $data_content['data_izin']->type );
 		$data['content'] = $this->load->view('partial/DaftarKeluhan/V_DaftarKeluhan_Edit', $data_content, true);
 		$this->load->view('V_DaftarKeluhan', $data);
 	}
 
 	public function delete($id_izin) {
-		$this->m_di->delete($id_izin);
+		$this->m_dk->delete($id_izin);
 		$this->session->set_flashdata('msg_alert', 'Izin berhasil dihapus');
 		redirect( base_url('daftar_izin') );
 	}
 
 }
 
-/* End of file Daftar_Izin.php */
-/* Location: ./application/controllers/Daftar_Izin.php */
+/* End of file Daftar_Keluhan.php */
+/* Location: ./application/controllers/Daftar_Keluhan.php */

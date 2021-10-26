@@ -1,4 +1,5 @@
-function data_izin_edit_or_add_new() {
+function data_izin_edit_or_add_new() 
+{
     sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_namaizin"]');
     sl_t.change(function(event) {
         sl_iz.html($('<option></option>').text('-- Pilih --').attr({
@@ -13,7 +14,29 @@ function data_izin_edit_or_add_new() {
     });
 }
 
-function data_pegawai_index() {
+function data_keluhan_edit_or_add_new() 
+{
+    sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_dkeluhan"]');
+    sl_t.change(function(event) 
+    {
+        sl_iz.html($('<option></option>').text('-- Pilih --').attr(
+        {
+            disabled: 'disabled',
+            selected: 'selected'
+        }));
+
+        $.get(base_url + 'data_keluhan/dkeluhan_ajax/' + sl_t.val(), function(data) 
+        {
+            for (row in data) 
+            {
+                sl_iz.append($('<option></option>').attr('value', data[row].id_dkeluhan).text(data[row].type));
+            }
+        });
+    });
+}
+
+function data_pegawai_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'data_master/pegawai_ajax',
@@ -112,7 +135,8 @@ function data_pegawai_index() {
     });
 }
 
-function data_admin_index() {
+function data_admin_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'data_master/admin_ajax',
@@ -155,7 +179,8 @@ function data_admin_index() {
     });
 }
 
-function data_jabatan_index() {
+function data_jabatan_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'data_master/jabatan_ajax',
@@ -186,7 +211,8 @@ function data_jabatan_index() {
     });
 }
 
-function data_bidang_index() {
+function data_bidang_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'data_master/bidang_ajax',
@@ -217,7 +243,8 @@ function data_bidang_index() {
     });
 }
 
-function data_namaizin_index() {
+function data_namaizin_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'data_master/namaizin_ajax',
@@ -252,38 +279,100 @@ function data_namaizin_index() {
     });
 }
 
-function data_keluhan_index() {
+function data_izin_index() 
+{
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_master/keluhan_ajax',
+            url: base_url + 'data_izin/list_ajax',
         },
         columns: [{
                 title: "No.",
                 data: 'no'
             },
             {
-                title: "Jenis Keluhan",
+                title: "Jenis Kebutuhan",
                 data: 'type'
             },
             {
+                title: "Permintaan",
+                data: 'nama_kebutuhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama_lengkap'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "WhatsApp",
+                data: 'nowa'
+            },
+            {
+                title: "NIM",
+                data: 'nim'
+            },
+            {
+                title: "NIP / NIDN",
+                data: 'nip_nidn'
+            },
+            {
+                title: "Status",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Program Studi",
+                data: 'prodi'
+            },
+            {
+                title: "Fakultas",
+                data: 'fakultas'
+            },
+            {
+                title: "Waktu Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Tanggal Mulai",
+                data: 'tgl_mulai'
+            },
+            {
+                title: "Tanggal Berakhir",
+                data: 'tgl_akhir'
+            },
+            {
+                title: "Durasi",
+                data: 'lama_izin'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            },
+            {
                 title: "Action",
-                data: 'id_keluhan'
+                data: 'id_dkebutuhan'
             }
         ],
-        createdRow: function(row, data, index) {
+        createdRow: function(row, data, index) 
+        {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_keluhan']) {
-                var id = data['id_keluhan'],
+            if (data['id_dkebutuhan']) {
+                var type = data['type'],
+                    id = data['id_dkebutuhan'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/keluhan/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/keluhan/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
     });
 }
 
-function konfirmasi_izin_index() {
+function konfirmasi_izin_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'konfirmasi_izin/list_ajax',
@@ -325,10 +414,12 @@ function konfirmasi_izin_index() {
                 data: 'id_izin'
             }
         ],
-        createdRow: function(row, data, index) {
+        createdRow: function(row, data, index) 
+        {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_izin']) {
-                var type = data['type'],
+            if (data['id_izin']) 
+            {
+                var //type = data['type'],
                     id = data['id_izin'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
@@ -339,10 +430,125 @@ function konfirmasi_izin_index() {
     });
 }
 
-function data_izin_index() {
+function data_keluhan_index() 
+{
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_izin/list_ajax',
+            url: base_url + 'data_master/keluhan_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Action",
+                data: 'id_keluhan'
+            }
+        ],
+        createdRow: function(row, data, index) 
+        {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_keluhan']) 
+            {
+                var id = data['id_keluhan'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/keluhan/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/keluhan/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function daftar_keluhan_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'data_keluhan/list_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama_lengkap'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "WhatsApp",
+                data: 'nowa'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Keluhan",
+                data: 'keluhan'
+            },
+            {
+                title: "NIM",
+                data: 'nim'
+            },
+            {
+                title: "NIP / NIDN",
+                data: 'nip_nidn'
+            },
+            {
+                title: "Status",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Program Studi",
+                data: 'prodi'
+            },
+            {
+                title: "Fakultas",
+                data: 'fakultas'
+            },
+            {
+                title: "Waktu Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            },
+            {
+                title: "Action",
+                data: 'id_dkeluhan'
+            }
+        ],
+        createdRow: function(row, data, index) 
+        {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_dkeluhan']) 
+            {
+                var id   = data['id_dkeluhan'],
+                html  = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function konfirmasi_keluhan_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'konfirmasi_izin/list_ajax',
         },
         columns: [{
                 title: "No.",
@@ -377,31 +583,28 @@ function data_izin_index() {
                 data: 'lama_izin'
             },
             {
-                title: "Status",
-                data: 'status'
-            },
-            {
                 title: "Action",
                 data: 'id_izin'
             }
         ],
-        createdRow: function(row, data, index) {
+        createdRow: function(row, data, index) 
+        {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_izin']) {
-                var type = data['type'],
+            if (data['id_izin']) 
+            {
+                var //type = data['type'],
                     id = data['id_izin'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/reject/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-close-circle-outline"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
     });
 }
 
-function daftar_izin_index() {
+function daftar_izin_index() 
+{
     $('table.data').DataTable({
         ajax: {
             url: base_url + 'daftar_izin/list_ajax',
@@ -463,7 +666,8 @@ function daftar_izin_index() {
     });
 }
 
-function daftar_izin_ajukan() {
+function daftar_izin_ajukan() 
+{
     sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_namaizin"]');
     sl_t.change(function(event) {
         sl_iz.html($('<option></option>').text('-- Pilih --').attr({
@@ -477,40 +681,39 @@ function daftar_izin_ajukan() {
         });
     });
 }
-$(document).ready(function() {
-    switch (true) {
-        case (window.location.href.indexOf('/data_master/admin') != -1):
-            data_admin_index();
-            break;
-        case (window.location.href.indexOf('/data_master/jabatan') != -1):
-            data_jabatan_index();
-            break;
-        case (window.location.href.indexOf('/data_master/bidang') != -1):
-            data_bidang_index();
-            break;
-        case (window.location.href.indexOf('/data_master/pegawai') != -1):
-            data_pegawai_index();
-            break;
-        case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1):
-            daftar_izin_ajukan();
-            break;
-        case (window.location.href.indexOf('/daftar_izin') != -1):
-            daftar_izin_index();
-            break;
-        case (window.location.href.indexOf('/data_master/nama_izin') != -1):
-            data_namaizin_index();
-            break;
-        case (window.location.href.indexOf('/data_master/keluhan') != -1):
-            data_keluhan_index();
-            break;
-        case (window.location.href.indexOf('/konfirmasi_izin') != -1):
-            konfirmasi_izin_index();
-            break;
-        case (window.location.href.indexOf('/data_izin/edit') != -1 || window.location.href.indexOf('/data_izin/add_new') != -1):
-            data_izin_edit_or_add_new();
-            break;
-        case (window.location.href.indexOf('/data_izin') != -1):
-            data_izin_index();
-            break;
+
+
+$(document).ready(function() 
+{
+    switch (true) 
+    {
+        case (window.location.href.indexOf('/data_master/admin') != -1): data_admin_index();
+        break;
+        case (window.location.href.indexOf('/data_master/jabatan') != -1): data_jabatan_index();
+        break;
+        case (window.location.href.indexOf('/data_master/bidang') != -1): data_bidang_index();
+        break;
+        case (window.location.href.indexOf('/data_master/pegawai') != -1): data_pegawai_index();
+        break;
+        case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1): daftar_izin_ajukan();
+        break;
+        case (window.location.href.indexOf('/daftar_izin') != -1): daftar_izin_index();
+        break;
+        case (window.location.href.indexOf('/data_master/nama_izin') != -1): data_namaizin_index();
+        break;
+        case (window.location.href.indexOf('/data_master/keluhan') != -1): data_keluhan_index();
+        break;
+        case (window.location.href.indexOf('/konfirmasi_izin') != -1): konfirmasi_izin_index();
+        break;
+        case (window.location.href.indexOf('/data_izin/edit') != -1 || window.location.href.indexOf('/data_izin/add_new') != -1): data_izin_edit_or_add_new();
+        break;
+        case (window.location.href.indexOf('/data_izin') != -1): data_izin_index();
+        break;
+        case (window.location.href.indexOf('/data_keluhan') != -1): daftar_keluhan_index();
+        break;
+        case (window.location.href.indexOf('/data_keluhan/edit') != -1 || window.location.href.indexOf('/data_keluhan/add_new') != -1): data_keluhan_edit_or_add_new();
+        break;
+        case (window.location.href.indexOf('/konfirmasi_keluhan_index') != -1): konfirmasi_keluhan_index();
+        break;
     }
 });

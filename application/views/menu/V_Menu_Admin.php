@@ -1,5 +1,6 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          
           <li class="nav-item nav-profile">
             <div class="nav-link">
               <div class="user-wrapper" style="margin-bottom: 0px;">
@@ -15,12 +16,14 @@
               </div>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('dashboard');?>">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
@@ -38,16 +41,11 @@
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_izin');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
-              <span class="menu-title">Data Kebutuhan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('data_izin');?>">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
-              <span class="menu-title">Data Keluhan</span>
+              <span class="menu-title">Permintaan Kebutuhan</span>
             </a>
           </li>
           <li class="nav-item">
@@ -57,8 +55,16 @@
             </a>
           </li>
 
+
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('konfirmasi_izin');?>">
+            <a class="nav-link" href="<?=base_url('data_keluhan');?>">
+              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <span class="menu-title">Permintaan Keluhan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('konfirmasi_keluhan');?>">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
               <span class="menu-title">Konfirmasi Keluhan</span>
             </a>

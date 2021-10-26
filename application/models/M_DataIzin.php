@@ -3,45 +3,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_DataIzin extends CI_Model {
 
-	public function get_data_izin($id_izin) {
-		$q=$this->db->select('b.nama_bidang, j.nama_jabatan, p.tanggal_lahir, p.nip, p.tempat_lahir, p.alamat, p.nama, ic.id_izin, ic.id, ic.id_namaizin, c.nama_izin, ic.tempat, ic.tglawal, ic.tglakhir, ic.status, c.type')
-				->from('tb_izin as ic')
-				->join('tb_pegawai as p', 'p.id = ic.id', 'LEFT')
-				->join('tb_jabatan as j', 'j.id_jabatan = p.id_jabatan', 'LEFT')
-				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
-				->join('tb_namaizin as c', 'c.id_namaizin = ic.id_namaizin', 'LEFT')
-				->where( 'ic.id_izin', $id_izin )
+	public function get_data_dkebutuhan($id_dkebutuhan) 
+	{
+		$q=$this->db->select(  'b.nama_bidang, 
+								bt.type, bt.nama_kebutuhan, 
+								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, 
+								db.prodi, db.fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+
+				->from ('tb_dkebutuhan as db')
+				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
+				->join ('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
+				->where( 'db.id_dkebutuhan', $id_dkebutuhan )
 				->limit(1)->get();
+
 		if( $q->num_rows() < 1 ) {
 			redirect( base_url('/data_izin') );
 		}
 		return $q->row();
 	}
 
-	public function get_namaizin($type) {
-		$q=$this->db->select('id_namaizin, nama_izin')->from('tb_namaizin')->where('type', $type)->get();
+	public function get_kebutuhan($type) 
+	{
+		$q=$this->db->select('id_kebutuhan, nama_kebutuhan')->from('tb_kebutuhan')->where('type', $type)->get();
 		return $q->result();
 	}
 
-	public function pegawai_list_all() {
-		$q=$this->db->select('*')->get('tb_pegawai');
+	public function bidang_list_all()
+	{
+		$q=$this->db->select('*')->get('tb_bidang');
 		return $q->result();
 	}
 
-	public function izin_list_all() {
-		$q=$this->db->select('p.nama, ic.id_izin, ic.id, ic.id_namaizin, ic.tempat, ic.tglawal, ic.tglakhir, ic.status, c.nama_izin, c.type')
-				->from('tb_izin as ic')
-				->join('tb_pegawai as p', 'p.id = ic.id', 'LEFT')
-				->join('tb_namaizin as c', 'c.id_namaizin = ic.id_namaizin', 'LEFT')
+	// YANG BARU
+	public function dkebutuhan_list_all() 
+	{
+		$q=$this->db->select(  'b.nama_bidang, 
+								bt.type, bt.nama_kebutuhan, 
+								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, db.prodi, 
+								db.id_bidang, db.fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+								
+				->from('tb_dkebutuhan as db')
+				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
+				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
 				->get();
 		return $q->result();
 	}
 
-	public function izin_list_ajax($json) {
+	// YANG BARU
+	public function dkebutuhan_list_ajax($json) 
+	{
 		$new_arr=array();$i=1;
-		foreach ($json as $key => $value) {
+		foreach ($json as $key => $value) 
+		{
 			$value->no=$i;
-			switch ($value->status) {
+			switch ($value->status) 
+			{
 				case 'waiting':
 					$label = 'warning';
 					break;
@@ -52,10 +68,11 @@ class M_DataIzin extends CI_Model {
 					$label = 'success';
 					break;
 			};
-			$diff  = date_diff( date_create($value->tglawal), date_create($value->tglakhir) );
+			$diff  = date_diff( date_create($value->tgl_mulai), date_create($value->tgl_akhir) );
 			$value->lama_izin = $diff->format('%d hari');
-			$value->tglawal = date_format( date_create($value->tglawal), 'd/m/Y');
-			$value->tglakhir = date_format( date_create($value->tglakhir), 'd/m/Y');
+			$value->tgl_pengajuan = date_format ( date_create($value->tgl_pengajuan), 'd M Y');
+			$value->tgl_mulai = date_format( date_create($value->tgl_mulai), 'd M Y');
+			$value->tgl_akhir = date_format( date_create($value->tgl_akhir), 'd M Y');
 			$value->status = '<label class="badge badge-'.$label.' text-uppercase">'.$value->status.'</label>';
 			$new_arr[]=$value;
 			$i++;
@@ -63,34 +80,55 @@ class M_DataIzin extends CI_Model {
 		return $new_arr;
 	}
 
-	public function add_new($id_namaizin,$id,$tglawal,$tglakhir,$tempat,$status) {
+	public function add_new( $type, $nama_kebutuhan, $id_bidang, $nama_lengkap, $alamat, $nowa, $nim, $nip_nidn,
+	                         $prodi, $fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+
+	{
 		$d_t_d = array(
-			'id_namaizin' => $id_namaizin,
-			'id' => $id,
-			'tglawal' => $tglawal,
-			'tglakhir' => $tglakhir,
-			'tempat' => $tempat,
-			'status' => $status,
+			'type' 			=> $type,      
+			'nama_kebutuhan'=> $nama_kebutuhan,
+			'nama_lengkap' 	=> $nama_lengkap,
+			'alamat' 		=> $alamat,
+			'nowa' 			=> $nowa,
+			'nim'		 	=> $nim,
+			'nip_nidn' 		=> $nip_nidn,
+			'id_bidang'		=> $id_bidang,
+			'prodi' 		=> $prodi,
+			'fakultas' 		=> $fakultas,
+			'tgl_pengajuan' => $tgl_pengajuan,
+			'tgl_mulai' 	=> $tgl_mulai,
+			'tgl_akhir' 	=> $tgl_akhir,
+			'status' 		=> $status
 		);
-		$this->db->insert('tb_izin', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data izin berhasil ditambahkan');
+		$this->db->insert('tb_dkebutuhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Kebutuhan berhasil ditambahkan');
 	}
 
-	public function update($id_izin,$id_namaizin,$id,$tglawal,$tglakhir,$tempat,$status) {
+	public function update(	$id_dkebutuhan, $id_kebutuhan,$id_bidang,$nama_lengkap, $alamat,$nowa,$nim, 
+							$nip_nidn, $prodi, $fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	{
 		$d_t_d = array(
-			'id_namaizin' => $id_namaizin,
-			'id' => $id,
-			'tglawal' => $tglawal,
-			'tglakhir' => $tglakhir,
-			'tempat' => $tempat,
-			'status' => $status
+			'id_kebutuhan' 	=> $id_kebutuhan,
+			'nama_lengkap' 	=> $nama_lengkap,
+			'alamat' 		=> $alamat,
+			'nowa' 			=> $nowa,
+			'nim' 			=> $nim,
+			'nip_nidn' 		=> $nip_nidn,
+			'id_bidang'		=> $id_bidang,
+			'prodi' 		=> $prodi,
+			'fakultas' 		=> $fakultas,
+			'tgl_pengajuan' => $tgl_pengajuan,
+			'tgl_mulai' 	=> $tgl_mulai,
+			'tgl_akhir' 	=> $tgl_akhir,
+			'status' 		=> $status
 		);
-		$this->db->where( 'id_izin', $id_izin )->update('tb_izin', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data izin berhasil diubah');
+		$this->db->where( 'id_dkebutuhan', $id_dkebutuhan )->update('tb_dkebutuhan', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data Pengajuan Permintaan berhasil diubah');
 	}
 
-	public function delete($id_izin) {
-		$this->db->delete('tb_izin', array('id_izin' => $id_izin));
+	public function delete($id_dkebutuhan) 
+	{
+		$this->db->delete('tb_dkebutuhan', array('id_dkebutuhan' => $id_dkebutuhan));
 	}
 
 }

@@ -12,53 +12,7 @@
               </div>
             <?php endif; ?>
 
-              <?=form_open('data_izin/add_new/', array('method'=>'post'));?>
-                <class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
-                      <div class="col-sm-9">
-                        <select name="type" class="form-control">
-                          <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
-                          <?php $izin = array( array( 'id'=>'cuti','nama'=>'Cuti'),
-                                               array( 'id'=>'Pembuatan Surat','nama'  => 'Pembuatan Surat'),
-                                              //  array( 'id'=>'seminar','nama'=>'Seminar')
-                                             );
-                            foreach($izin as $iz) : ?>
-                            <option value="<?=$iz['id'];?>"> <?=$iz['nama'];?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Permintaan</label>
-                      <div class="col-sm-9">
-                        <select name="nama_kebutuhan" class="form-control">
-                          <option disabled selected>-- Pilih Permintaan --</option>
-                          <?=
-                            $nama_kebutuhan = array( array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Sakit'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Hamil'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Liburan'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Melahirkan'),
-                                                     array( 'id'=>'Pembuatan Surat','nama'  => 'Surat Pengunduran Diri'),
-                                                     array( 'id'=>'Pembuatan Surat','nama'  => 'Surat Rekomendasi S2'),
-                                                     array( 'id'=>'seminar','nama'=>'Seminar')
-                                                  );
-                          foreach ($nama_kebutuhan as $nk) {
-                          ?>
-                          <option value="<?=$nk['id'];?>"> <?=$nk['nama'];?></option>
-                            <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                <!-- </div> -->
-                
+              <?=form_open('data_keluhan/add_new/', array('method'=>'post'));?>
                 <!-- <div class="row"> -->
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -89,6 +43,32 @@
                     </div>
                   </div>
 
+                  <!-- <div class="row"> -->
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Jenis Keluhan</label>
+                      <div class="col-sm-9">
+                        <select name="type" class="form-control">
+                          <option disabled selected>-- Pilih Jenis Keluhan --</option>
+                          <?php foreach($get_keluhan as $ke) : ?>
+                            <option value="<?=$ke->id_keluhan;?>"> <?=$ke->type;?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Keluhan</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="keluhan" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+                
+                <!-- </div class="row"> -->
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">NIM</label>
@@ -127,7 +107,6 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Fakultas</label>
                       <div class="col-sm-9">
-                        <!-- <input type="text" name="fakultas" class="form-control" /> -->
                         <select name="fakultas" class="form-control">
                           <option disabled selected>-- Pilih Fakultas --</option>
                           <?php $fak = array( array( 'id'=>'FB','nama'=>'Bioteknologi'),
@@ -180,27 +159,7 @@
                     </div>
                   </div>
                 <!-- </div> -->
-                
-                <!-- <div class="row"> -->
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Mulai</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tgl_mulai" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Akhir</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tgl_akhir" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                <!-- </div> -->
-                
+                      
                 <!-- <div class="row"> -->
                   <div class="col-md-6">
                     <div class="form-group row">

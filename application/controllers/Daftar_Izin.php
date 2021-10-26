@@ -25,15 +25,15 @@ class Daftar_Izin extends CI_Controller {
 
 	public function list_ajax() {
 		json_dump(function() {
-			$result=$this->m_di->izin_list_ajax( $this->m_di->izin_list_all() );
+			$result=$this->m_di->dkebutuhan_list_ajax( $this->m_di->dkebutuhan_list_all() );
 			return array('data' => $result);
 		});
 	}
 
-	public function nama_izin_ajax($type) {
+	public function dkebutuhan_ajax($type) {
 		$this->c_type=$type;
 		json_dump(function() {
-			$result=$this->m_di->get_namaizin($this->c_type);
+			$result=$this->m_di->get_kebutuhan($this->c_type);
 			return $result;
 		});
 	}
@@ -51,7 +51,7 @@ class Daftar_Izin extends CI_Controller {
 			$this->form_validation->set_rules('tglakhir', 'Tanggal Akhir', 'required');
 			if(!$this->form_validation->run()) {
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('daftar_izin/ajukan/' . $name) );
+				redirect( base_url('daftar_izin/ajukan/' ) );
 			}
 			$this->m_di->add_new(
 				$id_namaizin,$tglawal,$tglakhir,$tempat
@@ -81,7 +81,7 @@ class Daftar_Izin extends CI_Controller {
 
 			if(!$this->form_validation->run()) {
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('daftar_izin/edit/' . $name . '/' . $id) );
+				redirect( base_url('daftar_izin/edit/' . '/' . $id) );
 			}
 			// to-do
 			$this->m_di->update(

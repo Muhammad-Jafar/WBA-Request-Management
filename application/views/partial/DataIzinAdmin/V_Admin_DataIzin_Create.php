@@ -18,15 +18,11 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
                       <div class="col-sm-9">
-                        <select name="type" class="form-control">
+                        <select name="id_kebutuhan" class="form-control">
                           <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
-                          <?php $izin = array( array( 'id'=>'cuti','nama'=>'Cuti'),
-                                               array( 'id'=>'Pembuatan Surat','nama'  => 'Pembuatan Surat'),
-                                              //  array( 'id'=>'seminar','nama'=>'Seminar')
-                                             );
-                            foreach($izin as $iz) : ?>
-                            <option value="<?=$iz['id'];?>"> <?=$iz['nama'];?></option>
-                          <?php endforeach; ?>
+                            <?php foreach($get_kebutuhan as $ty) : ?>
+                              <option value="<?=$ty->id_kebutuhan;?>"> <?=$ty->type;?> </option>
+                            <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
@@ -36,28 +32,16 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Permintaan</label>
                       <div class="col-sm-9">
-                        <select name="nama_kebutuhan" class="form-control">
+                        <select name="id_kebutuhan" class="form-control">
                           <option disabled selected>-- Pilih Permintaan --</option>
-                          <?=
-                            $nama_kebutuhan = array( array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Sakit'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Hamil'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Liburan'),
-                                                     array( 'id'=>'cuti','nama'=>'Pengambilan Cuti Melahirkan'),
-                                                     array( 'id'=>'Pembuatan Surat','nama'  => 'Surat Pengunduran Diri'),
-                                                     array( 'id'=>'Pembuatan Surat','nama'  => 'Surat Rekomendasi S2'),
-                                                     array( 'id'=>'seminar','nama'=>'Seminar')
-                                                  );
-                          foreach ($nama_kebutuhan as $nk) {
-                          ?>
-                          <option value="<?=$nk['id'];?>"> <?=$nk['nama'];?></option>
-                            <?php
-                            }
-                          ?>
+                          <?php foreach ($get_kebutuhan as $ty) : ?>
+                            <option value="<?=$ty->id_kebutuhan;?>"> <?=$ty->nama_kebutuhan;?> </option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
-                  </div>
-                <!-- </div> -->
+                  </div> -->
+                <!-- </div>
                 
                 <!-- <div class="row"> -->
                   <div class="col-md-6">
@@ -91,18 +75,9 @@
 
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIM</label>
+                      <label class="col-sm-3 col-form-label">NIM / NIP</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nim" class="form-control"/>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIP / NIDN</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="nip_nidn" class="form-control"/>
+                        <input type="text" name="nim_nip" class="form-control"/>
                       </div>
                     </div>
                   </div>
@@ -125,16 +100,20 @@
                   
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Fakultas</label>
+                      <label class="col-sm-3 col-form-label">Fakultas / Prodi</label>
                       <div class="col-sm-9">
                         <!-- <input type="text" name="fakultas" class="form-control" /> -->
                         <select name="fakultas" class="form-control">
                           <option disabled selected>-- Pilih Fakultas --</option>
-                          <?php $fak = array( array( 'id'=>'FB','nama'=>'Bioteknologi'),
-                                              array( 'id'=>'FPs','nama'=>'Psikologi'),
-                                              array( 'id'=>'FIK','nama'=>'Ilmu Komunikasi'),
-                                              array( 'id'=>'FTLM', 'nama'=>'Teknik Lingkungan dan Mineral'),
-                                              array( 'id'=>'FRS', 'nama'=>'Rekayasa Sistem')
+                          <?php $fak = array( array( 'id'=>'Bioteknologi','nama'=>'Bioteknologi'),
+                                                array( 'id'=>'Psikologi','nama'=>'Psikologi'),
+                                                array( 'id'=>'Ilmu Komunikasi','nama'=>'Ilmu Komunikasi'),
+                                                array( 'id'=>'Teknik Metalurgi', 'nama'=>'Teknik Metalurgi'),
+                                                array( 'id'=>'Teknologi Ilmu Pertanian', 'nama'=>'Teknologi Ilmu Pertanian'),
+                                                array( 'id'=>'Teknologi Hasil Pertanian', 'nama'=>'Teknologi Hasil Pertanian'),
+                                                array( 'id'=>'Teknik Mesin', 'nama'=>'Teknik Mesin'),
+                                                array( 'id'=>'Teknik Informatika', 'nama'=>'Teknik Informatika'),
+                                                array( 'id'=>'Teknik Elektro', 'nama'=>'Teknik Elektro')
                                              );
                             foreach($fak as $fak) : ?>
                             <option value="<?=$fak['id'];?>"> <?=$fak['nama'];?></option>
@@ -146,7 +125,7 @@
                 <!-- </div> -->
 
                 <!-- <div class="row"> -->
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Prodi</label>
                       <div class="col-sm-9">
@@ -169,7 +148,7 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="col-md-6">
                     <div class="form-group row">

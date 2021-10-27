@@ -7,7 +7,7 @@ class M_DataKeluhan extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, 
+								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, 
 								db.prodi, db.fakultas, db.tgl_pengajuan, db.keluhan, db.status' )
 
 				->from ('tb_dkeluhan as db')
@@ -112,6 +112,7 @@ class M_DataKeluhan extends CI_Model {
 							$nip_nidn, $id_bidang, $prodi, $fakultas, $tgl_pengajuan, $status  ) 
 	{
 		$d_t_d = array(
+			// 'id_dkeluhan'	=> $id_dkeluhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
 			'nowa' 			=> $nowa,

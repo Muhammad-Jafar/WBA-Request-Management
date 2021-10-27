@@ -310,24 +310,20 @@ function data_izin_index()
                 data: 'nowa'
             },
             {
-                title: "NIM",
-                data: 'nim'
-            },
-            {
-                title: "NIP / NIDN",
-                data: 'nip_nidn'
+                title: "NIM / NIP",
+                data: 'nim_nip'
             },
             {
                 title: "Status",
                 data: 'nama_bidang'
             },
             {
-                title: "Program Studi",
-                data: 'prodi'
-            },
-            {
                 title: "Fakultas",
                 data: 'fakultas'
+            },
+            {
+                title: "Program Studi",
+                data: 'prodi'
             },
             {
                 title: "Waktu Pengajuan",
@@ -495,24 +491,20 @@ function daftar_keluhan_index()
                 data: 'keluhan'
             },
             {
-                title: "NIM",
-                data: 'nim'
-            },
-            {
-                title: "NIP / NIDN",
-                data: 'nip_nidn'
+                title: "NIM / NIP",
+                data: 'nim_nip'
             },
             {
                 title: "Status",
                 data: 'nama_bidang'
             },
             {
-                title: "Program Studi",
-                data: 'prodi'
-            },
-            {
                 title: "Fakultas",
                 data: 'fakultas'
+            },
+            {
+                title: "Program Studi",
+                data: 'prodi'
             },
             {
                 title: "Waktu Pengajuan",

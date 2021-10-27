@@ -7,8 +7,8 @@ class M_DataIzin extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, 
-								db.prodi, db.fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, 
+								db.prodi_fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
 
 				->from ('tb_dkebutuhan as db')
 				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
@@ -22,9 +22,9 @@ class M_DataIzin extends CI_Model {
 		return $q->row();
 	}
 
-	public function get_kebutuhan($type) 
+	public function get_kebutuhan() 
 	{
-		$q=$this->db->select('id_kebutuhan, nama_kebutuhan')->from('tb_kebutuhan')->where('type', $type)->get();
+		$q=$this->db->select('*')->get('tb_kebutuhan');
 		return $q->result();
 	}
 
@@ -39,8 +39,8 @@ class M_DataIzin extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, db.prodi, 
-								db.id_bidang, db.fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, db.prodi_fakultas,
+								db.id_bidang, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
 								
 				->from('tb_dkebutuhan as db')
 				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
@@ -80,21 +80,19 @@ class M_DataIzin extends CI_Model {
 		return $new_arr;
 	}
 
-	public function add_new( $type, $nama_kebutuhan, $id_bidang, $nama_lengkap, $alamat, $nowa, $nim, $nip_nidn,
-	                         $prodi, $fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	public function add_new( $id_kebutuhan, $id_bidang, $nama_lengkap, $alamat, $nowa, $nim_nip,
+	                         $prodi_fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
 
 	{
 		$d_t_d = array(
-			'type' 			=> $type,      
-			'nama_kebutuhan'=> $nama_kebutuhan,
+			'id_kebutuhan'	=> $id_kebutuhan,      
+			// 'nama_kebutuhan'=> $nama_kebutuhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
 			'nowa' 			=> $nowa,
-			'nim'		 	=> $nim,
-			'nip_nidn' 		=> $nip_nidn,
+			'nim_nip' 		=> $nim_nip,
 			'id_bidang'		=> $id_bidang,
-			'prodi' 		=> $prodi,
-			'fakultas' 		=> $fakultas,
+			'prodi_fakultas'=> $prodi_fakultas,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'tgl_mulai' 	=> $tgl_mulai,
 			'tgl_akhir' 	=> $tgl_akhir,
@@ -104,19 +102,17 @@ class M_DataIzin extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Kebutuhan berhasil ditambahkan');
 	}
 
-	public function update(	$id_dkebutuhan, $id_kebutuhan,$id_bidang,$nama_lengkap, $alamat,$nowa,$nim, 
-							$nip_nidn, $prodi, $fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	public function update(	$id_dkebutuhan, $id_kebutuhan,$id_bidang,$nama_lengkap, $alamat,$nowa,
+							$nim_nip, $prodi_fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
 	{
 		$d_t_d = array(
 			'id_kebutuhan' 	=> $id_kebutuhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
 			'nowa' 			=> $nowa,
-			'nim' 			=> $nim,
-			'nip_nidn' 		=> $nip_nidn,
+			'nim_nip' 		=> $nim_nip,
 			'id_bidang'		=> $id_bidang,
-			'prodi' 		=> $prodi,
-			'fakultas' 		=> $fakultas,
+			'prodi_fakultas'=> $prodi_fakultas,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'tgl_mulai' 	=> $tgl_mulai,
 			'tgl_akhir' 	=> $tgl_akhir,

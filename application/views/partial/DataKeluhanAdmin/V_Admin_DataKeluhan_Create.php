@@ -109,11 +109,11 @@
                       <div class="col-sm-9">
                         <select name="fakultas" class="form-control">
                           <option disabled selected>-- Pilih Fakultas --</option>
-                          <?php $fak = array( array( 'id'=>'FB','nama'=>'Bioteknologi'),
-                                              array( 'id'=>'FPs','nama'=>'Psikologi'),
-                                              array( 'id'=>'FIK','nama'=>'Ilmu Komunikasi'),
-                                              array( 'id'=>'FTLM', 'nama'=>'Teknik Lingkungan dan Mineral'),
-                                              array( 'id'=>'FRS', 'nama'=>'Rekayasa Sistem')
+                          <?php $fak = array( array( 'id'=>'Bioteknologi','nama'=>'Bioteknologi'),
+                                              array( 'id'=>'Psikologi','nama'=>'Psikologi'),
+                                              array( 'id'=>'Ilmu Komunikasi','nama'=>'Ilmu Komunikasi'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral', 'nama'=>'Teknik Lingkungan dan Mineral'),
+                                              array( 'id'=>'Rekayasa Sistem', 'nama'=>'Rekayasa Sistem')
                                              );
                             foreach($fak as $fak) : ?>
                             <option value="<?=$fak['id'];?>"> <?=$fak['nama'];?></option>
@@ -132,15 +132,15 @@
                         <!-- <input type="text" name="prodi" class="form-control" /> -->
                         <select name="prodi" class="form-control">
                           <option disabled selected>-- Pilih Program Studi --</option>
-                          <?php $prodi = array( array( 'id'=>'FB','nama'=>'Bioteknologi'),
-                                                array( 'id'=>'FPs','nama'=>'Psikologi'),
-                                                array( 'id'=>'FIK','nama'=>'Ilmu Komunikasi'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknik Metalurgi'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknologi Ilmu Pertanian'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknologi Hasil Pertanian'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Mesin'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Informatika'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Elektro')
+                          <?php $prodi = array( array( 'id'=>'Bioteknologi','nama'=>'Bioteknologi'),
+                                                array( 'id'=>'Psikologi','nama'=>'Psikologi'),
+                                                array( 'id'=>'Ilmu Komunikasi','nama'=>'Ilmu Komunikasi'),
+                                                array( 'id'=>'Teknik Metalurgi', 'nama'=>'Teknik Metalurgi'),
+                                                array( 'id'=>'Teknologi Ilmu Pertanian', 'nama'=>'Teknologi Ilmu Pertanian'),
+                                                array( 'id'=>'Teknologi Hasil Pertanian', 'nama'=>'Teknologi Hasil Pertanian'),
+                                                array( 'id'=>'Teknik Mesin', 'nama'=>'Teknik Mesin'),
+                                                array( 'id'=>'Teknik Informatika', 'nama'=>'Teknik Informatika'),
+                                                array( 'id'=>'Teknik Elektro', 'nama'=>'Teknik Elektro')
                                              );
                             foreach($prodi as $prod) : ?>
                             <option value="<?=$prod['id'];?>"> <?=$prod['nama'];?></option>

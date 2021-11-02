@@ -318,12 +318,8 @@ function data_izin_index()
                 data: 'nama_bidang'
             },
             {
-                title: "Fakultas",
-                data: 'fakultas'
-            },
-            {
-                title: "Program Studi",
-                data: 'prodi'
+                title: "Fakultas / Program Studi",
+                data: 'fak_prodi'
             },
             {
                 title: "Waktu Pengajuan",
@@ -499,12 +495,8 @@ function daftar_keluhan_index()
                 data: 'nama_bidang'
             },
             {
-                title: "Fakultas",
-                data: 'fakultas'
-            },
-            {
-                title: "Program Studi",
-                data: 'prodi'
+                title: "Fakultas / Program Studi",
+                data: 'fak_prodi'
             },
             {
                 title: "Waktu Pengajuan",

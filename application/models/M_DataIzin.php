@@ -8,7 +8,7 @@ class M_DataIzin extends CI_Model {
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type, bt.nama_kebutuhan, 
 								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, 
-								db.prodi_fakultas, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+								db.fak_prodi, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
 
 				->from ('tb_dkebutuhan as db')
 				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
@@ -39,7 +39,7 @@ class M_DataIzin extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, db.prodi_fakultas,
+								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, db.fak_prodi,
 								db.id_bidang, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
 								
 				->from('tb_dkebutuhan as db')

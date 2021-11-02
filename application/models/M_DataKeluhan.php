@@ -7,8 +7,8 @@ class M_DataKeluhan extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, 
-								db.prodi, db.fakultas, db.tgl_pengajuan, db.keluhan, db.status' )
+								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, 
+								db.fak_prodi, db.tgl_pengajuan, db.keluhan, db.status' )
 
 				->from ('tb_dkeluhan as db')
 				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
@@ -50,8 +50,8 @@ class M_DataKeluhan extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim, db.nip_nidn, db.prodi, 
-								db.id_bidang, db.fakultas, db.tgl_pengajuan, db.keluhan, db.status' )
+								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip,
+								db.fak_prodi, db.tgl_pengajuan, db.keluhan, db.status' )
 								
 				->from('tb_dkeluhan as db')
 				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')

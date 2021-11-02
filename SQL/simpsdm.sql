@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2021 at 02:18 AM
+-- Generation Time: Nov 02, 2021 at 05:07 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -62,8 +62,75 @@ CREATE TABLE `tb_bidang` (
 --
 
 INSERT INTO `tb_bidang` (`id_bidang`, `nama_bidang`) VALUES
-(1, 'Enterprise'),
-(2, 'Data Solutions');
+(1, 'Dosen'),
+(2, 'Mahasiswa'),
+(3, 'Staff ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_dkebutuhan`
+--
+
+CREATE TABLE `tb_dkebutuhan` (
+  `id_dkebutuhan` int(255) NOT NULL,
+  `id_kebutuhan` int(11) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `nim_nip` int(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `nowa` int(255) NOT NULL,
+  `fak_prodi` varchar(255) NOT NULL,
+  `id_bidang` int(255) NOT NULL,
+  `tgl_pengajuan` date NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_akhir` date NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_dkebutuhan`
+--
+
+INSERT INTO `tb_dkebutuhan` (`id_dkebutuhan`, `id_kebutuhan`, `nama_lengkap`, `nim_nip`, `alamat`, `nowa`, `fak_prodi`, `id_bidang`, `tgl_pengajuan`, `tgl_mulai`, `tgl_akhir`, `status`) VALUES
+(1, 4, 'Muhammad Jafar', 1701071075, 'Batu Alang', 414, 'Rekayasa Sistem / TEknik Informatika', 2, '2021-11-02', '2021-11-02', '2021-11-02', 'waiting');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_dkeluhan`
+--
+
+CREATE TABLE `tb_dkeluhan` (
+  `id_dkeluhan` int(255) NOT NULL,
+  `id_keluhan` int(255) NOT NULL,
+  `keluhan` text NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `nowa` int(255) NOT NULL,
+  `nim_nip` int(255) NOT NULL,
+  `id_bidang` int(255) NOT NULL,
+  `fak_prodi` varchar(255) NOT NULL,
+  `tgl_pengajuan` date NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_dkeluhan`
+--
+
+INSERT INTO `tb_dkeluhan` (`id_dkeluhan`, `id_keluhan`, `keluhan`, `nama_lengkap`, `alamat`, `nowa`, `nim_nip`, `id_bidang`, `fak_prodi`, `tgl_pengajuan`, `status`) VALUES
+(1, 2, 'Siakad bermasalah', 'Muhammad jafar', 'Batu Alang', 414, 1701071075, 2, 'Rekayasa Sistem / Teknik Informatika', '2021-11-02', 'waiting');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_fakultas`
+--
+
+CREATE TABLE `tb_fakultas` (
+  `id_fakultas` int(11) NOT NULL,
+  `nama_fakultas` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -113,6 +180,49 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 (1, 'Deputi'),
 (3, 'Sekretaris'),
 (5, 'Bendahara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_kebutuhan`
+--
+
+CREATE TABLE `tb_kebutuhan` (
+  `id_kebutuhan` int(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `nama_kebutuhan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_kebutuhan`
+--
+
+INSERT INTO `tb_kebutuhan` (`id_kebutuhan`, `type`, `nama_kebutuhan`) VALUES
+(1, 'Cuti', 'Cuti Sakit'),
+(2, 'Cuti', 'Cuti Hamil'),
+(3, 'Pembuatan Surat', 'Pengunduran Diri'),
+(4, 'Pembuatan Surat', 'Rekomendasi Studi S2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_keluhan`
+--
+
+CREATE TABLE `tb_keluhan` (
+  `id_keluhan` int(255) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_keluhan`
+--
+
+INSERT INTO `tb_keluhan` (`id_keluhan`, `type`) VALUES
+(1, 'Administrasi'),
+(2, 'Hubungan Kerja'),
+(3, 'Penggajian'),
+(4, 'Lain - lain');
 
 -- --------------------------------------------------------
 
@@ -184,6 +294,17 @@ INSERT INTO `tb_pegawai` (`id`, `nama`, `nip`, `tempat_lahir`, `tanggal_lahir`, 
 (11, 'Kendal Janner', 144124, 'Bandung', '1990-07-10', 'Perempuan', 'S3', 'Belum kawin', 'Karyawan tetap', 1, 1, 'Kristen Protestan', 'Komplek Permata Hijau No. 12', 2147483647, 21, 2147483647, 'pegawai1@gmail.com', '0b96cb1d0dfbcc85f6b57041656abc49', 'pegawai1', '2017-09-01', 'b0ff73b761a90fa10d9b8b9570a58b6e.jpg'),
 (12, 'Benjamin Aljabar R', 412411, 'Jakarta', '1997-01-06', 'Laki-laki', 'SMP/SMA', 'Belum kawin', 'Karyawan kontrak', 3, 1, 'Islam', 'Komplek Permata Hijau No. 12', 2147483647, 22, 2147483647, 'pegawai2@gmail.com', 'fa23517aa1adfaab707494340009a330', 'pegawai2', '2018-02-06', '37d631763c91e22324dd08cd4d20d40b.jpg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_prodi`
+--
+
+CREATE TABLE `tb_prodi` (
+  `id_prodi` int(11) NOT NULL,
+  `nama_prodi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -201,6 +322,24 @@ ALTER TABLE `tb_bidang`
   ADD PRIMARY KEY (`id_bidang`);
 
 --
+-- Indexes for table `tb_dkebutuhan`
+--
+ALTER TABLE `tb_dkebutuhan`
+  ADD PRIMARY KEY (`id_dkebutuhan`);
+
+--
+-- Indexes for table `tb_dkeluhan`
+--
+ALTER TABLE `tb_dkeluhan`
+  ADD PRIMARY KEY (`id_dkeluhan`);
+
+--
+-- Indexes for table `tb_fakultas`
+--
+ALTER TABLE `tb_fakultas`
+  ADD PRIMARY KEY (`id_fakultas`);
+
+--
 -- Indexes for table `tb_izin`
 --
 ALTER TABLE `tb_izin`
@@ -213,6 +352,18 @@ ALTER TABLE `tb_jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
 
 --
+-- Indexes for table `tb_kebutuhan`
+--
+ALTER TABLE `tb_kebutuhan`
+  ADD PRIMARY KEY (`id_kebutuhan`);
+
+--
+-- Indexes for table `tb_keluhan`
+--
+ALTER TABLE `tb_keluhan`
+  ADD PRIMARY KEY (`id_keluhan`);
+
+--
 -- Indexes for table `tb_namaizin`
 --
 ALTER TABLE `tb_namaizin`
@@ -223,6 +374,12 @@ ALTER TABLE `tb_namaizin`
 --
 ALTER TABLE `tb_pegawai`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_prodi`
+--
+ALTER TABLE `tb_prodi`
+  ADD PRIMARY KEY (`id_prodi`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -238,7 +395,25 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_bidang`
 --
 ALTER TABLE `tb_bidang`
-  MODIFY `id_bidang` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bidang` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_dkebutuhan`
+--
+ALTER TABLE `tb_dkebutuhan`
+  MODIFY `id_dkebutuhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_dkeluhan`
+--
+ALTER TABLE `tb_dkeluhan`
+  MODIFY `id_dkeluhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_fakultas`
+--
+ALTER TABLE `tb_fakultas`
+  MODIFY `id_fakultas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_izin`
@@ -253,6 +428,18 @@ ALTER TABLE `tb_jabatan`
   MODIFY `id_jabatan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `tb_kebutuhan`
+--
+ALTER TABLE `tb_kebutuhan`
+  MODIFY `id_kebutuhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tb_keluhan`
+--
+ALTER TABLE `tb_keluhan`
+  MODIFY `id_keluhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tb_namaizin`
 --
 ALTER TABLE `tb_namaizin`
@@ -263,6 +450,12 @@ ALTER TABLE `tb_namaizin`
 --
 ALTER TABLE `tb_pegawai`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `tb_prodi`
+--
+ALTER TABLE `tb_prodi`
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

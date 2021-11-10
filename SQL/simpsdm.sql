@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2021 at 05:07 PM
+-- Generation Time: Nov 10, 2021 at 05:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -119,7 +119,10 @@ CREATE TABLE `tb_dkeluhan` (
 --
 
 INSERT INTO `tb_dkeluhan` (`id_dkeluhan`, `id_keluhan`, `keluhan`, `nama_lengkap`, `alamat`, `nowa`, `nim_nip`, `id_bidang`, `fak_prodi`, `tgl_pengajuan`, `status`) VALUES
-(1, 2, 'Siakad bermasalah', 'Muhammad jafar', 'Batu Alang', 414, 1701071075, 2, 'Rekayasa Sistem / Teknik Informatika', '2021-11-02', 'waiting');
+(3, 1, 'Lupa kata sandi siakad', 'Herman', 'Buton', 51515, 1701071075, 2, 'Rekayasa Sistem / Teknik Informatika', '2021-11-03', 'waiting'),
+(4, 1, 'Siakad terblokir', 'Jafar', 'Buton', 312313, 1701071075, 2, 'Rekayasa Sistem / Teknik Informatika', '2021-11-04', 'waiting'),
+(5, 1, 'Lupa sandi siakad', 'Deni', 'Bukit Permai', 12132, 1801061055, 2, 'Teknik Lingkungan dan Mineral / Teknik Lingkungan', '2021-11-04', 'waiting'),
+(6, 1, 'Lapar, belum makan', 'Fazril', 'Wolowa Buton', 15352, 1701, 2, 'Psikologi / Psikologi', '2021-11-05', 'waiting');
 
 -- --------------------------------------------------------
 
@@ -131,6 +134,19 @@ CREATE TABLE `tb_fakultas` (
   `id_fakultas` int(11) NOT NULL,
   `nama_fakultas` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_fakultas`
+--
+
+INSERT INTO `tb_fakultas` (`id_fakultas`, `nama_fakultas`) VALUES
+(1, 'Teknobiologi'),
+(2, 'Psikologi'),
+(3, 'Teknik Lingkungan dan Mineral'),
+(4, 'Rekayasa Sistem'),
+(5, 'Ilmu Komunikasi'),
+(6, 'Teknologi Pertanian'),
+(7, 'Ekonomi Dan Bisnis');
 
 -- --------------------------------------------------------
 
@@ -302,8 +318,34 @@ INSERT INTO `tb_pegawai` (`id`, `nama`, `nip`, `tempat_lahir`, `tanggal_lahir`, 
 
 CREATE TABLE `tb_prodi` (
   `id_prodi` int(11) NOT NULL,
+  `id_fakultas` int(255) NOT NULL,
   `nama_prodi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_prodi`
+--
+
+INSERT INTO `tb_prodi` (`id_prodi`, `id_fakultas`, `nama_prodi`) VALUES
+(1, 1, 'Bioteknologi'),
+(2, 2, 'Psikologi'),
+(3, 4, 'Teknik Informatika'),
+(4, 4, 'Teknik Mesin'),
+(5, 4, 'Teknik Elektro'),
+(6, 3, 'Teknik Sipil'),
+(7, 6, 'Teknologi Industri Pertanian'),
+(8, 6, 'Teknologi Hasil Pertanian'),
+(9, 3, 'Teknik Lingkungan'),
+(10, 5, 'Ilmu Komunikasi'),
+(11, 3, 'Teknik Industri'),
+(12, 3, 'Teknik Metalurgi'),
+(13, 1, 'Peternakan'),
+(14, 1, 'Ilmu Perikanan'),
+(15, 7, 'Akuntansi'),
+(16, 7, 'Manajemen'),
+(17, 7, 'Ekonomi Pembangunan'),
+(18, 7, 'Bisnis Digital'),
+(19, 7, 'Kewirausahaan');
 
 --
 -- Indexes for dumped tables
@@ -407,13 +449,13 @@ ALTER TABLE `tb_dkebutuhan`
 -- AUTO_INCREMENT for table `tb_dkeluhan`
 --
 ALTER TABLE `tb_dkeluhan`
-  MODIFY `id_dkeluhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_dkeluhan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_fakultas`
 --
 ALTER TABLE `tb_fakultas`
-  MODIFY `id_fakultas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fakultas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_izin`
@@ -455,7 +497,7 @@ ALTER TABLE `tb_pegawai`
 -- AUTO_INCREMENT for table `tb_prodi`
 --
 ALTER TABLE `tb_prodi`
-  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

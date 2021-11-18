@@ -81,7 +81,7 @@ class M_DataIzin extends CI_Model {
 	}
 
 	public function add_new( $id_kebutuhan, $id_bidang, $nama_lengkap, $alamat, $nowa, $nim_nip,
-	                         $prodi_fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	                         $fak_prodi, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
 
 	{
 		$d_t_d = array(
@@ -89,10 +89,10 @@ class M_DataIzin extends CI_Model {
 			// 'nama_kebutuhan'=> $nama_kebutuhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
-			'nowa' 			=> $nowa,
 			'nim_nip' 		=> $nim_nip,
+			'nowa' 			=> $nowa,
 			'id_bidang'		=> $id_bidang,
-			'prodi_fakultas'=> $prodi_fakultas,
+			'fak_prodi'		=> $fak_prodi,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'tgl_mulai' 	=> $tgl_mulai,
 			'tgl_akhir' 	=> $tgl_akhir,
@@ -102,8 +102,8 @@ class M_DataIzin extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Kebutuhan berhasil ditambahkan');
 	}
 
-	public function update(	$id_dkebutuhan, $id_kebutuhan,$id_bidang,$nama_lengkap, $alamat,$nowa,
-							$nim_nip, $prodi_fakultas, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	public function update(	$id_dkebutuhan, $id_kebutuhan, $id_bidang, $nama_lengkap, $alamat,$nowa,
+							$nim_nip, $fak_prodi, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
 	{
 		$d_t_d = array(
 			'id_kebutuhan' 	=> $id_kebutuhan,
@@ -112,7 +112,7 @@ class M_DataIzin extends CI_Model {
 			'nowa' 			=> $nowa,
 			'nim_nip' 		=> $nim_nip,
 			'id_bidang'		=> $id_bidang,
-			'prodi_fakultas'=> $prodi_fakultas,
+			'fak_prodi'		=> $fak_prodi,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'tgl_mulai' 	=> $tgl_mulai,
 			'tgl_akhir' 	=> $tgl_akhir,

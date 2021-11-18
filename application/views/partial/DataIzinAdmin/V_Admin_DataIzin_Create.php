@@ -13,15 +13,16 @@
             <?php endif; ?>
 
               <?=form_open('data_izin/add_new/', array('method'=>'post'));?>
-                <class="row">
+              
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
                       <div class="col-sm-9">
                         <select name="id_kebutuhan" class="form-control">
                           <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
-                            <?php foreach($get_kebutuhan as $ty) : ?>
-                              <option value="<?=$ty->id_kebutuhan;?>"> <?=$ty->type;?> </option>
+                          <?php foreach($kebutuhan as $bid) : ?>
+                              <option value="<?=$bid->id_kebutuhan;?>"><?=$bid->type;?></option>
                             <?php endforeach; ?>
                         </select>
                       </div>
@@ -30,20 +31,20 @@
 
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Permintaan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Permintaan</label>
                       <div class="col-sm-9">
-                        <select name="id_kebutuhan" class="form-control">
-                          <option disabled selected>-- Pilih Permintaan --</option>
-                          <?php foreach ($get_kebutuhan as $ty) : ?>
-                            <option value="<?=$ty->id_kebutuhan;?>"> <?=$ty->nama_kebutuhan;?> </option>
-                          <?php endforeach; ?>
+                        <select name="id_butuhan" class="form-control">
+                          <option disabled selected>-- Pilih Jenis Permintaan --</option>
+                          <?php foreach($kebutuhan as $bid) : ?>
+                              <option value="<?=$bid->id_kebutuhan;?>"> <?=$bid->nama_kebutuhan;?> </option>
+                            <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
-                  </div> -->
-                <!-- </div>
+                  </div>
+                </div>
                 
-                <!-- <div class="row"> -->
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Lengkap</label>
@@ -61,18 +62,9 @@
                       </div>
                     </div>
                   </div>
-                <!-- </div> -->
+                </div>
 
-                <!-- <div class="row"> -->
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">WhatsApp</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="nowa" class="form-control"/>
-                      </div>
-                    </div>
-                  </div>
-
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">NIM / NIP</label>
@@ -81,12 +73,21 @@
                       </div>
                     </div>
                   </div>
-                <!-- </div> -->
-                  
-                <!-- <div class="row"> -->
+
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Status</label>
+                      <label class="col-sm-3 col-form-label">WhatsApp</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="nowa" class="form-control"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Status Civitas</label>
                       <div class="col-sm-9">
                         <select name="id_bidang" class="form-control">
                           <option disabled selected>-- Pilih Status Anda --</option>
@@ -97,23 +98,24 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Fakultas / Prodi</label>
+                      <label class="col-sm-3 col-form-label">Fakultas / Program Studi</label>
                       <div class="col-sm-9">
-                        <!-- <input type="text" name="fakultas" class="form-control" /> -->
-                        <select name="fakultas" class="form-control">
-                          <option disabled selected>-- Pilih Fakultas --</option>
-                          <?php $fak = array( array( 'id'=>'Bioteknologi','nama'=>'Bioteknologi'),
-                                                array( 'id'=>'Psikologi','nama'=>'Psikologi'),
-                                                array( 'id'=>'Ilmu Komunikasi','nama'=>'Ilmu Komunikasi'),
-                                                array( 'id'=>'Teknik Metalurgi', 'nama'=>'Teknik Metalurgi'),
-                                                array( 'id'=>'Teknologi Ilmu Pertanian', 'nama'=>'Teknologi Ilmu Pertanian'),
-                                                array( 'id'=>'Teknologi Hasil Pertanian', 'nama'=>'Teknologi Hasil Pertanian'),
-                                                array( 'id'=>'Teknik Mesin', 'nama'=>'Teknik Mesin'),
-                                                array( 'id'=>'Teknik Informatika', 'nama'=>'Teknik Informatika'),
-                                                array( 'id'=>'Teknik Elektro', 'nama'=>'Teknik Elektro')
+                        <select name="fak_prodi" class="form-control">
+                          <option disabled selected>-- Pilih Fakultas /Prodi --</option>
+                          <?php $fak = array( array( 'id'=>'Bioteknologi / Bioteknologi','nama'=>'Bioteknologi / Bioteknologi'),
+                                              array( 'id'=>'Psikologi / Psikologi','nama'=>'Psikologi / Psikologi'),
+                                              array( 'id'=>'Ilmu Komunikasi / Ilmu Komunikasi','nama'=>'Ilmu Komunikasi / Ilmu Komunikasi'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral / Metalurgi', 'nama'=>'Teknik Lingkungan dan Mineral / Metalurgi'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral / Teknik Sipil', 'nama'=>'Teknik Lingkungan dan Mineral / Teknik Sipil'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral / Teknik Lingkungan', 'nama'=>'Teknik Lingkungan dan Mineral / Teknik Lingkungan'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral / Teknologi Industri Pertanian', 'nama'=>'Teknik Lingkungan dan Mineral / Teknologi Industri Pertanian'),
+                                              array( 'id'=>'Teknik Lingkungan dan Mineral / Teknologi Hasil Pertanian', 'nama'=>'Teknik Lingkungan dan Mineral / Teknologi Hasil Pertanian'),
+                                              array( 'id'=>'Rekayasa Sistem / Teknik Informatika', 'nama'=>'Rekayasa Sistem / Teknik Informatika'),
+                                              array( 'id'=>'Rekayasa Sistem / Teknik Elektro', 'nama'=>'Rekayasa Sistem / Teknik Elektro'),
+                                              array( 'id'=>'Rekayasa Sistem / Teknik Mesin', 'nama'=>'Rekayasa Sistem / Teknik Mesin')
                                              );
                             foreach($fak as $fak) : ?>
                             <option value="<?=$fak['id'];?>"> <?=$fak['nama'];?></option>
@@ -122,34 +124,9 @@
                       </div>
                     </div>
                   </div>
-                <!-- </div> -->
-
-                <!-- <div class="row"> -->
-                <!-- <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Prodi</label>
-                      <div class="col-sm-9">
-                        <!-- <input type="text" name="prodi" class="form-control" /> -->
-                        <select name="prodi" class="form-control">
-                          <option disabled selected>-- Pilih Program Studi --</option>
-                          <?php $prodi = array( array( 'id'=>'FB','nama'=>'Bioteknologi'),
-                                                array( 'id'=>'FPs','nama'=>'Psikologi'),
-                                                array( 'id'=>'FIK','nama'=>'Ilmu Komunikasi'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknik Metalurgi'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknologi Ilmu Pertanian'),
-                                                array( 'id'=>'FTLM', 'nama'=>'Teknologi Hasil Pertanian'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Mesin'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Informatika'),
-                                                array( 'id'=>'FRS', 'nama'=>'Teknik Elektro')
-                                             );
-                            foreach($prodi as $prod) : ?>
-                            <option value="<?=$prod['id'];?>"> <?=$prod['nama'];?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div> -->
-
+                </div>
+            
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Waktu Pengajuan</label>
@@ -158,9 +135,9 @@
                       </div>
                     </div>
                   </div>
-                <!-- </div> -->
+                </div>
                 
-                <!-- <div class="row"> -->
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tanggal Mulai</label>
@@ -178,9 +155,9 @@
                       </div>
                     </div>
                   </div>
-                <!-- </div> -->
+                </div>
                 
-                <!-- <div class="row"> -->
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Status</label>
@@ -193,15 +170,17 @@
                         </select>
                       </div>
                     </div>
-                  <!-- </div> -->
+                  </div>
+                </div>
 
-                  <!-- <div class="col-md-6"> -->
+                <!-- <div class="row"> -->
+                  <div class="col-md-6">
                     <div class="form-group row">
                       <button type="submit" class="btn btn-success mr-2">Submit</button>
                       <button class="btn btn-light" type="reset">Reset</button>
                     </div>
                   </div>
-                </div>
+                <!-- </div> -->
               <?=form_close();?>
             </div>
           </div>

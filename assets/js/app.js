@@ -532,55 +532,55 @@ function konfirmasi_keluhan_index()
 {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'konfirmasi_izin/list_ajax',
+            url: base_url + 'konfirmasi_keluhan/list_ajax',
         },
         columns: [{
                 title: "No.",
                 data: 'no'
             },
             {
-                title: "Type Izin",
+                title: "Jenis",
                 data: 'type'
             },
             {
-                title: "Nama Izin",
-                data: 'nama_izin'
+                title: "Keluhan",
+                data: 'keluhan'
             },
             {
-                title: "Nama Pengguna",
-                data: 'nama'
+                title: "Nama Pelapor",
+                data: 'nama_lengkap'
             },
             {
-                title: "Tempat",
-                data: 'tempat'
+                title: "Status",
+                data: 'nama_bidang'
             },
             {
-                title: "Tanggal Awal",
-                data: 'tglawal'
+                title: "NIM / NIP",
+                data: 'nim_nip'
             },
             {
-                title: "Tanggal Akhir",
-                data: 'tglakhir'
+                title: "Fakultas / Prodi",
+                data: 'fak_prodi'
             },
             {
-                title: "Lama Izin",
-                data: 'lama_izin'
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
             },
             {
                 title: "Action",
-                data: 'id_izin'
+                data: 'id_dkeluhan'
             }
         ],
         createdRow: function(row, data, index) 
         {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_izin']) 
+            if (data['id_dkeluhan']) 
             {
                 var //type = data['type'],
-                    id = data['id_izin'],
+                    id = data['id_dkeluhan'],
                     html = '';
-                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/reject/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-close-circle-outline"></i></button>';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_keluhan/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_keluhan/reject/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-close-circle-outline"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }

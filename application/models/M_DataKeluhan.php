@@ -7,7 +7,7 @@ class M_DataKeluhan extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, 
+								db.id_dkeluhan, db.nama_lengkap, db.alamat,db.nim_nip, db.nowa, 
 								db.fak_prodi, db.tgl_pengajuan, db.keluhan, db.status' )
 
 				->from ('tb_dkeluhan as db')
@@ -27,12 +27,6 @@ class M_DataKeluhan extends CI_Model {
 		$q=$this->db->select('*')->get('tb_keluhan');
 		return $q->result();
 	}
-
-	// public function get_keluhan($type) 
-	// {
-	// 	$q=$this->db->select('id_keluhan, type')->from('tb_keluhan')->where('type', $type)->get();
-	// 	return $q->result();
-	// }
 
 	public function pegawai_list_all() {
 		$q=$this->db->select('*')->get('tb_pegawai');
@@ -87,20 +81,18 @@ class M_DataKeluhan extends CI_Model {
 		return $new_arr;
 	}
 
-	public function add_new( $nama_lengkap, $alamat,$nowa, $id_keluhan, $keluhan, $nim, 
-							 $nip_nidn, $id_bidang, $prodi, $fakultas, $tgl_pengajuan, $status ) 
+	public function add_new( $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, 
+							 $nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status ) 
 	{
 		$d_t_d = array(
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
+			'nim_nip'		=> $nim_nip,
 			'nowa' 			=> $nowa,
 			'id_keluhan'	=> $id_keluhan,
 			'keluhan'		=> $keluhan,
-			'nim'		 	=> $nim,
-			'nip_nidn' 		=> $nip_nidn,
 			'id_bidang'		=> $id_bidang,
-			'prodi' 		=> $prodi,
-			'fakultas' 		=> $fakultas,
+			'fak_prodi' 	=> $fak_prodi,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'status' 		=> $status
 		);
@@ -108,21 +100,19 @@ class M_DataKeluhan extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Keluhan berhasil ditambahkan');
 	}
 
-	public function update(	$id_dkeluhan, $nama_lengkap, $alamat,$nowa, $id_keluhan, $keluhan, $nim, 
-							$nip_nidn, $id_bidang, $prodi, $fakultas, $tgl_pengajuan, $status  ) 
+	public function update(	$id_dkeluhan,$id_keluhan, $nama_lengkap, $alamat, $nowa, $keluhan, 
+							$nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status  ) 
 	{
 		$d_t_d = array(
-			// 'id_dkeluhan'	=> $id_dkeluhan,
+			'id_dkeluhan'	=> $id_dkeluhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
+			'nim_nip'		=> $nim_nip,
 			'nowa' 			=> $nowa,
 			'id_keluhan'	=> $id_keluhan,
 			'keluhan'		=> $keluhan,
-			'nim'		 	=> $nim,
-			'nip_nidn' 		=> $nip_nidn,
 			'id_bidang'		=> $id_bidang,
-			'prodi' 		=> $prodi,
-			'fakultas' 		=> $fakultas,
+			'fak_prodi' 	=> $fak_prodi,
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'status' 		=> $status
 		);

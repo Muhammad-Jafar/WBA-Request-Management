@@ -54,11 +54,9 @@ class Data_Keluhan extends CI_Controller {
 			$nowa= $this->security->xss_clean( $this->input->post('nowa') );
 			$id_keluhan= $this->security->xss_clean( $this->input->post('type') );
 			$keluhan = $this->security->xss_clean( $this->input->post('keluhan'));
-			$nim= $this->security->xss_clean( $this->input->post('nim'));
-			$nip_nidn= $this->security->xss_clean( $this->input->post('nip_nidn'));
+			$nim_nip= $this->security->xss_clean( $this->input->post('nim_nip'));
 			$id_bidang= $this->security->xss_clean($this->input->post('id_bidang'));
-			$prodi= $this->security->xss_clean($this->input->post('prodi'));
-			$fakultas= $this->security->xss_clean($this->input->post('fakultas'));
+			$fak_prodi= $this->security->xss_clean($this->input->post('fak_prodi'));
 			$tgl_pengajuan= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
 			$status= $this->security->xss_clean( $this->input->post('status') );
 
@@ -67,11 +65,9 @@ class Data_Keluhan extends CI_Controller {
 			$this->form_validation->set_rules('nowa', 'WhatsApp', 'required');
 			$this->form_validation->set_rules('type', 'Jenis Keluhan', 'required');
 			$this->form_validation->set_rules('keluhan', 'Keluhan', 'required');
-			$this->form_validation->set_rules('nim', 'NIM', 'required');
-			$this->form_validation->set_rules('nip_nidn', 'NIP / NIDN', 'required');
+			$this->form_validation->set_rules('nim_nip', 'NIM / NIP', 'required');
 			$this->form_validation->set_rules('id_bidang','Status', 'required');
-			$this->form_validation->set_rules('prodi', 'Program Studi', 'required');
-			$this->form_validation->set_rules('fakultas', 'Fakultas', 'required');
+			$this->form_validation->set_rules('fak_prodi', 'Fakultas / Program Studi', 'required');
 			$this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
 
@@ -81,8 +77,8 @@ class Data_Keluhan extends CI_Controller {
 				redirect( base_url('data_keluhan/add_new/') );
 			}
 
-			$this->m_datakeluhan->add_new(  $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, $nim, $nip_nidn,
-											$id_bidang, $prodi, $fakultas, $tgl_pengajuan, $status);
+			$this->m_datakeluhan->add_new(  $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, $nim_nip,
+											$id_bidang, $fak_prodi, $tgl_pengajuan, $status);
 			redirect( base_url('data_keluhan') );
 		}
 
@@ -94,50 +90,47 @@ class Data_Keluhan extends CI_Controller {
 		$this->load->view('V_DataKeluhan_Admin', $data);
 	}
 
-	public function edit($id) 
+	public function edit($id_dkeluhan) 
 	{
 		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
 			$nama_lengkap= $this->security->xss_clean( $this->input->post('nama_lengkap') );
 			$alamat= $this->security->xss_clean( $this->input->post('alamat') );
+			$nim_nip= $this->security->xss_clean( $this->input->post('nim_nip'));
 			$nowa= $this->security->xss_clean( $this->input->post('nowa') );
-			$id_keluhan= $this->security->xss_clean( $this->input->post('id_keluhan') );
+			$id_keluhan= $this->security->xss_clean( $this->input->post('type') );
 			$keluhan = $this->security->xss_clean( $this->input->post('keluhan'));
-			$nim= $this->security->xss_clean( $this->input->post('nim'));
-			$nip_nidn= $this->security->xss_clean( $this->input->post('nip_nidn'));
 			$id_bidang= $this->security->xss_clean($this->input->post('id_bidang'));
-			$prodi= $this->security->xss_clean($this->input->post('prodi'));
-			$fakultas= $this->security->xss_clean($this->input->post('fakultas'));
+			$fak_prodi= $this->security->xss_clean($this->input->post('fak_prodi'));    
 			$tgl_pengajuan= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
 			$status= $this->security->xss_clean( $this->input->post('status') );
 
 			$this->form_validation->set_rules('nama_lengkap','Nama Lengkap','required');
 			$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+			$this->form_validation->set_rules('nim_nip', 'NIM / NIP', 'required');
 			$this->form_validation->set_rules('nowa', 'WhatsApp', 'required');
-			$this->form_validation->set_rules('id_keluhan', 'Jenis Keluhan', 'required');
+			$this->form_validation->set_rules('type', 'Jenis Keluhan', 'required');
 			$this->form_validation->set_rules('keluhan', 'Keluhan', 'required');
-			$this->form_validation->set_rules('nim', 'NIM', 'required');
-			$this->form_validation->set_rules('nip_nidn', 'NIP / NIDN', 'required');
 			$this->form_validation->set_rules('id_bidang','Status', 'required');
-			$this->form_validation->set_rules('prodi', 'Program Studi', 'required');
-			$this->form_validation->set_rules('fakultas', 'Fakultas', 'required');
+			$this->form_validation->set_rules('fak_prodi', 'Fakultas / Program Studi', 'required');
 			$this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
 
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('data_keluhan/edit/' . '/' . $id) );
+				redirect( base_url('data_keluhan/edit/'.$id_dkeluhan) );
 			}
-			$this->m_datakeluhan->add_new(  $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, $nim, $nip_nidn,
-											$id_bidang, $prodi, $fakultas, $tgl_pengajuan, $status);
+			$this->m_datakeluhan->add_new(  $id_dkeluhan, $nama_lengkap, $alamat,$nim_nip, $nowa, $id_keluhan, 
+											$keluhan, $id_bidang, $fak_prodi, $tgl_pengajuan, $status );
 			redirect( base_url('data_keluhan') );
 		}
 
-		$data = generate_page('Edit Data Kebutuhan', 'data_keluhan/edit/' . $id, $this->user_type);
+		$data = generate_page('Edit Data Keluhan', 'data_keluhan/edit/'.$id_dkeluhan, $this->user_type);
 		$data_content['title_page'] = 'Edit Data Keluhan';
-		$data_content['get_dkeluhan'] = $this->m_datakeluhan->get_dkeluhan($id);
-		// $data_content['namaizin_list'] = $this->m_dataizin->get_namaizin( $data_content['data_izin']->type );
+		$data_content['get_dkeluhan'] =  $this->m_datakeluhan->get_dkeluhan($data_content['data_keluhan']);
+		$data_content['namaizin_list'] = $this->m_dataizin->get_namaizin   ( $data_content['data_izin']->type );
+
 		// $data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();
 		$data['content'] = $this->load->view('partial/DataKeluhanAdmin/V_Admin_DataKeluhan_Edit', $data_content, true);
 		$this->load->view('V_DataKeluhan_Admin', $data);

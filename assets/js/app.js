@@ -374,45 +374,48 @@ function konfirmasi_izin_index()
                 data: 'no'
             },
             {
-                title: "Type Izin",
+                title: "Jenis Kebutuhan",
                 data: 'type'
             },
             {
-                title: "Nama Izin",
-                data: 'nama_izin'
+                title:  "Permintaan",
+                data: 'nama_kebutuhan'
             },
             {
-                title: "Nama Pengguna",
-                data: 'nama'
+                title: "Nama Lengkap",
+                data: 'nama_lengkap'
             },
             {
-                title: "Tempat",
-                data: 'tempat'
+                title: "Status",
+                data: 'nama_bidang'
             },
             {
-                title: "Tanggal Awal",
-                data: 'tglawal'
+                title: "Waktu Pengajuan",
+                data: 'tgl_pengajuan'
             },
             {
-                title: "Tanggal Akhir",
-                data: 'tglakhir'
+                title: "Tanggal Mulai",
+                data: 'tgl_mulai'
             },
             {
-                title: "Lama Izin",
+                title: "Tanggal Berakhir",
+                data: 'tgl_akhir'
+            },
+            {
+                title: "Durasi",
                 data: 'lama_izin'
             },
             {
                 title: "Action",
-                data: 'id_izin'
+                data: 'id_dkebutuhan'
             }
         ],
         createdRow: function(row, data, index) 
         {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_izin']) 
+            if (data['id_dkebutuhan']) 
             {
-                var //type = data['type'],
-                    id = data['id_izin'],
+                    id = data['id_dkebutuhan'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_izin/reject/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-close-circle-outline"></i></button>';
@@ -532,7 +535,7 @@ function konfirmasi_keluhan_index()
 {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'konfirmasi_keluhan/list_ajax',
+            url: base_url + 'konfirmasi_keluhan/keluhanlist_ajax',
         },
         columns: [{
                 title: "No.",
@@ -547,7 +550,7 @@ function konfirmasi_keluhan_index()
                 data: 'keluhan'
             },
             {
-                title: "Nama Pelapor",
+                title: "Nama Pengaju",
                 data: 'nama_lengkap'
             },
             {
@@ -576,7 +579,6 @@ function konfirmasi_keluhan_index()
             $('td', row).eq(0).html(index + 1);
             if (data['id_dkeluhan']) 
             {
-                var //type = data['type'],
                     id = data['id_dkeluhan'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'konfirmasi_keluhan/accept/' + id + '\';" class="btn btn-success btn-icons btn-rounded"><i class="mdi mdi-check-circle"></i></button>';
@@ -697,7 +699,7 @@ $(document).ready(function()
         break;
         case (window.location.href.indexOf('/data_keluhan/edit') != -1 || window.location.href.indexOf('/data_keluhan/add_new') != -1): data_keluhan_edit_or_add_new();
         break;
-        case (window.location.href.indexOf('/konfirmasi_keluhan_index') != -1): konfirmasi_keluhan_index();
+        case (window.location.href.indexOf('/konfirmasi_keluhan') != -1): konfirmasi_keluhan_index();
         break;
     }
 });

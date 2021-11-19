@@ -21,7 +21,7 @@ class Konfirmasi_Keluhan extends CI_Controller {
 		}
 	}
 
-	public function list_ajax() {
+	public function keluhanlist_ajax() {
 		json_dump(function() {
 			$result=$this->m_ki->konfirkeluhan_list_ajax( $this->m_ki->dkeluhan_list_all() );
 			return array('data' => $result);
@@ -30,21 +30,20 @@ class Konfirmasi_Keluhan extends CI_Controller {
 
 	public function index() {
 		$data = generate_page('Konfirmasi Keluhan', 'konfirmasi_keluhan', $this->user_type);
-
-			$data_content['title_page'] = 'Konfirmasi Keluhan';
+		$data_content['title_page'] = 'Konfirmasi Keluhan';
 		$data['content'] = $this->load->view('partial/KonfirmasiKeluhanAdmin/V_KonfirmasiKeluhanAdmin', $data_content, true);
 		$this->load->view('V_KonfirmasiKeluhan_Admin', $data);
 	}
 
 	public function accept($id_dkeluhan) {
 		$this->m_ki->accept_izin($id_dkeluhan);
-		$this->session->set_flashdata('msg_alert', 'Pengajuan izin berhasil disetujui');
+		$this->session->set_flashdata('msg_alert', 'Pengajuan keluhan berhasil disetujui');
 		redirect( base_url('konfirmasi_keluhan') );
 	}
 
 	public function reject($id_izin) {
 		$this->m_ki->reject_izin($id_izin);
-		$this->session->set_flashdata('msg_alert', 'Pengajuan izin berhasil ditolak');
+		$this->session->set_flashdata('msg_alert', 'Pengajuan keluhan berhasil ditolak');
 		redirect( base_url('konfirmasi_keluhan') );
 	}
 

@@ -1,20 +1,22 @@
 # Sistem Informasi Kepegawaian
-Sistem Informasi Kepegawaian
-PHP versi 7.4.9
-CodeIgniter versi 3
-
+Sistem Informasi Kepegawaian based on CodeIgniter
 
 ## Overview
-Sistem Informasi ini berguna sebagai bahan pembelajaran.
+This work is belongs to my homework task
 
 ## Usage
-You can see the full of website on http://localhost/simpsdm
+You can see the full of website on http://localhost/simpeg
 - Admin
 
   - E-mail : admin@gmail.com
   - Password : admin
 
-- Kepala PSDM
+- Ka. BAAK
 
-  - E-mail : psdm@gmail.com
-  - Password : psdm
+  - E-mail : baak@gmail.com
+  - Password : baak
+
+- Employee
+
+  - E-mail : pegawai@gmail.com
+  - Password : pegawai

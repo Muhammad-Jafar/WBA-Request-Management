@@ -22,28 +22,27 @@ class Konfirmasi_Izin extends CI_Controller {
 
 	public function list_ajax() {
 		json_dump(function() {
-			$result=$this->m_ki->izin_list_ajax( $this->m_ki->izin_list_all() );
+			$result=$this->m_ki->dkebutuhan_list_ajax( $this->m_ki->dkebutuhan_list_all() );
 			return array('data' => $result);
 		});
 	}
 
 	public function index() {
-		$data = generate_page('Konfirmasi Izin', 'konfirmasi_izin', $this->user_type);
-
-			$data_content['title_page'] = 'Konfirmasi Izin';
+		$data = generate_page('Konfirmasi Kebutuhan', 'konfirmasi_izin', $this->user_type);
+		$data_content['title_page'] = 'Konfirmasi Kebutuhan';
 		$data['content'] = $this->load->view('partial/KonfirmasiIzinAdmin/V_KonfirmasiIzinAdmin', $data_content, true);
 		$this->load->view('V_KonfirmasiIzin_Admin', $data);
 	}
 
-	public function accept($id_izin) {
-		$this->m_ki->accept_izin($id_izin);
-		$this->session->set_flashdata('msg_alert', 'Pengajuan izin berhasil diaccept');
+	public function accept($id_dkebutuhan) {
+		$this->m_ki->accept_izin($id_dkebutuhan);
+		$this->session->set_flashdata('msg_alert', 'Pengajuan permintaan berhasil disetujui');
 		redirect( base_url('konfirmasi_izin') );
 	}
 
-	public function reject($id_izin) {
-		$this->m_ki->reject_izin($id_izin);
-		$this->session->set_flashdata('msg_alert', 'Pengajuan izin berhasil direject');
+	public function reject($id_dkebutuhan) {
+		$this->m_ki->reject_izin($id_dkebutuhan);
+		$this->session->set_flashdata('msg_alert', 'Pengajuan permintaan berhasil ditolak');
 		redirect( base_url('konfirmasi_izin') );
 	}
 

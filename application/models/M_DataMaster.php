@@ -22,7 +22,7 @@ class M_DataMaster extends CI_Model {
 	public function pegawai_list_all() 
 	{
 		$q=$this->db->select('*')
-				->from('tb_pegawai as p')
+				->from('tb_pengguna as p')
 				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
 				->join('tb_jabatan as j', 'j.id_jabatan = p.id_jabatan', 'LEFT')
 				->get();
@@ -56,6 +56,18 @@ class M_DataMaster extends CI_Model {
 		return $q->row();
 	}
 
+	public function get_list_bidang()
+	{
+		$q=$this->db->select('*')-> get('tb_bidang');
+		return $q->result();
+	}
+
+	public function get_list_jabatan()
+	{
+		$q=$this->db->select('*')->get('tb_jabatan');
+		return $q->result();
+	}
+
 	public function get_data_namaizin($id) { 
 		$q=$this->db->select('*')->from('tb_kebutuhan')->where('id_kebutuhan', $id)->limit(1)->get();
 		if( $q->num_rows() < 1 ) {
@@ -64,7 +76,6 @@ class M_DataMaster extends CI_Model {
 		return $q->row();
 	}
 	
-	//tambah data keluhan disini
 	public function get_data_keluhan($id)
 	{
 		$q=$this->db->select('*')->from('tb_keluhan')->where('id_keluhan', $id)->limit(1)->get();
@@ -85,7 +96,7 @@ class M_DataMaster extends CI_Model {
 
 	public function get_data_pegawai($id) {
 		$q=$this->db->select('*')
-				->from('tb_pegawai as p')
+				->from('tb_pengguna as p')
 				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
 				->join('tb_jabatan as j', 'j.id_jabatan = p.id_jabatan', 'LEFT')
 				->where('id', $id)
@@ -150,31 +161,23 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data admin berhasil diubah');
 	}
 
-	public function pegawai_update(
-		$id,$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$pendidikan_terakhir,$status_perkawinan,
-		$status_pegawai,$id_jabatan,$id_bidang,$agama,$alamat,$no_ktp,$no_rumah,$no_handphone,$email,
-		$password,$id_user,$tanggal_pengangkatan,$avatar
-	) 
+	public function pegawai_update( 	$id, $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+										$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
+										$password,$id_user,$tanggal_regis,$avatar) 
 	{
 		$d_t_d = array(
 			'nama' => $nama,
-			'nip' => $nip,
+			'nomor_induk' => $nomor_induk,
 			'tempat_lahir' => $tempat_lahir,
 			'tanggal_lahir' => $tanggal_lahir,
 			'jenis_kelamin' => $jenis_kelamin,
-			'pendidikan_terakhir' => $pendidikan_terakhir,
-			'status_perkawinan' => $status_perkawinan,
-			'status_pegawai' => $status_pegawai,
 			'id_jabatan' => $id_jabatan,
 			'id_bidang' => $id_bidang,
-			'agama' => $agama,
 			'alamat' => $alamat,
-			'no_ktp' => $no_ktp,
-			'no_rumah' => $no_rumah,
 			'no_handphone' => $no_handphone,
 			'email' => $email,
 			'id_user' => $id_user,
-			'tanggal_pengangkatan' => $tanggal_pengangkatan
+			'tanggal_regis' => $tanggal_regis
 		);
 		if( !empty($password) ) {
 			$d_t_d['password'] = md5($password);
@@ -182,8 +185,8 @@ class M_DataMaster extends CI_Model {
 		if( !empty($avatar) ) {
 			$d_t_d['avatar'] = $avatar;
 		}
-		$this->db->where('id', $id)->update('tb_pegawai', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data pegawai berhasil diubah');
+		$this->db->where('id', $id)->update('tb_pengguna', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Data Pengguna berhasil diubah');
 	}
 	//FUNGSI APDET DATA
 
@@ -201,7 +204,7 @@ class M_DataMaster extends CI_Model {
 	}
 
 	public function pegawai_delete($id) {
-		$this->db->delete('tb_pegawai', array('id' => $id));
+		$this->db->delete('tb_', array('id' => $id));
 	}
 
 	public function namaizin_delete($id) {
@@ -268,37 +271,31 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data keluhan baru berhasil ditambahkan');
 	}
 
-	public function pegawai_add_new( 	$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$pendidikan_terakhir,$status_perkawinan,
-										$status_pegawai,$id_jabatan,$id_bidang,$agama,$alamat,$no_ktp,$no_rumah,$no_handphone,$email,
-										$password,$id_user,$tanggal_pengangkatan,$avatar=0) 
+	public function pegawai_add_new( 	$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+										$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
+										$password,$id_user,$tanggal_regis,$avatar=0) 
 	{
 		$d_t_d = array(
 			'nama' => $nama,
-			'nip' => $nip,
+			'nomor_induk' => $nomor_induk,
 			'tempat_lahir' => $tempat_lahir,
 			'tanggal_lahir' => $tanggal_lahir,
 			'jenis_kelamin' => $jenis_kelamin,
-			'pendidikan_terakhir' => $pendidikan_terakhir,
-			'status_perkawinan' => $status_perkawinan,
-			'status_pegawai' => $status_pegawai,
 			'id_jabatan' => $id_jabatan,
 			'id_bidang' => $id_bidang,
-			'agama' => $agama,
 			'alamat' => $alamat,
-			'no_ktp' => $no_ktp,
-			'no_rumah' => $no_rumah,
 			'no_handphone' => $no_handphone,
 			'email' => $email,
 			'password' => md5($password),
 			'id_user' => $id_user,
-			'tanggal_pengangkatan' => $tanggal_pengangkatan,
+			'tanggal_regis' => $tanggal_regis,
 			'avatar' => $avatar
 		);
 		if( empty($avatar) ) {
 			$d_t_d['avatar'] = 'avatar.png';
 		}
-		$this->db->insert('tb_pegawai', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Pegawai baru berhasil ditambahkan');
+		$this->db->insert('tb_pengguna', $d_t_d);
+		$this->session->set_flashdata('msg_alert', 'Pengguna baru berhasil ditambahkan');
 	}
 	//FUNGSI TAMBAH DATA BARU
 

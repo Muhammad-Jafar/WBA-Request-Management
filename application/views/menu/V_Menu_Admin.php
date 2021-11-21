@@ -33,9 +33,9 @@
             <div class="collapse" id="ui-dm">
               <ul class="nav flex-column sub-menu">
                 <?=generate_navlink($path_page, 'data_master/admin', 'Data Admin');?>
-                <?=generate_navlink($path_page, 'data_master/jabatan', 'Data Jabatan');?>  
-                <?=generate_navlink($path_page, 'data_master/bidang', 'Data Bidang');?>
-                <?=generate_navlink($path_page, 'data_master/pegawai', 'Data Pegawai');?>
+                <?=generate_navlink($path_page, 'data_master/jabatan', 'Data Jabatan di PSDM');?>  
+                <?=generate_navlink($path_page, 'data_master/bidang', 'Data Status Civitas');?>
+                <?=generate_navlink($path_page, 'data_master/pegawai', 'Data Pengguna');?>
                 <?=generate_navlink($path_page, 'data_master/nama_izin', 'Data Kebutuhan');?>
                 <?=generate_navlink($path_page, 'data_master/keluhan', 'Data Keluhan');?>
               </ul>

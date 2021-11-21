@@ -19,7 +19,7 @@ class M_Dashboard extends CI_Model {
 	}
 
 	public function total_pegawai() {
-		$q=$this->db->query('SELECT COUNT(*) FROM tb_pegawai');
+		$q=$this->db->query('SELECT COUNT(*) FROM tb_pengguna');
 		return $q->row_array()['COUNT(*)'];
 	}
 

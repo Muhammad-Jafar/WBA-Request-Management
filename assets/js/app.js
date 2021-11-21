@@ -54,8 +54,8 @@ function data_pegawai_index()
                 data: 'nama'
             },
             {
-                title: "NIP",
-                data: 'nip'
+                title: "Nomor Induk",
+                data: 'nomor_induk'
             },
             {
                 title: "Tempat Lahir",
@@ -70,40 +70,16 @@ function data_pegawai_index()
                 data: 'jenis_kelamin'
             },
             {
-                title: "Pendidikan Terakhir",
-                data: 'pendidikan_terakhir'
-            },
-            {
-                title: "Status Perkawinan",
-                data: 'status_perkawinan'
-            },
-            {
-                title: "Status Pegawai",
-                data: 'status_pegawai'
-            },
-            {
-                title: "Nama Jabatan",
+                title: "Jabatan",
                 data: 'nama_jabatan'
             },
             {
-                title: "Nama Bidang",
+                title: "Status Civitas",
                 data: 'nama_bidang'
-            },
-            {
-                title: "Agama",
-                data: 'agama'
             },
             {
                 title: "Alamat",
                 data: 'alamat'
-            },
-            {
-                title: "No. KTP",
-                data: 'no_ktp'
-            },
-            {
-                title: "No. Rumah",
-                data: 'no_rumah'
             },
             {
                 title: "No. Handphone",
@@ -114,8 +90,8 @@ function data_pegawai_index()
                 data: 'email'
             },
             {
-                title: "Tanggal Pengangkatan",
-                data: 'tanggal_pengangkatan'
+                title: "Tanggal Registrasi",
+                data: 'tanggal_regis'
             },
             {
                 title: "Action",

@@ -12,6 +12,7 @@
               </div>
               <?php } ?>
               <?=form_open_multipart('data_master/add_new/pegawai', array('method'=>'post'));?>
+              
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -21,6 +22,18 @@
                       </div>
                     </div>
                   </div>
+                 
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Nomor Induk</label>
+                      <div class="col-sm-9">
+                        <input type="number" name="nomor_induk" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tempat Lahir</label>
@@ -29,25 +42,22 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                      <div class="col-sm-9">
-                        <select name="jenis_kelamin" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <option value="Laki-laki">Laki-laki</option>
-                          <option value="Perempuan">Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tanggal Lahir</label>
                       <div class="col-sm-9">
                         <input type="date" name="tanggal_lahir" class="form-control" placeholder="dd/mm/yyyy" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Alamat</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="alamat" class="form-control" />
                       </div>
                     </div>
                   </div>
@@ -61,94 +71,22 @@
                       </div>
                     </div>
                   </div>
+                 
+                </div>
+
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Pendidikan Terakhir</label>
+                      <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
                       <div class="col-sm-9">
-                        <select name="pendidikan_terakhir" class="form-control">
+                        <select name="jenis_kelamin" class="form-control">
                           <option disabled selected>-- Pilih --</option>
-                          <option value="SMP/SMA">SMP/SMA</option>
-                          <option value="Diploma">Diploma</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">NIP</label>
-                      <div class="col-sm-9">
-                        <input type="number" name="nip" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Status Perkawinan</label>
-                      <div class="col-sm-9">
-                        <select name="status_perkawinan" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <option value="Belum kawin">Belum kawin</option>
-                          <option value="Kawin">Kawin</option>
-                          <option value="Cerai mati">Cerai mati</option>
-                          <option value="Cerai hidup">Cerai hidup</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">No. KTP</label>
-                      <div class="col-sm-9">
-                        <input type="number" name="no_ktp" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Agama</label>
-                      <div class="col-sm-9">
-                        <select name="agama" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <option value="Islam">Islam</option>
-                          <option value="Kristen Protestan">Kristen Protestan</option>
-                          <option value="Kristen Katolik">Kristen Katolik</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Buddha">Buddha</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Status Pegawai</label>
-                      <div class="col-sm-9">
-                        <select name="status_pegawai" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <option value="Karyawan tetap">Karyawan tetap</option>
-                          <option value="Karyawan kontrak">Karyawan kontrak</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">No. Rumah</label>
-                      <div class="col-sm-9">
-                        <input type="number" name="no_rumah" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Nama Jabatan</label>
@@ -166,19 +104,31 @@
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Email</label>
+                      <label class="col-sm-3 col-form-label">Email Anda</label>
                       <div class="col-sm-9">
                         <input type="email" name="email" class="form-control" />
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">No. Handphone (WA)</label>
+                      <div class="col-sm-9">
+                        <input type="number" name="no_handphone" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Bidang</label>
+                      <label class="col-sm-3 col-form-label">Status Civitas</label>
                       <div class="col-sm-9">
                         <select name="id_bidang" class="form-control">
                           <option disabled selected>-- Pilih --</option>
@@ -195,22 +145,15 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Password</label>
+                      <label class="col-sm-3 col-form-label">Tanggal Registrasi</label>
                       <div class="col-sm-9">
-                        <input type="password" name="password" class="form-control" />
+                        <input type="date" name="tanggal_regis" class="form-control" placeholder="dd/mm/yyyy" />
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Pengangkatan</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tanggal_pengangkatan" class="form-control" placeholder="dd/mm/yyyy" />
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Username</label>
@@ -219,25 +162,16 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">No. Handphone</label>
+                      <label class="col-sm-3 col-form-label">Password</label>
                       <div class="col-sm-9">
-                        <input type="number" name="no_handphone" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Alamat Rumah</label>
-                      <div class="col-sm-9">
-                        <textarea name="alamat" class="form-control" rows="3"/></textarea>
+                        <input type="password" name="password" class="form-control" />
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">

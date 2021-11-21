@@ -130,8 +130,6 @@ class Data_Keluhan extends CI_Controller {
 		$data_content['title_page'] = 'Edit Data Keluhan';
 		$data_content['get_dkeluhan'] =  $this->m_datakeluhan->get_dkeluhan($data_content['data_keluhan']);
 		$data_content['namaizin_list'] = $this->m_dataizin->get_namaizin   ( $data_content['data_izin']->type );
-
-		// $data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();
 		$data['content'] = $this->load->view('partial/DataKeluhanAdmin/V_Admin_DataKeluhan_Edit', $data_content, true);
 		$this->load->view('V_DataKeluhan_Admin', $data);
 	}

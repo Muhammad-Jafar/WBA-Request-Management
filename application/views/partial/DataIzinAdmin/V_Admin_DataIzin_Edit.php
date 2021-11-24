@@ -11,8 +11,8 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('data_izin/edit/' . $data_izin->id_izin, array('method'=>'post'));?>
-                <input type="hidden" name="id_izin" value="<?=$data_izin->id_izin;?>">
+              <?=form_open('data_izin/edit/' . $data_izin->id_dkebutuhan, array('method'=>'post'));?>
+                <input type="hidden" name="id_izin" value="<?=$data_izin->id_dkebutuhan;?>">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">

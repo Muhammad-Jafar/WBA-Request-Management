@@ -9,7 +9,7 @@ class M_Auth extends CI_Model {
 	}
 
 	private function loginPegawai($email, $password) {
-		$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_pegawai');
+		$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_pengguna');
 		return $q;
 	}
 

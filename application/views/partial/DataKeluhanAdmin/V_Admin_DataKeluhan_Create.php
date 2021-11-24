@@ -27,7 +27,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Alamat</label>
                       <div class="col-sm-9">
-                        <input type="text" name="alamat" class="form-control"/>
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat saat ini"/>
                       </div>
                     </div>
                   </div>
@@ -38,7 +38,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">NIM / NIP</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nim_nip" class="form-control"/>
+                        <input type="text" name="nim_nip" class="form-control" placeholder="Nomor induk anda"/>
                       </div>
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">WhatsApp</label>
                       <div class="col-sm-9">
-                        <input type="text" name="nowa" class="form-control"/>
+                        <input type="text" name="nowa" class="form-control" placeholder="Nomor whatsapp"/>
                       </div>
                     </div>
                   </div>
@@ -72,7 +72,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Keluhan</label>
                       <div class="col-sm-9">
-                        <input type="text" name="keluhan" class="form-control" />
+                        <input type="text" name="keluhan" class="form-control" placeholder="Luapkan keluhan anda disini" />
                       </div>
                     </div>
                   </div>
@@ -98,7 +98,7 @@
                       <label class="col-sm-3 col-form-label">Fakultas / Program Studi</label>
                       <div class="col-sm-9">
                         <select name="fak_prodi" class="form-control">
-                          <option disabled selected>-- Pilih Fakultas /Prodi --</option>
+                          <option disabled selected>-- Pilih Fakultas / Prodi --</option>
                           <?php $fak = array( array( 'id'=>'Bioteknologi / Bioteknologi','nama'=>'Bioteknologi / Bioteknologi'),
                                               array( 'id'=>'Psikologi / Psikologi','nama'=>'Psikologi / Psikologi'),
                                               array( 'id'=>'Ilmu Komunikasi / Ilmu Komunikasi','nama'=>'Ilmu Komunikasi / Ilmu Komunikasi'),
@@ -125,12 +125,14 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Waktu Pengajuan</label>
                       <div class="col-sm-9">
-                        <input type="date" name="tgl_pengajuan" class="form-control" />
+                        <input type="date" name="tgl_pengajuan" class="form-control" hint="Tanggal saat ini" />
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <input type="hidden" name="status" class="form-control" value="Waiting">
+
+                  <!-- <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Status</label>
                       <div class="col-sm-9">
@@ -142,7 +144,7 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
                 <!-- <div class="row"> -->

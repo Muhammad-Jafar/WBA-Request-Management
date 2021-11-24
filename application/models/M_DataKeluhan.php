@@ -104,7 +104,6 @@ class M_DataKeluhan extends CI_Model {
 							$nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status  ) 
 	{
 		$d_t_d = array(
-			'id_dkeluhan'	=> $id_dkeluhan,
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
 			'nim_nip'		=> $nim_nip,

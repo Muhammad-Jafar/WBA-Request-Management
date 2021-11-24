@@ -135,9 +135,11 @@ class Data_Izin extends CI_Controller {
 
 		$data = generate_page('Edit Data Kebutuhan', 'data_izin/edit/' . $id_dkebutuhan, $this->user_type);
 		$data_content['title_page'] = 'Edit Data Kebutuhan';
-		$data_content['data_izin'] = $this->m_dataizin->get_data_izin($id_dkebutuhan);
-		$data_content['namaizin_list'] = $this->m_dataizin->get_namaizin( $data_content['data_izin']->type );
-		$data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();
+		$data_content['data_izin'] = $this->m_dataizin->get_data_dkebutuhan($id_dkebutuhan);
+		// $data_content['namaizin_list'] = $this->m_dataizin->get_namaizin( $data_content['data_izin']->type );
+		// $data_content['pegawai_list_all'] = $this->m_dataizin->pegawai_list_all();
+		$data_content['bidang_list_all'] = $this->m_dataizin->bidang_list_all();
+		$data_content['get_kebutuhan'] = $this->m_dataizin->get_kebutuhan();
 		$data['content'] = $this->load->view('partial/DataIzinAdmin/V_Admin_DataIzin_Edit', $data_content, true);
 		$this->load->view('V_DataIzin_Admin', $data);
 	}

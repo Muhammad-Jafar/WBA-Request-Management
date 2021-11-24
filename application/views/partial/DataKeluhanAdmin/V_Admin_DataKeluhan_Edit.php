@@ -63,7 +63,7 @@
                         <select name="type" class="form-control">
                           <option disabled selected>-- Pilih Jenis Keluhan --</option>
                           <?php foreach($get_keluhan as $ke) : ?>
-                            <option value="<?=$ke->id_keluhan;?>"> <?=$ke->type;?></option>
+                            <option value="<?=$ke->id_keluhan;?>" <?=( ($ke->id_keluhan==$data_keluhan->id_keluhan) ? 'selected' : '');?>> <?=$ke->type;?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>
@@ -114,7 +114,7 @@
                                               array( 'id'=>'Rekayasa Sistem / Teknik Mesin', 'nama'=>'Rekayasa Sistem / Teknik Mesin')
                                              );
                             foreach($fak as $fak) : ?>
-                            <option value="<?=$fak['id'];?>"> <?=$fak['nama'];?></option>
+                            <option value="<?=$fak['id'];?>" <?=(($fak['id']==$data_keluhan->type) ? 'selected' : '');?>> <?=$fak['nama'];?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>

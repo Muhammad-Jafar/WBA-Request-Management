@@ -6,9 +6,9 @@ function data_izin_edit_or_add_new()
             disabled: 'disabled',
             selected: 'selected'
         }));
-        $.get(base_url + 'data_izin/nama_izin_ajax/' + sl_t.val(), function(data) {
+        $.get(base_url + 'data_izin/dkebutuhan_ajax/' + sl_t.val(), function(data) {
             for (row in data) {
-                sl_iz.append($('<option></option>').attr('value', data[row].id_namaizin).text(data[row].nama_izin));
+                sl_iz.append($('<option></option>').attr('value', data[row].id_kebutuhan).text(data[row].nama_kebutuhan));
             }
         });
     });
@@ -16,7 +16,7 @@ function data_izin_edit_or_add_new()
 
 function data_keluhan_edit_or_add_new() 
 {
-    sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_dkeluhan"]');
+    sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_keluhan"]');
     sl_t.change(function(event) 
     {
         sl_iz.html($('<option></option>').text('-- Pilih --').attr(
@@ -29,7 +29,7 @@ function data_keluhan_edit_or_add_new()
         {
             for (row in data) 
             {
-                sl_iz.append($('<option></option>').attr('value', data[row].id_dkeluhan).text(data[row].type));
+                sl_iz.append($('<option></option>').attr('value', data[row].id_keluhan).text(data[row].type));
             }
         });
     });
@@ -498,8 +498,8 @@ function daftar_keluhan_index()
                 var id   = data['id_dkeluhan'],
                 html  = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
+                // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
+                // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }

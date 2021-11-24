@@ -7,7 +7,7 @@ class M_ChangePassword extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		if( $this->session->userdata('user_type') == 'pegawai') {
 			$kolom = 'id';
-			$table = 'tb_pegawai';
+			$table = 'tb_pengguna';
 		} else {
 			$kolom = 'id_user';
 			$table = 'tb_admin';

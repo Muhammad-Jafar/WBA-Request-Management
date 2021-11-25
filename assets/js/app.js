@@ -126,7 +126,7 @@ function data_admin_index()
                 data: 'avatar'
             },
             {
-                title: "Nama Lengkap",
+                title: "Jabatan",
                 data: 'namalengkap'
             },
             {
@@ -198,7 +198,7 @@ function data_bidang_index()
                 data: 'no'
             },
             {
-                title: "Nama Bidang",
+                title: "Status Civitas",
                 data: 'nama_bidang'
             },
             {
@@ -495,7 +495,8 @@ function daftar_keluhan_index()
             $('td', row).eq(0).html(index + 1);
             if (data['id_dkeluhan']) 
             {
-                var id   = data['id_dkeluhan'],
+                var  type = data['type'],
+                     id   = data['id_dkeluhan'],
                 html  = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';

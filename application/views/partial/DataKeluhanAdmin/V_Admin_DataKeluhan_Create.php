@@ -130,7 +130,7 @@
                     </div>
                   </div>
 
-                  <input type="hidden" name="status" class="form-control" value="Waiting">
+                  <input type="hidden" name="status" class="form-control" value="waiting">
 
                   <!-- <div class="col-md-6">
                     <div class="form-group row">

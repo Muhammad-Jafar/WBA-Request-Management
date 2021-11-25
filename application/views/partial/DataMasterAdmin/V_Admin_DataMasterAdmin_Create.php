@@ -12,6 +12,7 @@
               </div>
               <?php } ?>
               <?=form_open_multipart('data_master/add_new/admin', array('method'=>'post'));?>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -28,7 +29,7 @@
                         <select name="type" class="form-control">
                           <option disabled selected>-- Pilih --</option>
                           <option value="admin">Admin</option>
-                          <option value="baak">Ka. BAAK</option>
+                          <option value="supervisor">Supervisor</option>
                         </select>
                       </div>
                     </div>

@@ -7,17 +7,59 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-account-star text-danger icon-lg"></i>
+                  <i class="mdi mdi-treasure-chest text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Admin</h4>
-                  <div class="fluid-container text-right">
-                    <h7 class="text-right mb-4"><?=$total_admin;?> Orang</h7>
+                  <p class="mb-0 text-right">Izin Cuti</p>
+                  <div class="fluid-container">
+                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izincuti;?></h3>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-account-star mr-1" aria-hidden="true"></i> Jumlah pengelola
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin cuti
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+          <div class="card card-statistics">
+            <div class="card-body">
+              <div class="clearfix">
+                <div class="float-left">
+                  <i class="mdi mdi-treasure-chest text-warning icon-lg"></i>
+                </div>
+                <div class="float-right">
+                  <p class="mb-0 text-right">Izin Sekolah</p>
+                  <div class="fluid-container">
+                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izinsekolah;?></h3>
+                  </div>
+                </div>
+              </div>
+              <p class="text-muted mt-3 mb-0">
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin sekolah
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+          <div class="card card-statistics">
+            <div class="card-body">
+              <div class="clearfix">
+                <div class="float-left">
+                  <i class="mdi mdi-treasure-chest text-info icon-lg"></i>
+                </div>
+                <div class="float-right">
+                  <p class="mb-0 text-right">Izin Seminar</p>
+                  <div class="fluid-container">
+                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izinseminar;?></h3>
+                  </div>
+                </div>
+              </div>
+              <p class="text-muted mt-3 mb-0">
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin seminar
               </p>
             </div>
           </div>
@@ -31,56 +73,14 @@
                   <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Konfirmasi Kebutuhan</h4>
-                  <div class="fluid-container text-right">
-                    <h7 class="text-right mb-4"><?=$total_kebutuhanterkonfirmasi;?> Permintaan telah disetujui</h7>
+                  <p class="mb-0 text-right">Izin Terkonfirmasi</p>
+                  <div class="fluid-container">
+                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_izin_terkonfirmasi;?></h3>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_kebutuhanterkonfirmasi;?> permintaan
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics">
-            <div class="card-body">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Konfirmasi Keluhan</h4>
-                  <div class="fluid-container text-right">
-                    <h7 class=" text-right mb-0"><?=$total_keluhanterkonfirmasi;?> keluhan telah diperhatikan</h7>
-                  </div>
-                </div>
-              </div>
-              <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_keluhanterkonfirmasi?> keluhan
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics">
-            <div class="card-body">
-              <div class="clearfix">
-                <div class="float-left">
-                  <i class="mdi mdi-account-location text-info icon-lg"></i>
-                </div>
-                <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Pengguna</h4>
-                  <div class="fluid-container text-right">
-                    <h7 class="text-right mb-0"><?=$total_pegawai;?> Orang</h7>
-                  </div>
-                </div>
-              </div>
-              <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-account-location mr-1" aria-hidden="true"></i> Jumlah pegawai
+                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Jumlah izin terkonfirmasi
               </p>
             </div>
           </div>

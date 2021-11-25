@@ -15,8 +15,8 @@ class Data_Keluhan extends CI_Controller {
 		$this->m_datakeluhan = $this->M_DataKeluhan;
 		if( $this->session->userdata('user_type') == 'admin' ) {
 			$this->user_type = 'Admin';
-		} else if( $this->session->userdata('user_type') == 'baak' ) {
-			$this->user_type = 'BAAK';
+		} else if( $this->session->userdata('user_type') == 'supervisor' ) {
+			$this->user_type = 'Supervisor';
 		}
 	}
 
@@ -119,7 +119,7 @@ class Data_Keluhan extends CI_Controller {
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('data_keluhan/edit/'. $name . '/' .$id_dkeluhan) );
+				redirect( base_url('data_keluhan/edit/' .$id_dkeluhan) );
 			}
 			$this->m_datakeluhan->update(  $nama_lengkap, $alamat,$nim_nip, $nowa, $id_keluhan, 
 											$keluhan, $id_bidang, $fak_prodi, $tgl_pengajuan, $status );
@@ -128,8 +128,10 @@ class Data_Keluhan extends CI_Controller {
 
 		$data = generate_page('Edit Data Keluhan', 'data_keluhan/edit/'.$id_dkeluhan, $this->user_type);
 		$data_content['title_page'] = 'Edit Data Keluhan';
-		$data_content['get_dkeluhan'] =  $this->m_datakeluhan->get_dkeluhan ($data_content['data_keluhan']->type);
-		$data_content['namaizin_list'] = $this->m_dataizin->get_namaizin   ( $data_content['data_izin']->type );
+		$data_content['get_dkeluhan'] =  $this->m_datakeluhan->get_dkeluhan ($data_content['data_keluhan']);
+		$data_content['bidang_list_all'] = $this->m_datakeluhan->bidang_list_all();
+		$data_content['get_keluhan'] = $this->m_datakeluhan->get_keluhan();
+		// $data_content['namaizin_list'] = $this->m_dataizin->get_namaizin   ( $data_content['data_izin']->type );
 		$data['content'] = $this->load->view('partial/DataKeluhanAdmin/V_Admin_DataKeluhan_Edit', $data_content, true);
 		$this->load->view('V_DataKeluhan_Admin', $data);
 	}

@@ -5,7 +5,8 @@ class Dashboard extends CI_Controller {
 
 	private $m_dashboard;
 
-	function __construct() {
+	function __construct() 
+	{
 		parent::__construct();
 		$this->load->model('M_Dashboard');
 		$this->m_dashboard = $this->M_Dashboard;
@@ -13,36 +14,39 @@ class Dashboard extends CI_Controller {
 		isnt_login(function() {redirect( base_url('auth/login') );});
 	}
 
-	public function index() {
-		switch ( $this->session->userdata('user_type') ) {
+	public function index() 
+	{
+		switch ( $this->session->userdata('user_type') ) 
+		{
 			case 'admin':
 				$data = generate_page('Dashboard', 'dashboard', 'Admin');// untuk admin dan pengelola
-
-					$data_content['total_admin'] = $this->m_dashboard->total_admin();
-					$data_content['total_dataizin'] = $this->m_dashboard->total_dataizin();
-					$data_content['total_izinterkonfirmasi'] = $this->m_dashboard->total_izinterkonfirmasi();
-					$data_content['total_pegawai'] = $this->m_dashboard->total_pegawai();
+				$data_content['total_admin'] = $this->m_dashboard->total_admin();
+				$data_content['total_kebutuhanterkonfirmasi'] = $this->m_dashboard->total_kebutuhanterkonfirmasi();
+				$data_content['sisa_kebutuhanterkonfirmasi'] = $this->m_dashboard->sisa_kebutuhanterkonfirmasi();
+				$data_content['total_keluhanterkonfirmasi'] = $this->m_dashboard->total_keluhanterkonfirmasi();
+				$data_content['sisa_keluhanterkonfirmasi'] = $this->m_dashboard->sisa_keluhanterkonfirmasi();
+				$data_content['total_pegawai'] = $this->m_dashboard->total_pegawai();
 				$data['content'] = $this->load->view('partial/Dashboard/Admin', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 				break;
-			case 'baak':
-				$data = generate_page('Dashboard', 'dashboard', 'BAAK'); //ganti penanggungjawab
 
-					$data_content['baak_total_izincuti'] = $this->m_dashboard->baak_total_izincuti();
-					$data_content['baak_total_izinsekolah'] = $this->m_dashboard->baak_total_izinsekolah();
-					$data_content['baak_total_izinseminar'] = $this->m_dashboard->baak_total_izinseminar();
-					$data_content['baak_izin_terkonfirmasi'] = $this->m_dashboard->baak_izin_terkonfirmasi();
-				$data['content'] = $this->load->view('partial/Dashboard/BAAK', $data_content, true);
+			case 'supervisor':
+				$data = generate_page('Dashboard', 'dashboard', 'Supervisor'); //ganti penanggungjawab
+				$data_content['total_kebutuhan'] = $this->m_dashboard->total_kebutuhan();
+				$data_content['total_keluhan'] = $this->m_dashboard->total_keluhan();
+				$data_content['kebutuhan_terkonfirmasi'] = $this->m_dashboard->kebutuhan_terkonfirmasi();
+				$data_content['keluhan_terkonfirmasi'] = $this->m_dashboard->keluhan_terkonfirmasi();
+				$data['content'] = $this->load->view('partial/Dashboard/Supervisor', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 				break;
-			case 'pegawai':
-				$data = generate_page('Dashboard', 'dashboard', 'Pegawai'); //untuk staff, dosen, mahasiswa
 
-					$data_content['pegawai_total_izincuti'] = $this->m_dashboard->pegawai_total_izincuti();
-					$data_content['pegawai_total_izinsekolah'] = $this->m_dashboard->pegawai_total_izinsekolah();
-					$data_content['pegawai_total_izinseminar'] = $this->m_dashboard->pegawai_total_izinseminar();
-					$data_content['pegawai_izin_terkonfirmasi'] = $this->m_dashboard->pegawai_izin_terkonfirmasi();
-				$data['content'] = $this->load->view('partial/Dashboard/Pegawai', $data_content, true);
+			case 'pengguna':
+				$data = generate_page('Dashboard', 'dashboard', 'Civitas'); //untuk pengguna biasa seperti staff, dosen, mahasiswa
+				$data_content['pegawai_total_izincuti'] = $this->m_dashboard->pegawai_total_izincuti();
+				$data_content['pegawai_total_izinsekolah'] = $this->m_dashboard->pegawai_total_izinsekolah();
+				$data_content['pegawai_total_izinseminar'] = $this->m_dashboard->pegawai_total_izinseminar();
+				$data_content['pegawai_izin_terkonfirmasi'] = $this->m_dashboard->pegawai_izin_terkonfirmasi();
+				$data['content'] = $this->load->view('partial/Dashboard/Pengguna', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
 				break;
 			

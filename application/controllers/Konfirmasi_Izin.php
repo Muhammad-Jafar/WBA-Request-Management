@@ -13,10 +13,13 @@ class Konfirmasi_Izin extends CI_Controller {
 		});
 		$this->load->model('M_KonfirmasiIzin');
 		$this->m_ki = $this->M_KonfirmasiIzin;
-		if( $this->session->userdata('user_type') == 'admin' ) {
+		if( $this->session->userdata('user_type') == 'admin' ) 
+		{
 			$this->user_type = 'Admin';
-		} else if( $this->session->userdata('user_type') == 'baak' ){
-			$this->user_type = 'BAAK';
+		} 
+		else if( $this->session->userdata('user_type') == 'supervisor' )
+		{
+			$this->user_type = 'Supervisor';
 		}
 	}
 

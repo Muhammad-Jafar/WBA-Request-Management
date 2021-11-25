@@ -10,7 +10,7 @@
                 <div class="text-wrapper">
                   <p class="profile-name"><?=$user_name;?></p>
                   <div>
-                    <small class="designation text-muted">Admin</small>
+                    <small class="designation text-muted">Pengelola</small>
                   </div>
                 </div>
               </div>
@@ -54,8 +54,6 @@
               <span class="menu-title">Konfirmasi Kebutuhan</span>
             </a>
           </li>
-
-
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_keluhan');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>

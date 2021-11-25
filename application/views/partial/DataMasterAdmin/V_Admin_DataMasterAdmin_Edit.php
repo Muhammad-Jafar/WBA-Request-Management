@@ -12,6 +12,7 @@
               </div>
               <?php } ?>
               <?=form_open_multipart('data_master/edit/admin/' . $data_admin->id_user, array('method'=>'post'));?>
+
                 <input type="hidden" name="id_user" value="<?=$data_admin->id_user;?>">
                 <div class="row">
                   <div class="col-md-6">
@@ -29,7 +30,7 @@
                         <select name="type" class="form-control">
                           <option disabled selected>-- Pilih --</option>
                           <option value="admin" <?=( ($data_admin->type=='admin') ? 'selected' : '');?>>Admin</option>
-                          <option value="baak" <?=( ($data_admin->type=='baak') ? 'selected' : '');?>>Ka. BAAK</option>
+                          <option value="supervisor" <?=( ($data_admin->type=='supervisor') ? 'selected' : '');?>>Supervisor</option>
                         </select>
                       </div>
                     </div>

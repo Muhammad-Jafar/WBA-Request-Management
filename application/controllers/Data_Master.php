@@ -332,7 +332,9 @@ class Data_Master extends CI_Controller {
 				break;
 
 			case 'admin':
-				if( $_SERVER['REQUEST_METHOD'] == 'POST') {
+				if( $_SERVER['REQUEST_METHOD'] == 'POST') 
+				{
+					$id_user= $this->security->xss_clean( $this->input->post('id_user') );
 					$username= $this->security->xss_clean( $this->input->post('username') );
 					$email= $this->security->xss_clean( $this->input->post('email') );
 					$namalengkap= $this->security->xss_clean( $this->input->post('namalengkap') );
@@ -340,7 +342,8 @@ class Data_Master extends CI_Controller {
 					$type= $this->security->xss_clean( $this->input->post('type') );
 					$avatar = '';
 					// avatar
-					if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) {
+					if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) 
+					{
 						$config['upload_path']          = './uploads/avatar/';
 						$config['allowed_types']        = 'jpg|jpeg|png';
 						$config['max_size']             = 2000;
@@ -348,32 +351,38 @@ class Data_Master extends CI_Controller {
 				 
 						$this->load->library('upload', $config);
 				 
-						if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) {
+						if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) 
+						{
 							$this->session->set_flashdata('msg_alert', $this->upload->display_errors());
 							redirect( base_url('data_master/edit/' . $name . '/' . $id) );
-						} else {
+						} 
+						else 
+						{
 							$avatar = $this->upload->data()['file_name'];
 						}
 					}
+
 					// validasi
+					$this->form_validation->set_rules('id_user', 'id_user', 'required');
 					$this->form_validation->set_rules('username', 'Username', 'required');
 					$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 					$this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'required');
 					$this->form_validation->set_rules('password', 'Password', 'required');
 					$this->form_validation->set_rules('type', 'Type', 'required');
-					if(!$this->form_validation->run()) {
+
+					if(!$this->form_validation->run()) 
+					{
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect( base_url('data_master/add_new/' . $name) );
+						redirect( base_url('data_master/edit/' . $name . '/' . $id) );
 					}
-					$this->m_datamaster->admin_add_new(
-						$username, $email, $namalengkap, $password, $type, $avatar
-					);
+					$this->m_datamaster->admin_update( $id_user, $username, $email, $namalengkap, $password, $type, $avatar );
 					redirect( base_url('data_master/' . $name) );
 				}
-				$data = generate_page('Entry Data Master Admin', 'data_master/add_new/admin', 'Admin');
 
-					$data_content['title_page'] = 'Entry Data Master Admin';
-				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterAdmin_Create', $data_content, true);
+				$data = generate_page('Edit Data Master Admin', 'data_master/edit/' . $name . '/' . $id, 'Admin');
+				$data_content['title_page'] = 'Entry Data Master Admin';
+				$data_content['data_admin'] = $this->m_datamaster->get_data_admin($id);
+				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterAdmin_Edit', $data_content, true);
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
 
@@ -539,7 +548,8 @@ class Data_Master extends CI_Controller {
 				break;
 
 			case 'admin':
-				if( $_SERVER['REQUEST_METHOD'] == 'POST') {
+				if( $_SERVER['REQUEST_METHOD'] == 'POST') 
+				{
 					$username= $this->security->xss_clean( $this->input->post('username') );
 					$email= $this->security->xss_clean( $this->input->post('email') );
 					$namalengkap= $this->security->xss_clean( $this->input->post('namalengkap') );

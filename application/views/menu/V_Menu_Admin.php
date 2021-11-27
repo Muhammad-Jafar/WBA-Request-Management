@@ -10,7 +10,11 @@
                 <div class="text-wrapper">
                   <p class="profile-name"><?=$user_name;?></p>
                   <div>
+<<<<<<< HEAD
+                    <small class="designation text-muted">PENGELOLA</small>
+=======
                     <small class="designation text-muted">Pengelola</small>
+>>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
                   </div>
                 </div>
               </div>
@@ -48,12 +52,16 @@
               <span class="menu-title">Permintaan Kebutuhan</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_izin');?>">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
               <span class="menu-title">Konfirmasi Kebutuhan</span>
             </a>
+<<<<<<< HEAD
+          </li> -->
+=======
           </li>
+>>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_keluhan');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
@@ -61,12 +69,12 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_keluhan');?>">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
               <span class="menu-title">Konfirmasi Keluhan</span>
             </a>
-          </li>
+          </li> -->
           
         </ul>
       </nav>

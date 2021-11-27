@@ -94,6 +94,7 @@ class Data_Keluhan extends CI_Controller {
 	{
 		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
+			$id_dkeluhan= $this->security->xss_clean( $this->input->post ('id_dkeluhan'));
 			$nama_lengkap= $this->security->xss_clean( $this->input->post('nama_lengkap') );
 			$alamat= $this->security->xss_clean( $this->input->post('alamat') );
 			$nim_nip= $this->security->xss_clean( $this->input->post('nim_nip'));
@@ -105,6 +106,8 @@ class Data_Keluhan extends CI_Controller {
 			$tgl_pengajuan= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
 			$status= $this->security->xss_clean( $this->input->post('status') );
 
+			//validasi data
+			$this->form_validation->set_rules('id_dkeluhan','id_dkeluhan', 'required');
 			$this->form_validation->set_rules('nama_lengkap','Nama Lengkap','required');
 			$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 			$this->form_validation->set_rules('nim_nip', 'NIM / NIP', 'required');
@@ -121,17 +124,16 @@ class Data_Keluhan extends CI_Controller {
 				$this->session->set_flashdata('msg_alert', validation_errors());
 				redirect( base_url('data_keluhan/edit/' .$id_dkeluhan) );
 			}
-			$this->m_datakeluhan->update(  $nama_lengkap, $alamat,$nim_nip, $nowa, $id_keluhan, 
+			$this->m_datakeluhan->update( $id_dkeluhan, $nama_lengkap, $alamat,$nim_nip, $nowa, $id_keluhan, 
 											$keluhan, $id_bidang, $fak_prodi, $tgl_pengajuan, $status );
 			redirect( base_url('data_keluhan') );
 		}
 
 		$data = generate_page('Edit Data Keluhan', 'data_keluhan/edit/'.$id_dkeluhan, $this->user_type);
 		$data_content['title_page'] = 'Edit Data Keluhan';
-		$data_content['get_dkeluhan'] =  $this->m_datakeluhan->get_dkeluhan ($data_content['data_keluhan']);
+		$data_content['get_dkeluhan'] = $this->m_datakeluhan->get_dkeluhan ($id_dkeluhan);
+		$data_content['get_keluhan'] =  $this->m_datakeluhan->get_keluhan ($data_content['data_keluhan']->type);
 		$data_content['bidang_list_all'] = $this->m_datakeluhan->bidang_list_all();
-		$data_content['get_keluhan'] = $this->m_datakeluhan->get_keluhan();
-		// $data_content['namaizin_list'] = $this->m_dataizin->get_namaizin   ( $data_content['data_izin']->type );
 		$data['content'] = $this->load->view('partial/DataKeluhanAdmin/V_Admin_DataKeluhan_Edit', $data_content, true);
 		$this->load->view('V_DataKeluhan_Admin', $data);
 	}

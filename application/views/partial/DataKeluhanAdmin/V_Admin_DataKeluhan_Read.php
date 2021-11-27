@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
+        <div class="card card-rounded">
           <div class="card-body">
             <h4 class="card-title"><?=$title_page;?></h4>
             <?php if($this->session->flashdata('msg_alert')) { ?>
@@ -13,7 +13,7 @@
             <?php } ?>
             <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/data_keluhan/add_new");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i>Tambah baru</button>
+                <button type="button" onclick="javascript:top.location.href='<?=base_url("/data_keluhan/add_new");?>';" class="btn btn-block btn-success"><i class="mdi mdi-plus-circle-outline"></i>Tambah baru</button>
               </div>
             </div>
             <div class="table-responsive">

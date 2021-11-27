@@ -22,9 +22,9 @@ class M_DataKeluhan extends CI_Model {
 		return $q->row();
 	}
 
-	public function get_keluhan() 
+	public function get_keluhan($type) 
 	{
-		$q=$this->db->select('*')->get('tb_keluhan');
+		$q=$this->db->select('id_keluhan, type')->from('tb_keluhan')->where('type', $type)->get();
 		return $q->result();
 	}
 
@@ -104,6 +104,10 @@ class M_DataKeluhan extends CI_Model {
 							$nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status  ) 
 	{
 		$d_t_d = array(
+<<<<<<< HEAD
+			'id_dkeluhan'	=> $id_dkeluhan,
+=======
+>>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
 			'nama_lengkap' 	=> $nama_lengkap,
 			'alamat' 		=> $alamat,
 			'nim_nip'		=> $nim_nip,

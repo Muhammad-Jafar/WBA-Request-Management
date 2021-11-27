@@ -287,20 +287,20 @@ class Data_Master extends CI_Controller {
 					$this->form_validation->set_rules('type', 'type', 'required');
 					$this->form_validation->set_rules('nama_kebutuhan', 'nama_kebutuhan', 'required');
 
-					if(!$this->form_validation->run()) {
+					if(!$this->form_validation->run()) 
+					{
 						$this->session->set_flashdata('msg_alert', validation_errors());
 						redirect( base_url('data_master/edit/' . $name . '/' . $id) );
 					}
-					// to-do
-					$this->m_datamaster->namaizin_update(
-						$id_kebutuhan,$type,$nama_kebutuhan
-					);
-					//redirect( base_url('data_master/nama_izin') );
-				}
-				$data = generate_page('Edit Data Master Nama Izin', 'data_master/edit/' . $name . '/' . $id, 'Admin');
 
-					$data_content['title_page'] = 'Edit Data Daftar Kebutuhan';
-					$data_content['data_namaizin'] = $this->m_datamaster->get_data_namaizin($id);
+					// to-do
+					$this->m_datamaster->namaizin_update( $id_kebutuhan,$type,$nama_kebutuhan );
+					redirect( base_url('data_master/nama_izin') );
+				}
+
+				$data = generate_page('Edit Data Master Nama Izin', 'data_master/edit/' . $name . '/' . $id, 'Admin');
+				$data_content['title_page'] = 'Edit Data Daftar Kebutuhan';
+				$data_content['data_namaizin'] = $this->m_datamaster->get_data_namaizin($id);
 				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterIzin_Edit', $data_content, true);
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
@@ -341,6 +341,7 @@ class Data_Master extends CI_Controller {
 					$password= $this->security->xss_clean( $this->input->post('password') );
 					$type= $this->security->xss_clean( $this->input->post('type') );
 					$avatar = '';
+					
 					// avatar
 					if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) 
 					{

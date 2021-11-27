@@ -13,26 +13,7 @@ class Konfirmasi_Izin extends CI_Controller {
 		});
 		$this->load->model('M_KonfirmasiIzin');
 		$this->m_ki = $this->M_KonfirmasiIzin;
-<<<<<<< HEAD
 
-		if( $this->session->userdata('user_type') == 'supervisor' ) 
-		{
-			$this->user_type = 'Supervisor';
-		} 
-		// else if( $this->session->userdata('user_type') == 'admin' )
-		// {
-		// 	$this->user_type = 'Admin';
-		// }
-
-		// if( $this->session->userdata('user_type') == 'admin' ) 
-		// {
-		// 	$this->user_type = 'Admin';
-		// } 
-		// else if( $this->session->userdata('user_type') == 'supervisor' )
-		// {
-		// 	$this->user_type = 'Supervisor';
-		// }
-=======
 		if( $this->session->userdata('user_type') == 'admin' ) 
 		{
 			$this->user_type = 'Admin';
@@ -41,7 +22,6 @@ class Konfirmasi_Izin extends CI_Controller {
 		{
 			$this->user_type = 'Supervisor';
 		}
->>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
 	}
 
 	public function list_ajax() {

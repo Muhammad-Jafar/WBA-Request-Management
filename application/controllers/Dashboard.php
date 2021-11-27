@@ -41,11 +41,7 @@ class Dashboard extends CI_Controller {
 				break;
 
 			case 'pengguna':
-<<<<<<< HEAD
 				$data = generate_page('Dashboard', 'dashboard', 'pemgguna'); //untuk pengguna biasa seperti staff, dosen, mahasiswa
-=======
-				$data = generate_page('Dashboard', 'dashboard', 'Civitas'); //untuk pengguna biasa seperti staff, dosen, mahasiswa
->>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
 				$data_content['pegawai_total_izincuti'] = $this->m_dashboard->pegawai_total_izincuti();
 				$data_content['pegawai_total_izinsekolah'] = $this->m_dashboard->pegawai_total_izinsekolah();
 				$data_content['pegawai_total_izinseminar'] = $this->m_dashboard->pegawai_total_izinseminar();

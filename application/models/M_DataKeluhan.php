@@ -84,18 +84,16 @@ class M_DataKeluhan extends CI_Model {
 	public function add_new( $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, 
 							 $nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status ) 
 	{
-		$d_t_d = array(
-			'nama_lengkap' 	=> $nama_lengkap,
-			'alamat' 		=> $alamat,
-			'nim_nip'		=> $nim_nip,
-			'nowa' 			=> $nowa,
-			'id_keluhan'	=> $id_keluhan,
-			'keluhan'		=> $keluhan,
-			'id_bidang'		=> $id_bidang,
-			'fak_prodi' 	=> $fak_prodi,
-			'tgl_pengajuan' => $tgl_pengajuan,
-			'status' 		=> $status
-		);
+		$d_t_d = array( 'nama_lengkap' 	=> $nama_lengkap,
+						'alamat' 		=> $alamat,
+						'nim_nip'		=> $nim_nip,
+						'nowa' 			=> $nowa,
+						'id_keluhan'	=> $id_keluhan,
+						'keluhan'		=> $keluhan,
+						'id_bidang'		=> $id_bidang,
+						'fak_prodi' 	=> $fak_prodi,
+						'tgl_pengajuan' => $tgl_pengajuan,
+						'status' 		=> $status );
 		$this->db->insert('tb_dkeluhan', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Keluhan berhasil ditambahkan');
 	}
@@ -103,22 +101,17 @@ class M_DataKeluhan extends CI_Model {
 	public function update(	$id_dkeluhan,$id_keluhan, $nama_lengkap, $alamat, $nowa, $keluhan, 
 							$nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status  ) 
 	{
-		$d_t_d = array(
-<<<<<<< HEAD
-			'id_dkeluhan'	=> $id_dkeluhan,
-=======
->>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
-			'nama_lengkap' 	=> $nama_lengkap,
-			'alamat' 		=> $alamat,
-			'nim_nip'		=> $nim_nip,
-			'nowa' 			=> $nowa,
-			'id_keluhan'	=> $id_keluhan,
-			'keluhan'		=> $keluhan,
-			'id_bidang'		=> $id_bidang,
-			'fak_prodi' 	=> $fak_prodi,
-			'tgl_pengajuan' => $tgl_pengajuan,
-			'status' 		=> $status
-		);
+		$d_t_d = array(	'id_dkeluhan'	=> $id_dkeluhan,
+						'nama_lengkap' 	=> $nama_lengkap,
+						'alamat' 		=> $alamat,
+						'nim_nip'		=> $nim_nip,
+						'nowa' 			=> $nowa,
+						'id_keluhan'	=> $id_keluhan,
+						'keluhan'		=> $keluhan,
+						'id_bidang'		=> $id_bidang,
+						'fak_prodi' 	=> $fak_prodi,
+						'tgl_pengajuan' => $tgl_pengajuan,
+						'status' 		=> $status );
 		$this->db->where( 'id_dkeluhan', $id_dkeluhan )->update('tb_dkeluhan', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Data Pengajuan Keluhan berhasil diubah');
 	}

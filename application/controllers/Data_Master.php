@@ -87,23 +87,76 @@ class Data_Master extends CI_Controller {
 	{
 		$data = generate_page('Data Pengguna', 'data_master/pegawai', 'Admin');
 		$data_content['title_page'] = 'Data Pengguna';
+		$data_content['mhs_list_all'] = $this->m_datamaster->mhs_list_all();
+		$data_content['dosen_list_all'] = $this->m_datamaster->dosen_list_all();
+		$data_content['staff_list_all'] = $this->m_datamaster->staff_list_all();
 		$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Read', $data_content, true);
 		$this->load->view('V_DataMaster_Admin', $data);
 	}
 
-	public function pegawai_ajax() {
-		json_dump(function() {
-			$result= $this->m_datamaster->pegawai_list_all();
-			$new_arr=array();$i=1;
-			foreach ($result as $key => $value) {
-				$value->no=$i;
-				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
-				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
-				$i++;
+	public function pegawai_ajax() 
+	{
+		json_dump(function() 
+		{
+			if($this->mahasiswa)
+			{
+				$result= $this->m_datamaster->mhs_list_all();
+				$new_arr=array();$i=1;
+				foreach ($result as $key => $value) 
+				{
+					$value->no=$i;
+					$new_arr[]=$value;
+					$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+					$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+					$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+					$i++;
+				}
+				return array('data' => $new_arr);
 			}
-			return array('data' => $new_arr);
+
+			else if ($this->dosen)
+			{
+				$result= $this->m_datamaster->dosen_list_all();
+				$new_arr=array();$i=1;
+				foreach ($result as $key => $value) 
+				{
+					$value->no=$i;
+					$new_arr[]=$value;
+					$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+					$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+					$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+					$i++;
+				}
+				return array('data' => $new_arr);
+			}
+			else if ($this->m_datamaster->staff_list_all())
+			{
+				$result= $this->m_datamaster->staff_list_all();
+				$new_arr=array();$i=1;
+				foreach ($result as $key => $value) 
+				{
+					$value->no=$i;
+					$new_arr[]=$value;
+					$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+					$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+					$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+					$i++;
+				}
+				return array('data' => $new_arr);
+			};
+
+			// $result= $this->m_datamaster->dosen_list_all();
+			// $new_arr=array();$i=1;
+			// foreach ($result as $key => $value) 
+			// {
+			// 	$value->no=$i;
+			// 	$new_arr[]=$value;
+			// 	$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+			// 	$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+			// 	$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+			// 	$i++;
+			// }
+			// return array('data' => $new_arr);
 		});
 	}
 

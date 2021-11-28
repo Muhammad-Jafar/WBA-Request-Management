@@ -23,9 +23,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('daftar_izin');?>">
+            <a class="nav-link" href="<?=base_url('profil_pengguna');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
-              <span class="menu-title">Daftar Izin</span>
+              <span class="menu-title">Profil</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('mendaftar_kebutuhan');?>">
+              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <span class="menu-title">Permintaan Kebutuhan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('mendaftar_keluhan');?>">
+              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <span class="menu-title">Permintaan Keluhan</span>
             </a>
           </li>
         </ul>

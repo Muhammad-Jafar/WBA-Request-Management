@@ -10,14 +10,14 @@
                   <i class="mdi mdi-treasure-chest text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Izin Cuti</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izincuti;?></h3>
+                  <h4 class="font-weight-medium mb-2 text-left">Permintaan Kebutuhan</h4>
+                  <div class="fluid-container text-right">
+                    <h7 class="text-right mb-4"><?=$total_kebutuhan;?> Permintaan</h7>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin cuti
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah Permintaan saat ini
               </p>
             </div>
           </div>
@@ -31,14 +31,14 @@
                   <i class="mdi mdi-treasure-chest text-warning icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Izin Sekolah</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izinsekolah;?></h3>
+                  <h4 class="font-weight-medium mb-2 text-right">Permintaan Keluhan</h4>
+                  <div class="fluid-container text-right">
+                    <h7 class=" text-right mb-4"><?=$total_keluhan;?> Permintaan</h7>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin sekolah
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah Permintaan saat ini
               </p>
             </div>
           </div>
@@ -52,14 +52,15 @@
                   <i class="mdi mdi-treasure-chest text-info icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Izin Seminar</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_total_izinseminar;?></h3>
+                  <h4 class="font-weight-medium mb-2 text-right">Kebutuhan Terkonfirmasi</h4>
+                  <div class="fluid-container text-right">
+                    <h7 class=" text-right mb-4"><?=$kebutuhan_terkonfirmasi;?> Telah disetujui</h7>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah izin seminar
+                <i class="mdi mdi-treasure-chest mr-1" aria-hidden="true"></i> Jumlah Kebutuhan terkonfirmasi
+              </p>
               </p>
             </div>
           </div>
@@ -73,14 +74,14 @@
                   <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Izin Terkonfirmasi</p>
-                  <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0"><?=$pegawai_izin_terkonfirmasi;?></h3>
+                  <h4 class="font-weight-medium mb-2 text-right">Keluhan Terkonfirmasi</h4>
+                  <div class="fluid-container text-right">
+                    <h7 class=" text-right mb-0"><?=$keluhan_terkonfirmasi;?> Telah diperhatikan</h7>
                   </div>
                 </div>
               </div>
               <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Jumlah izin terkonfirmasi
+                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Jumlah Keluhan terkonfirmasi
               </p>
             </div>
           </div>

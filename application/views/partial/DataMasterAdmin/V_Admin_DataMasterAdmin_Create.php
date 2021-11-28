@@ -74,8 +74,8 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <button type="submit" class="btn btn-success mr-2">Submit</button>
-                      <button class="btn btn-light" type="reset">Reset</button>
+                      <button class="btn btn-success mr-2" style="width: 120px; height: 40px;" type="submit" >Submit</button>
+                      <button class="btn btn-light ml-2" style="width: 120px; height: 40px;" type="reset">Reset</button>
                     </div>
                   </div>
                 </div>

@@ -3,11 +3,7 @@
       <div class="row">
         
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-<<<<<<< HEAD
           <div class="card card-statistics card-rounded">
-=======
-          <div class="card card-statistics">
->>>>>>> d40b390f1b1a47eecf71bb53f2ef64de53404d17
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">

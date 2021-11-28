@@ -14,14 +14,14 @@ class Konfirmasi_Izin extends CI_Controller {
 		$this->load->model('M_KonfirmasiIzin');
 		$this->m_ki = $this->M_KonfirmasiIzin;
 
-		if( $this->session->userdata('user_type') == 'admin' ) 
-		{
-			$this->user_type = 'Admin';
-		} 
-		else if( $this->session->userdata('user_type') == 'supervisor' )
+		if( $this->session->userdata('user_type') == 'supervisor' ) 
 		{
 			$this->user_type = 'Supervisor';
-		}
+		} 
+		// else if( $this->session->userdata('user_type') == 'admin' )
+		// {
+		// 	$this->user_type = 'Admin';
+		// }
 	}
 
 	public function list_ajax() {

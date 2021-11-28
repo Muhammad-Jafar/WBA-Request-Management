@@ -29,6 +29,46 @@ class M_DataMaster extends CI_Model {
 		return $q->result();
 	}
 
+	//TAMBAHAN BARU UNTUK SORTING DATA PENGGUNA
+	public function mhs_list_all() 
+	{
+		$q=$this->db->select('*')	
+		->from('tb_pengguna as pg')
+		->join('tb_mhsiswa as mhs', 'mhs.id = pg.id', 'LEFT')
+		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
+		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->join('tb_fakultas as fak', 'fak.id_fakultas = mhs.id_fakultas', 'LEFT')
+		->join('tb_prodi as prod', 'prod.id_prodi = mhs.id_prodi', 'LEFT')
+		->where('nama_bidang','Mahasiswa')
+		->get();
+		return $q->result();
+	}
+
+	public function dosen_list_all() 
+	{
+		$q=$this->db->select('*')	
+		->from('tb_pengguna as pg')
+		->join('tb_dosen as do', 'do.id = pg.id', 'LEFT')
+		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
+		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Dosen')
+		->get();
+		return $q->result();
+	}
+
+	public function staff_list_all() 
+	{
+		$q=$this->db->select('*')	
+		->from('tb_pengguna as pg')
+		->join('tb_staff as stf', 'stf.id = pg.id', 'LEFT')
+		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
+		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Staff UTS')
+		->get();
+		return $q->result();
+	}
+	//ENDING SORTING DATA PENGGUNA
+
 	public function namaizin_list_all() {
 		$q=$this->db->select('*')->get('tb_kebutuhan');//ini tabel awalnya
 		return $q->result();
@@ -204,7 +244,7 @@ class M_DataMaster extends CI_Model {
 	}
 
 	public function pegawai_delete($id) {
-		$this->db->delete('tb_', array('id' => $id));
+		$this->db->delete('tb_pengguna', array('id' => $id));
 	}
 
 	public function namaizin_delete($id) {

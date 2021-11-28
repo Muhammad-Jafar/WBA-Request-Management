@@ -15,3 +15,4 @@
     });
   </script>
   <script src="<?=assets_url('js/app.js', false);?>"></script>
+  <script src="<?=assets_url('js/bootstrap.js', false);?>"></script>

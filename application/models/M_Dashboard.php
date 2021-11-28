@@ -60,13 +60,38 @@ class M_Dashboard extends CI_Model {
 		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status!='waiting' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
-
 	public function keluhan_terkonfirmasi() //ADA
 	{
 		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status!='waiting' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
+	//BATAS SUPERVISOR
 
+	//UNTUK PENGGUNA
+	public function permintaan_kebutuhan()
+	{
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status!='approved' ) AS TOTAL");
+		return $q->row_array()['TOTAL'];
+	}
+	public function permintaan_keluhan()
+	{
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status!='approved' ) AS TOTAL");
+		return $q->row_array()['TOTAL'];
+	}
+	public function permintaan_kebutuhanterkonfirmasi()
+	{
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status =/='approved' ) AS TOTAL");
+		return $q->row_array()['TOTAL'];
+	}
+	public function permintaan_keluhanterkonfirmasi()
+	{
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status =/='approved' ) AS TOTAL");
+		return $q->row_array()['TOTAL'];
+	}
+	//BATAS PENGGUNA
+
+
+	//Lain lain
 	// public function pegawai_total_izincuti() {
 	// 	$q=$this->db->query("SELECT COUNT(*) FROM tb_izin AS i LEFT JOIN tb_namaizin AS ni ON i.id_namaizin=ni.id_namaizin WHERE ni.type='cuti' AND i.id='{$this->session->userdata('user_id')}'");
 	// 	return $q->row_array()['COUNT(*)'];
@@ -106,14 +131,6 @@ class M_Dashboard extends CI_Model {
 	// 	$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_izin AS i LEFT JOIN tb_namaizin AS ni ON i.id_namaizin=ni.id_namaizin WHERE status!='waiting' ) AS TOTAL");
 	// 	return $q->row_array()['TOTAL'];
 	// }
-	//BATAS SUPERVISOR
-
-
-
-	//UNTUK PENGGUNA
-
-	//BATAS PENGGUNA
-
 }
 
 /* End of file M_Dashboard.php */

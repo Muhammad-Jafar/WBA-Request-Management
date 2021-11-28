@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
-
+class Dashboard extends CI_Controller 
+{
 	private $m_dashboard;
 
 	function __construct() 
@@ -11,7 +11,10 @@ class Dashboard extends CI_Controller {
 		$this->load->model('M_Dashboard');
 		$this->m_dashboard = $this->M_Dashboard;
 
-		isnt_login(function() {redirect( base_url('auth/login') );});
+		isnt_login( function() 
+		{
+			redirect( base_url('auth/login') );
+		} );
 	}
 
 	public function index() 
@@ -28,7 +31,7 @@ class Dashboard extends CI_Controller {
 				$data_content['total_pegawai'] = $this->m_dashboard->total_pegawai();
 				$data['content'] = $this->load->view('partial/Dashboard/Admin', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
-				break;
+			break;
 
 			case 'supervisor':
 				$data = generate_page('Dashboard', 'dashboard', 'Supervisor'); //ganti penanggungjawab
@@ -38,21 +41,21 @@ class Dashboard extends CI_Controller {
 				$data_content['keluhan_terkonfirmasi'] = $this->m_dashboard->keluhan_terkonfirmasi();
 				$data['content'] = $this->load->view('partial/Dashboard/Supervisor', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
-				break;
+			break;
 
 			case 'pengguna':
-				$data = generate_page('Dashboard', 'dashboard', 'pemgguna'); //untuk pengguna biasa seperti staff, dosen, mahasiswa
-				$data_content['pegawai_total_izincuti'] = $this->m_dashboard->pegawai_total_izincuti();
-				$data_content['pegawai_total_izinsekolah'] = $this->m_dashboard->pegawai_total_izinsekolah();
-				$data_content['pegawai_total_izinseminar'] = $this->m_dashboard->pegawai_total_izinseminar();
-				$data_content['pegawai_izin_terkonfirmasi'] = $this->m_dashboard->pegawai_izin_terkonfirmasi();
+				$data = generate_page('Dashboard', 'dashboard', 'pengguna'); //untuk pengguna biasa seperti staff, dosen, mahasiswa
+				$data_content['permintaan_kebutuhan'] = $this->m_dashboard->permintaan_kebutuhan();
+				$data_content['permintaan_keluhan'] = $this->m_dashboard->permintaan_keluhan();
+				$data_content['permintaan_kebutuhanterkonfirmasi'] = $this->m_dashboard->permintaan_kebutuhanterkonfirmasi();
+				$data_content['permintaan_keluhanterkonfirmasi'] = $this->m_dashboard->permintaan_keluhanterkonfirmasi();
 				$data['content'] = $this->load->view('partial/Dashboard/Pengguna', $data_content, true);
 				$this->load->view('V_Dashboard', $data);
-				break;
+			break;
 			
 			default:
 				# code...
-				break;
+			break;
 		}
 	}
 

@@ -1,5 +1,5 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav nav-pills">
+        <ul class="nav">
           
           <li class="nav-item nav-profile">
             <div class="nav-link">
@@ -48,27 +48,13 @@
               <span class="menu-title">Permintaan Kebutuhan</span>
             </a>
           </li>
-          
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('konfirmasi_izin');?>">
-              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
-              <span class="menu-title">Konfirmasi Kebutuhan</span>
-            </a>
-          </li> -->
-          
+
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_keluhan');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Permintaan Keluhan</span>
             </a>
           </li>
-
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('konfirmasi_keluhan');?>">
-              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
-              <span class="menu-title">Konfirmasi Keluhan</span>
-            </a>
-          </li> -->
           
         </ul>
       </nav>

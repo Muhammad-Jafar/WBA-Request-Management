@@ -40,7 +40,7 @@ function data_mahasiswa_index()
 {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_master/pegawai_ajax',
+            url: base_url + 'data_master/mahasiswa_ajax',
         },
         columns: [{
                 title: "No.",
@@ -124,7 +124,7 @@ function data_dosen_index()
 {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_master/pegawai_ajax',
+            url: base_url + 'data_master/dosen_ajax',
         },
         columns: [{
                 title: "No.",
@@ -200,7 +200,7 @@ function data_staff_index()
 {
     $('table.data').DataTable({
         ajax: {
-            url: base_url + 'data_master/pegawai_ajax',
+            url: base_url + 'data_master/staff_ajax',
         },
         columns: [{
                 title: "No.",
@@ -284,11 +284,11 @@ function data_admin_index()
                 data: 'avatar'
             },
             {
-                title: "Jabatan",
+                title: "Nama Lengkap",
                 data: 'namalengkap'
             },
             {
-                title: "Type",
+                title: "Jabatan",
                 data: 'type'
             },
             {

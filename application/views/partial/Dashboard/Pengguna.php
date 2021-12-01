@@ -12,7 +12,7 @@
                 <div class="float-right">
                   <h4 class="font-weight-medium mb-2 text-left">Permintaan Kebutuhan</h4>
                   <div class="fluid-container text-right">
-                    <h7 class="text-right mb-4"><?=$total_kebutuhan;?> Permintaan</h7>
+                    <h7 class="text-right mb-4"><?=$permintaan_kebutuhan;?> Permintaan</h7>
                   </div>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                 <div class="float-right">
                   <h4 class="font-weight-medium mb-2 text-right">Permintaan Keluhan</h4>
                   <div class="fluid-container text-right">
-                    <h7 class=" text-right mb-4"><?=$total_keluhan;?> Permintaan</h7>
+                    <h7 class=" text-right mb-4"><?=$permintaan_keluhan;?> Permintaan</h7>
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                 <div class="float-right">
                   <h4 class="font-weight-medium mb-2 text-right">Kebutuhan Terkonfirmasi</h4>
                   <div class="fluid-container text-right">
-                    <h7 class=" text-right mb-4"><?=$kebutuhan_terkonfirmasi;?> Telah disetujui</h7>
+                    <h7 class=" text-right mb-4"><?=$permintaan_kebutuhanterkonfirmasi;?> Telah disetujui</h7>
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <div class="float-right">
                   <h4 class="font-weight-medium mb-2 text-right">Keluhan Terkonfirmasi</h4>
                   <div class="fluid-container text-right">
-                    <h7 class=" text-right mb-0"><?=$keluhan_terkonfirmasi;?> Telah diperhatikan</h7>
+                    <h7 class=" text-right mb-0"><?=$permintaan_keluhanterkonfirmasi;?> Telah diperhatikan</h7>
                   </div>
                 </div>
               </div>

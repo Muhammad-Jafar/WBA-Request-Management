@@ -9,8 +9,8 @@
                 <div class="text-wrapper">
                   <p class="profile-name"><?=$user_name;?></p>
                   <div>
-                    <small class="designation text-muted"><?=$jabatan;?></small><br>
-                    <small class="designation text-muted">Bid. <?=$bidang;?></small>
+                    <!-- <small class="designation text-muted"><?=$jabatan;?></small><br> -->
+                    <small class="designation text-muted"><?=$bidang;?></small>
                   </div>
                 </div>
               </div>

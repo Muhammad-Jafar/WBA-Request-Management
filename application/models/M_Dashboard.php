@@ -70,22 +70,22 @@ class M_Dashboard extends CI_Model {
 	//UNTUK PENGGUNA
 	public function permintaan_kebutuhan()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status!='approved' ) AS TOTAL");
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status !='approved' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
 	public function permintaan_keluhan()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status!='approved' ) AS TOTAL");
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status != 'approved' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
 	public function permintaan_kebutuhanterkonfirmasi()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status =/='approved' ) AS TOTAL");
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status != 'approved' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
 	public function permintaan_keluhanterkonfirmasi()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status =/='approved' ) AS TOTAL");
+		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status != 'approved' ) AS TOTAL");
 		return $q->row_array()['TOTAL'];
 	}
 	//BATAS PENGGUNA

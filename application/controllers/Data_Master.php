@@ -626,6 +626,7 @@ class Data_Master extends CI_Controller {
 					$this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'required');
 					$this->form_validation->set_rules('password', 'Password', 'required');
 					$this->form_validation->set_rules('type', 'Type', 'required');
+					
 					if(!$this->form_validation->run()) {
 						$this->session->set_flashdata('msg_alert', validation_errors());
 						redirect( base_url('data_master/add_new/' . $name) );
@@ -636,8 +637,7 @@ class Data_Master extends CI_Controller {
 					redirect( base_url('data_master/' . $name) );
 				}
 				$data = generate_page('Entry Data Master Admin', 'data_master/add_new/admin', 'Admin');
-
-					$data_content['title_page'] = 'Entry Data Master Admin';
+				$data_content['title_page'] = 'Entry Data Master Admin';
 				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterAdmin_Create', $data_content, true);
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
@@ -694,10 +694,9 @@ class Data_Master extends CI_Controller {
 						redirect( base_url('data_master/add_new/' . $name) );
 					}
 					// to-do
-					$this->m_datamaster->pegawai_add_new(
-						$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$id_jabatan,$id_bidang,$alamat, 
-						$no_handphone,$email, $password,$id_user,$tanggal_regis,$avatar
-						);
+					$this->m_datamaster->pegawai_add_new( $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,
+														  $jenis_kelamin,$id_jabatan,$id_bidang,$alamat, 
+														  $no_handphone,$email, $password,$id_user,$tanggal_regis,$avatar );
 					redirect( base_url('data_master/' . $name) );
 				}
 				$data = generate_page('Tambah Data Pengguna', 'data_master/add_new/pegawai', 'Admin');

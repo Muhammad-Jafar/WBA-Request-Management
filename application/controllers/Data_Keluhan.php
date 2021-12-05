@@ -15,9 +15,10 @@ class Data_Keluhan extends CI_Controller {
 		$this->m_datakeluhan = $this->M_DataKeluhan;
 		if( $this->session->userdata('user_type') == 'admin' ) {
 			$this->user_type = 'Admin';
-		} else if( $this->session->userdata('user_type') == 'supervisor' ) {
-			$this->user_type = 'Supervisor';
-		}
+		} 
+		// else if( $this->session->userdata('user_type') == 'supervisor' ) {
+		// 	$this->user_type = 'Supervisor';
+		// }
 	}
 
 	public function index() 
@@ -57,6 +58,7 @@ class Data_Keluhan extends CI_Controller {
 			$nim_nip= $this->security->xss_clean( $this->input->post('nim_nip'));
 			$id_bidang= $this->security->xss_clean($this->input->post('id_bidang'));
 			$fak_prodi= $this->security->xss_clean($this->input->post('fak_prodi'));
+			$tgl_pengajuan = date('d/m/y');
 			$tgl_pengajuan= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
 			$status= $this->security->xss_clean( $this->input->post('status') );
 
@@ -68,7 +70,7 @@ class Data_Keluhan extends CI_Controller {
 			$this->form_validation->set_rules('nim_nip', 'NIM / NIP', 'required');
 			$this->form_validation->set_rules('id_bidang','Status', 'required');
 			$this->form_validation->set_rules('fak_prodi', 'Fakultas / Program Studi', 'required');
-			$this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required');
+			// $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required';
 			$this->form_validation->set_rules('status', 'Status', 'required');
 
 			if(!$this->form_validation->run()) 

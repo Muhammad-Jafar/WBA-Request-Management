@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                      <label class="col-sm-3 col-form-label" style="color: #0000;">Nama Lengkap</label>
                       <div class="col-sm-9">
                         <input type="text" name="nama_lengkap" class="form-control" />
                       </div>
@@ -120,17 +120,9 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Waktu Pengajuan</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tgl_pengajuan" class="form-control" hint="Tanggal saat ini" />
-                      </div>
-                    </div>
-                  </div>
+                <input type="hidden" name="tgl_pengajuan" value="<?php date_create('d/m/Y'); ?>">
 
-                  <input type="hidden" name="status" class="form-control" value="waiting">
+                <input type="hidden" name="status" class="form-control" value="waiting">
 
                   <!-- <div class="col-md-6">
                     <div class="form-group row">
@@ -145,7 +137,6 @@
                       </div>
                     </div>
                   </div> -->
-                </div>
 
                 <!-- <div class="row"> -->
                   <div class="col-lg-6">

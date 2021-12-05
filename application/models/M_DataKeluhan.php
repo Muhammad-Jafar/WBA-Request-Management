@@ -22,11 +22,17 @@ class M_DataKeluhan extends CI_Model {
 		return $q->row();
 	}
 
-	public function get_keluhan($type) 
+	public function get_keluhan() 
 	{
-		$q=$this->db->select('id_keluhan, type')->from('tb_keluhan')->where('type', $type)->get();
+		$q=$this->db->select('*')->get('tb_keluhan');
 		return $q->result();
 	}
+
+	// public function get_keluhan($type) 
+	// {
+	// 	$q=$this->db->select('id_keluhan, type')->from('tb_keluhan')->where('type', $type)->get();
+	// 	return $q->result();
+	// }
 
 	public function pegawai_list_all() {
 		$q=$this->db->select('*')->get('tb_pegawai');

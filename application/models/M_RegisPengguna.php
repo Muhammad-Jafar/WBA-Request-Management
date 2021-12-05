@@ -1,83 +1,140 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_Auth extends CI_Model {
+class M_RegisPengguna extends CI_Model 
+{
 
-	private function loginAdmin($email, $password) {
-		$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_admin');
-		return $q;
+	// public function simpan($data)
+	// {
+	// 	return $this->db->insert('tb_pengguna', $data);
+	// }
+
+	//Menampilkan list data yang relate
+	public function jabatan_list_all()
+	{
+		$q = $this->db->select('*')->get('tb_jabatan');
+		return $q->result();
 	}
 
-	private function loginPegawai($email, $password) {
-		$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_pengguna');
-		return $q;
+	public function bidang_list_all()
+	{
+		$q = $this->db->select('*')->get('tb_bidang');
+		return $q->result();
 	}
 
-	public function doLogin($email, $password) {
-		$cek_login_admin = $this->loginAdmin($email, $password);
-		$cek_login_pegawai = $this->loginPegawai($email, $password);
+	public function fakultas_list_all()
+	{
+		$q = $this->db->select('*')->get('tb_fakultas');
+		return $q->result();
+	}
+
+	public function prodi_list_all()
+	{
+		$q = $this->db->select('*')->get('tb_prodi');
+		return $q->result();
+	}
+	//Menampilkan list data yang relate
+
+	// Check username exists
+	public function check_username_exists($id_user)
+	{
+		$query = $this->db->get_where('tb_pengguna', array('id_user' => $id_user));
+		if(empty($query->row_array()))
+		{ return true; } 
+		else { return false; }
+   }
+
+   // Check email exists
+   public function check_email_exists($email)
+   {
+	   $query = $this->db->get_where('tb_pengguna', array('email' => $email));
+	   if (empty ($query->row_array()))
+	   {return true;}
+	   else {return false;}
+   }
+
+   //FUNSI TAMBAH DATA
+   public function add_mhs( $nama,$nim,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+							$id_jabatan,$id_bidang, $id_fakultas, $id_prodi, $alamat, 
+							$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar=0 )
+   {
+		$d_t_d = array ( 'nama'			=> $nama,
+						 'nim'			=> $nim,
+						 'tempat_lahir'	=> $tempat_lahir,
+						 'tanggal_lahir'=> $tanggal_lahir,
+						 'jenis_kelamin'=> $jenis_kelamin,
+						 'id_jabatan'	=> $id_jabatan,
+						 'id_bidang'	=> $id_bidang,
+						 'id_fakultas'	=> $id_fakultas,
+						 'id_prodi'		=> $id_prodi,
+						 'alamat'		=> $alamat,
+						 'no_handphone'	=> $no_handphone,
+						 'email'		=> $email,
+						 'password'		=> md5($password),
+						 'id_user'		=> $id_user,
+						 'tanggal_regis'=> $tanggal_regis,
+						 'avatar'		=> $avatar );
 		
-		if( $cek_login_admin->num_rows() ) {
-			$d = $cek_login_admin->row();
-			$this->session->set_userdata('is_logged_in', 'login');
-			$this->session->set_userdata('user_type', $d->type);
-			$this->session->set_userdata('user_id', $d->id_user);
-			$this->session->set_userdata('user_name', $d->namalengkap);
-			$this->session->set_userdata('user_email', $d->email);
-			$this->session->set_userdata('user_username', $d->username);
-			$this->session->set_userdata('user_avatar', uploads_url('avatar/' . $d->avatar));
-			
-			redirect( base_url('dashboard') );
-		} else if( $cek_login_pegawai->num_rows() ) {
-			$d = $cek_login_pegawai->row();
-			$this->session->set_userdata('is_logged_in', 'login');
-			$this->session->set_userdata('user_type', 'pegawai');
-			$this->session->set_userdata('user_id', $d->id);
-			$this->session->set_userdata('user_name', $d->nama);
-			$this->session->set_userdata('user_email', $d->email);
-			$this->session->set_userdata('user_status', $d->status_pegawai);
-			$this->session->set_userdata('user_avatar', uploads_url('avatar/' . $d->avatar));
-			
-			$ambil_jabatan=$this->db->select('*')->where('id_jabatan', $d->id_jabatan)->get('tb_jabatan');
-			if( $ambil_jabatan->num_rows() ) {
-				$data_jabatan = $ambil_jabatan->row();
-				$id_jabatan = $data_jabatan->id_jabatan;
-				$nama_jabatan = $data_jabatan->nama_jabatan;
-			} else {
-				$id_jabatan = '0';
-				$nama_jabatan = 'Unknown';
-			}
-			$this->session->set_userdata('user_id_jabatan', $id_jabatan);
-			$this->session->set_userdata('user_nama_jabatan', $nama_jabatan);
-			
-			$ambil_bidang=$this->db->select('*')->where('id_bidang', $d->id_bidang)->get('tb_bidang');
-			if( $ambil_bidang->num_rows() ) {
-				$data_bidang = $ambil_bidang->row();
-				$id_bidang = $data_bidang->id_bidang;
-				$nama_bidang = $data_bidang->nama_bidang;
-			} else {
-				$id_bidang = '0';
-				$nama_bidang = 'Unknown';
-			}
-			$this->session->set_userdata('user_id_bidang', $id_bidang);
-			$this->session->set_userdata('user_nama_bidang', $nama_bidang);
+		if( empty($avatar) ) { $d_t_d['avatar'] = 'avatar.png'; }
 
-			redirect( base_url('dashboard') );
-		} else {
-			$this->session->set_flashdata('msg_alert', 'Email/password anda salah');
-			redirect( base_url('auth/login') );
-		}
-	}
+		$this->db->insert('tb_pengguna', $d_t_d);
+		$this->db->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
+   }
 
-	public function doResetPassword($email) {
-		$cek_email=$this->db->select('*')->where('email', $email)->get('tb_admin');
-		if( !$cek_email->num_rows() ) {
-			$this->session->set_flashdata('msg_alert', 'Email tidak terdaftar');
-			redirect( base_url('auth/lost_password') );
-		} else {
-			$this->session->set_flashdata('msg_alert', 'Password berhasil dikirim ke email');
-			redirect( base_url('auth/lost_password') );
-		}
+   public function add_dosen( $nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+							$id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
+							$password, $id_user,$tanggal_regis,$avatar=0 )
+   {
+		$d_t_d = array ( 'nama'			=> $nama,
+						 'nip'			=> $nip,
+						 'tempat_lahir'	=> $tempat_lahir,
+						 'tanggal_lahir'=> $tanggal_lahir,
+						 'jenis_kelamin'=> $jenis_kelamin,
+						 'id_jabatan'	=> $id_jabatan,
+						 'id_bidang'	=> $id_bidang,
+						 'alamat'		=> $alamat,
+						 'no_handphone'	=> $no_handphone,
+						 'email'		=> $email,
+						 'password'		=> md5($password),
+						 'id_user'		=> $id_user,
+						 'tanggal_regis'=> $tanggal_regis,
+						 'avatar'		=> $avatar );
+		
+		if( empty($avatar) ) { $d_t_d['avatar'] = 'avatar.png'; }
+
+		$this->db->insert('tb_pengguna', $d_t_d);
+		$this->db->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
+   }
+
+   public function add_staff( $nama,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+							  $id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
+							  $password, $id_user,$tanggal_regis,$avatar=0 )
+	{
+		$d_t_d = array ( 'nama'			=> $nama,
+		 				 'tempat_lahir'	=> $tempat_lahir,
+						 'tanggal_lahir'=> $tanggal_lahir,
+						 'jenis_kelamin'=> $jenis_kelamin,
+						 'id_jabatan'	=> $id_jabatan,
+						 'id_bidang'	=> $id_bidang,
+						 'alamat'		=> $alamat,
+						 'no_handphone'	=> $no_handphone,
+						 'email'		=> $email,
+						 'password'		=> md5($password),
+						 'id_user'		=> $id_user,
+						 'tanggal_regis'=> $tanggal_regis,
+						 'avatar'		=> $avatar );
+
+		if( empty($avatar) ) { $d_t_d['avatar'] = 'avatar.png'; }
+
+		$this->db->insert('tb_pengguna', $d_t_d);
+		$this->db->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
 	}
+   //FUNSI TAMBAH DATA
+
+
+	// public function registrasi($email, $password) {
+	// 	$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_admin');
+	// 	return $q;
+	// }
 
 }

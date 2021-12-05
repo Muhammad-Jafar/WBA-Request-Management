@@ -50,9 +50,6 @@
                   <label class="label">Email</label>
                     <input type="text" name="email" class="form-control" placeholder="Email">
                 </div>
-                <div class="form-group"><center>
-                  <div class="g-recaptcha" data-sitekey="6LftN2IUAAAAALCWS7KvM5zb913HfuR89PeQr04L"></div>
-                </center></div>
                 <div class="form-group">
                   <button class="btn btn-primary submit-btn btn-block">Kirim Password</button>
                 </div>

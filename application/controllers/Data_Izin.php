@@ -14,9 +14,10 @@ class Data_Izin extends CI_Controller {
 		$this->m_dataizin = $this->M_DataIzin;
 		if( $this->session->userdata('user_type') == 'admin' ) {
 			$this->user_type = 'Admin';
-		} else if( $this->session->userdata('user_type') == 'supervisor' ) {
-			$this->user_type = 'Supervisor';
-		}
+		} 
+		// else if( $this->session->userdata('user_type') == 'supervisor' ) {
+		// 	$this->user_type = 'Supervisor';
+		// }
 	}
 
 	public function index() 

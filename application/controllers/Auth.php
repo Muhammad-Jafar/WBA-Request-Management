@@ -20,14 +20,6 @@ class Auth extends CI_Controller {
 		});
 	}
 
-	public function regis()
-	{
-		is_login(function()
-		{
-			redirect( base_url('dashboard') );
-		});
-	}
-
 	public function login() 
 	{
 		is_login(function() 

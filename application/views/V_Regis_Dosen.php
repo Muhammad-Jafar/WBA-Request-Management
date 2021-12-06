@@ -22,14 +22,14 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card card-rounded">
             <div class="card-body">
-              <h4 class="card-title">Registrasi Pengguna Layanan PSDM</h4>
+              <h4 class="card-title d-flex justify-content-center mb-5">Registrasi Pengguna Layanan PSDM</h4>
               <?php if($this->session->flashdata('msg_alert')) { ?>
 
               <div class="alert alert-info">
-                <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                <label class="control-label d-flex justify-content-center" style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open_multipart('regis_pengguna/regismhs', array('method'=>'post'));?>
+              <?=form_open_multipart('regis_pengguna/regisdosen', array('method'=>'post'));?>
               
                 <div class="row">
                   <div class="col-md-6">
@@ -127,34 +127,8 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Status Civitas</label>
-                      <div class="col-sm-9">
-                        <select name="id_bidang" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <?php
-                            foreach($list_bidang as $lb) {
-                          ?>
-                          <option value="<?=$lb->id_bidang;?>"><?=$lb->nama_bidang;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="hidden" name="tanggal_regis" value="<?php echo date("d-m-Y"); ?>">
-                  <!-- <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Registrasi</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tanggal_regis" class="form-control" placeholder="dd/mm/yyyy" />
-                      </div>
-                    </div>
-                  </div> -->
-                </div>
+                <input type="hidden" name="id_jabatan" value="8" class="form-control">
+                <input type="hidden" name="id_bidang" value="1" class="form-control">
 
                 <div class="row">
                   <div class="col-md-6">
@@ -173,6 +147,14 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label"> Konfirmasi Password</label>
+                        <div class="col-sm-9">
+                          <input type="password" name="password2" class="form-control" placeholder="*******" />
+                        </div>
+                      </div>
+                    </div>
                 </div>
 
                 <div class="row">

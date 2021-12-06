@@ -10,7 +10,6 @@ class Regis_Pengguna extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_RegisPengguna');
 		$this->m_regispengguna = $this->M_RegisPengguna;
-		// isnt_login(function() { redirect( base_url('auth/login') );	});
 	}
 
 	public function index() 
@@ -19,16 +18,9 @@ class Regis_Pengguna extends CI_Controller
 		// redirect( base_url('regis_pengguna') );
 	}
 
-	public function
-
 	//FUNGSI TAMBAH DATA
 	public function regismhs()
 	{
-		is_login(function() 
-		{ 
-			redirect( base_url('auth/login') ); 
-		});
-
 		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
 			$nama= $this->security->xss_clean( $this->input->post('nama') );
@@ -45,7 +37,8 @@ class Regis_Pengguna extends CI_Controller
 			$email= $this->security->xss_clean( $this->input->post('email') );
 			$password= $this->security->xss_clean( $this->input->post('password') );
 			$id_user= $this->security->xss_clean( $this->input->post('id_user') );
-			$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
+			$tanggal_regis = date('Y-m-d');
+			// $tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
 			$avatar = '';
 
 			// avatar
@@ -81,47 +74,25 @@ class Regis_Pengguna extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 			$this->form_validation->set_rules('id_user', 'ID User', 'required|callback_check_username_exists');
-			$this->form_validation->set_rules('tanggal_regis', 'Tanggal Pengangkatan', 'required');
 			
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('regis_pengguna/regismhs') );
+				redirect( base_url('regis_pengguna/regismhs/') );
 			}
-
-			// if(!$this->form_validation->run() === FALSE ) 
-			// {
-			// 	$this->session->set_flashdata('msg_alert', validation_errors());
-			// 	redirect( base_url('regis_pengguna') );
-			// }
-			// else
-			// {
-			// 	$enc_password = md5($this->input->post('password'));
-			// 	$this->user_model->regispengguna($enc_password);
-
-			// 	//set pesan
-			// 	$this->session->set_flashdata('user_registered', 'Anda berhasil mendaftar');
-			// 	redirect('auth/login');
-			// }
-
 			//langsung regis
 			$this->m_regispengguna->add_mhs ( 	$nama,$nim,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
 												$id_jabatan,$id_bidang, $id_fakultas, $id_prodi, $alamat, 
 												$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar );
-			redirect( base_url('regis_pengguna/regismhs') );
+			redirect( base_url('regis_pengguna') );
 		}
+		$data = generate_page('Pendaftaran Pengguna', 'regis_pengguna/regismhs', 'Pengguna');
 		$data_content['list_bidang'] = $this->m_regispengguna->bidang_list_all();
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
 		$data_content['list_fakultas'] = $this->m_regispengguna->fakultas_list_all();
 		$data_content['list_prodi'] = $this->m_regispengguna->prodi_list_all();
 		$data['content'] = $this->load->view('V_Regis_Mhs', $data_content, true);
-		$this->load->view('V_Regis_Mhs');
- 
-		// if($this->form_validation->run() === FALSE)
-		// {
-		// 	$this->load->view('templates/header');
-		// 	$this->load->view('register', $data);
-		//   } 
+		$this->load->view('V_Regis_Mhs', $data);
 	}
 
 	public function regisdosen()
@@ -145,7 +116,7 @@ class Regis_Pengguna extends CI_Controller
 			$email= $this->security->xss_clean( $this->input->post('email') );
 			$password= $this->security->xss_clean( $this->input->post('password') );
 			$id_user= $this->security->xss_clean( $this->input->post('id_user') );
-			$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
+			$tanggal_regis = date('Y-m-d');
 			$avatar = '';
 
 			// avatar
@@ -179,39 +150,28 @@ class Regis_Pengguna extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 			$this->form_validation->set_rules('id_user', 'ID User', 'required|callback_check_username_exists');
-			$this->form_validation->set_rules('tanggal_regis', 'Tanggal Pengangkatan', 'required');
 			
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('regis_pengguna/regisdosen') );
+				redirect( base_url('regis_pengguna/regisdosen/') );
 			}
 			//langsung regis
 			$this->m_regispengguna->add_dosen (	$nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,$id_jabatan,
 												$id_bidang, $alamat, $no_handphone,$email, $password, $id_user,
 												$tanggal_regis,$avatar );
-			redirect( base_url('regis_pengguna/regisdosen') );
+			redirect( base_url('regis_pengguna') );
 		}
+		$data = generate_page('Pendaftaran Pengguna', 'regis_pengguna/regisdosen', 'Pengguna');
 		$data_content['list_bidang'] = $this->m_regispengguna->bidang_list_all();
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
-		$data_content['list_fakultas'] = $this->m_regispengguna->fakultas_list_all();
-		$data_content['list_prodi'] = $this->m_regispengguna->prodi_list_all();
 		$data['content'] = $this->load->view('V_Regis_Dosen', $data_content, true);
-		$this->load->view('V_Regis_Dosen');
-		// if($this->form_validation->run() === FALSE)
-		// {
-		// 	$this->load->view('templates/header');
-		// 	$this->load->view('register', $data);
-		//   } 
+		$this->load->view('V_Regis_Dosen', $data);
+	
 	}
 
 	public function regisstaff()
 	{
-		is_login(function() 
-		{ 
-			redirect( base_url('auth/login') ); 
-		});
-
 		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
 			$nama= $this->security->xss_clean( $this->input->post('nama') );
@@ -225,7 +185,7 @@ class Regis_Pengguna extends CI_Controller
 			$email= $this->security->xss_clean( $this->input->post('email') );
 			$password= $this->security->xss_clean( $this->input->post('password') );
 			$id_user= $this->security->xss_clean( $this->input->post('id_user') );
-			$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
+			$tanggal_regis = date('Y-m-d');
 			$avatar = '';
 
 			// avatar
@@ -258,25 +218,23 @@ class Regis_Pengguna extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 			$this->form_validation->set_rules('id_user', 'ID User', 'required|callback_check_username_exists');
-			$this->form_validation->set_rules('tanggal_regis', 'Tanggal Pengangkatan', 'required');
 			
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('regis_pengguna') );
+				redirect( base_url('regis_pengguna/regisstaff/') );
 			}
 			//langsung regis
 			$this->m_regispengguna->add_staff ( $nama, $tempat_lahir,$tanggal_lahir,$jenis_kelamin,
 												$id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
 												$password, $id_user,$tanggal_regis,$avatar );
-			redirect( base_url('regis_pengguna/regisstaff') );
+			redirect( base_url('regis_pengguna') );
 		}
+		$data = generate_page('Pendaftaran Pengguna', 'regis_pengguna/regisstaff', 'Pengguna');
 		$data_content['list_bidang'] = $this->m_regispengguna->bidang_list_all();
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
-		$data_content['list_fakultas'] = $this->m_regispengguna->fakultas_list_all();
-		$data_content['list_prodi'] = $this->m_regispengguna->prodi_list_all();
 		$data['content'] = $this->load->view('V_Regis_Staff', $data_content, true);
-		$this->load->view('V_Regis_Staff');
+		$this->load->view('V_Regis_Staff', $data);
 	}
 	//FUNGSI TAMBAH DATA
 
@@ -288,7 +246,6 @@ class Regis_Pengguna extends CI_Controller
 	public function check_email_exists($email)
 	{
 		$this->form_validation->set_message('check_email_exists', 'Email Sudah digunakan. Silahkan gunakan email lain');
-		
 		if ($this->m_regispengguna->check_username_exists($email)) { return true; } else { return false; }
 	}
 
@@ -296,7 +253,6 @@ class Regis_Pengguna extends CI_Controller
 	public function check_username_exists($id_user)
 	{
 		$this->form_validation->set_message('check_username_exists', 'Username Sudah diambil. Silahkan gunakan username lain');
-		
 		if ($this->m_regispengguna->check_username_exists($id_user)) { return true; } else { return false; }
 	}
 }

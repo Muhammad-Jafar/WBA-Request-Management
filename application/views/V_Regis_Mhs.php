@@ -25,7 +25,7 @@
               <?php if($this->session->flashdata('msg_alert')) { ?>
 
               <div class="alert alert-info">
-                <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                <label style="font-size: 13px;" class="control-label d-flex justify-content-center"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
               <?=form_open_multipart('regis_pengguna/regismhs', array('method'=>'post'));?>
@@ -75,7 +75,7 @@
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Avatar</label>
                       <div class="col-sm-9">
-                          <input type="file" name="avatar">
+                          <input type="file" name="avatar" class="form-control" style="background-color: transparent;">
                       </div>
                     </div>
                   </div>
@@ -91,7 +91,10 @@
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" name="id_jabatan" class="form-control" value="8">
+                  
+                  <input type="hidden" name="id_jabatan" value="8" class="form-control">
+                  <input type="hidden" name="id_bidang" value="2" class="form-control">
+
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Email Anda</label>
@@ -108,32 +111,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Status Civitas</label>
-                      <div class="col-sm-9">
-                        <select name="id_bidang" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <?php
-                            foreach($list_bidang as $lb) {
-                          ?>
-                          <option value="<?=$lb->id_bidang;?>"><?=$lb->nama_bidang;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="hidden" name="tanggal_regis" value="<?php echo date("d-m-Y"); ?>">
-                  <!-- <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Tanggal Registrasi</label>
-                      <div class="col-sm-9">
-                        <input type="date" name="tanggal_regis" class="form-control" placeholder="dd/mm/yyyy" />
-                      </div>
-                    </div>
-                  </div> -->
                   <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Fakultas</label>

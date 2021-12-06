@@ -24,15 +24,23 @@
           <div class="col-lg-4 mx-auto">
             <div class="card card-rounded">
               <div class="card-body">
+                <?php if($this->session->flashdata('msg_alert')) { ?>
+                  <div class="alert alert-info">
+                    <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
+                  </div>
+                <?php } ?>
                 <h4 class="d-flex justify-content-center font-weight-bold">Layanan PSDM</h4>
                 <h5 class="d-flex justify-content-center">Registrasi Pengguna</h5>
                 <h7 class="d-flex justify-content-center mt-4 mb-4">Siapakah anda :</h7>
                   <div class="btn-group d-flex justify-content-center" role="group">
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 140px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regismhs"); ?>';">Mahasiswa</button>
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 140px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosen"); ?>';">Dosen</button>
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 140px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisstaff"); ?>';">Staff</button>
+                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regismhs"); ?>';">Mahasiswa</button>
+                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosen"); ?>';">Dosen</button>
+                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisstaff"); ?>';">Staff</button>
                   </div>
+                  <div class="btn btn-social-outline-reddit d-flex justify-content-center mt-4" type="button" onclick="javascript:top.location.href='<?=base_url("auth/login"); ?>';">Kembali ke login</div>
               </div>
+
+              
             </div>
           </div>
         </div>

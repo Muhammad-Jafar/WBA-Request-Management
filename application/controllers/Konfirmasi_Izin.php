@@ -8,7 +8,7 @@ class Konfirmasi_Izin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		isnt_adminbaak(function() {
+		isnt_supervisor(function() {
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_KonfirmasiIzin');

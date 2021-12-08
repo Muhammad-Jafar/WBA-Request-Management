@@ -15,7 +15,7 @@ if( !function_exists('isnt_admin') )
 
 if( !function_exists('isnt_supervisor') ) 
 {	
-	function isnt_adminbaak($callback) 
+	function isnt_supervisor($callback)  
 	{
 		$ci =& get_instance();
 		if ( $ci->session->userdata('user_type') !== 'admin' && $ci->session->userdata('user_type') !== 'supervisor') 
@@ -27,7 +27,7 @@ if( !function_exists('isnt_supervisor') )
 
 if( !function_exists('isnt_pengguna') ) 
 {	
-	function isnt_pegawai($callback) 
+	function isnt_pengguna($callback) 
 	{
 		$ci =& get_instance();
 		if ( $ci->session->userdata('user_type') !== 'pengguna') 

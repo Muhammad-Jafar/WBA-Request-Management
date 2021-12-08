@@ -7,12 +7,13 @@ class Data_Izin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		isnt_adminbaak(function() {
+		isnt_admin(function() {
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_DataIzin');
 		$this->m_dataizin = $this->M_DataIzin;
-		if( $this->session->userdata('user_type') == 'admin' ) {
+		if( $this->session->userdata('user_type') == 'admin' ) 
+		{
 			$this->user_type = 'Admin';
 		} 
 		// else if( $this->session->userdata('user_type') == 'supervisor' ) {

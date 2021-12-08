@@ -83,7 +83,7 @@ class Data_Master extends CI_Controller {
 		});
 	}
 
-	public function pegawai() 
+	public function pegawai() //INI UNTUK SHOW DATA PENGGUNA
 	{
 		$data = generate_page('Data Pengguna', 'data_master/pegawai', 'Admin');
 		$data_content['title_page'] = 'Data Pengguna';
@@ -237,7 +237,7 @@ class Data_Master extends CI_Controller {
 				break;
 			case 'nama_izin':
 				$this->m_datamaster->namaizin_delete($id);
-				$this->session->set_flashdata('msg_alert', 'Data nama izin berhasil dihapus');
+				$this->session->set_flashdata('msg_alert', 'Data Kebutuhan berhasil dihapus');
 				redirect( base_url('data_master/nama_izin') );
 				break;
 			case 'keluhan':
@@ -326,13 +326,13 @@ class Data_Master extends CI_Controller {
 				if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 				{
 					$id_kebutuhan= $this->security->xss_clean( $this->input->post('id_kebutuhan') );
-					$type= $this->security->xss_clean( $this->input->post('type') );
-					$nama_kebutuhan= $this->security->xss_clean( $this->input->post('nama_kebutuhan') );
+					$id_nkebutuhan= $this->security->xss_clean( $this->input->post('id_nkebutuhan') ); 
+					$namakebutuhan= $this->security->xss_clean( $this->input->post('nama_kebutuhan') );
 
 					// validasi
-					$this->form_validation->set_rules('id_kebutuhan', 'ID', 'required');
-					$this->form_validation->set_rules('type', 'type', 'required');
-					$this->form_validation->set_rules('nama_kebutuhan', 'nama_kebutuhan', 'required');
+					$this->form_validation->set_rules('id_kebutuhan', 'jenis kebutuhan', 'required');
+					$this->form_validation->set_rules('id_nkebutuhan', 'id nama kebutuhan', 'required');
+					$this->form_validation->set_rules('nama_kebutuhan','nama kebutuhan', 'required');
 
 					if(!$this->form_validation->run()) 
 					{
@@ -341,13 +341,14 @@ class Data_Master extends CI_Controller {
 					}
 
 					// to-do
-					$this->m_datamaster->namaizin_update( $id_kebutuhan,$type,$nama_kebutuhan );
+					$this->m_datamaster->namaizin_update( $id_kebutuhan,$id_nkebutuhan, $namakebutuhan );
 					redirect( base_url('data_master/nama_izin') );
 				}
 
-				$data = generate_page('Edit Data Master Nama Izin', 'data_master/edit/' . $name . '/' . $id, 'Admin');
+				$data = generate_page('Edit Data Daftar Kebutuhan', 'data_master/edit/' . $name . '/' . $id, 'Admin');
 				$data_content['title_page'] = 'Edit Data Daftar Kebutuhan';
 				$data_content['data_namaizin'] = $this->m_datamaster->get_data_namaizin($id);
+				$data_content['get_kebutuhan'] = $this->m_datamaster->kebutuhan_list_all();
 				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterIzin_Edit', $data_content, true);
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
@@ -556,21 +557,27 @@ class Data_Master extends CI_Controller {
 			case 'nama_izin':
 				if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 				{
-					$type= $this->security->xss_clean( $this->input->post('type') );
+					$id_kebutuhan= $this->security->xss_clean( $this->input->post('id_kebutuhan') );
 					$nama_kebutuhan= $this->security->xss_clean( $this->input->post('nama_kebutuhan') );
-					$this->form_validation->set_rules('type', 'type', 'required');
-					$this->form_validation->set_rules('nama_kebutuhan', 'nama_kebutuhan', 'required');
+
+					// validasi
+					$this->form_validation->set_rules('id_kebutuhan', 'jenis 	kebutuhan', 'required');
+					$this->form_validation->set_rules('nama_kebutuhan', 'nama kebutuhan', 'required');
+
 					if(!$this->form_validation->run()) 
 					{
 						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect( base_url('data_master/add_new/' . $name) );
+						redirect( base_url('data_master/add_new/' . $name ) );
 					}
-					$this->m_datamaster->namaizin_add_new($type, $nama_kebutuhan);
-					redirect( base_url('data_master/' . $name) );
+
+					// to-do
+					$this->m_datamaster->namaizin_add_new( $id_kebutuhan, $nama_kebutuhan );
+					redirect( base_url('data_master/nama_izin') );
 				}
 
 				$data = generate_page('Tambah Data Daftar Kebutuhan', 'data_master/add_new/nama_izin', 'Admin');
 				$data_content['title_page'] = 'Tambah Data Daftar Kebutuhan';
+				$data_content['get_kebutuhan'] = $this->m_datamaster->kebutuhan_list_all();
 				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterIzin_Create', $data_content, true);
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;

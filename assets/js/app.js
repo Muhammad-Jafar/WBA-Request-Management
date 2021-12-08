@@ -35,7 +35,7 @@ function data_keluhan_edit_or_add_new()
     });
 }
 
-//AJAX DATA PENGGUNA
+//AJAX KEBUTUHAN DATA PENGGUNA DI ADMIN
 function data_mahasiswa_index() 
 {
     $('table.data').DataTable({
@@ -267,7 +267,119 @@ function data_staff_index()
         }
     });
 }
+//ENDING DATA PENGGUNA DI ADMIN
+
+//AJAX DATA PENGGUNA DI PENGGUNA 
+function pengguna_kebutuhan_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'pengguna/KebutuhanPengguna_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Kebutuhan",
+                data: 'type'
+            },
+            {
+                title: "Permintaan",
+                data: 'nama_kebutuhan'
+            },
+            {
+                title: "Waktu Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Tanggal Mulai",
+                data: 'tgl_mulai'
+            },
+            {
+                title: "Tanggal Berakhir",
+                data: 'tgl_akhir'
+            },
+            {
+                title: "Durasi",
+                data: 'lama_izin'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            },
+            {
+                title: "Action",
+                data: 'id_dkebutuhan'
+            }
+        ],
+        createdRow: function(row, data, index) 
+        {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_dkebutuhan']) {
+                var type = data['type'],
+                    id = data['id_dkebutuhan'],
+                    html = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_izin/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
+
+function pengguna_keluhan_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'pengguna/KeluhanPengguna_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Keluhan",
+                data: 'keluhan'
+            },
+            {
+                title: "Waktu Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            },
+            {
+                title: "Action",
+                data: 'id_dkeluhan'
+            }
+        ],
+        createdRow: function(row, data, index) 
+        {
+            $('td', row).eq(0).html(index + 1);
+            if (data['id_dkeluhan']) 
+            {
+                var  type = data['type'],
+                     id   = data['id_dkeluhan'],
+                html  = '';
+                html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/edit/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+                // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
+                // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_keluhan/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                $('td', row).eq(-1).html(html);
+            }
+        }
+    });
+}
 //ENDING DATA PENGGUNA
+
 
 function data_admin_index() 
 {
@@ -402,8 +514,8 @@ function data_namaizin_index()
         ],
         createdRow: function(row, data, index) {
             $('td', row).eq(0).html(index + 1);
-            if (data['id_kebutuhan']) {
-                var id = data['id_kebutuhan'],
+            if (data['id_nkebutuhan']) {
+                var id = data['id_nkebutuhan'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/nama_izin/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/nama_izin/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
@@ -433,27 +545,19 @@ function data_izin_index()
             },
             {
                 title: "Nama Lengkap",
-                data: 'nama_lengkap'
+                data: 'nama'
             },
             {
                 title: "Alamat",
                 data: 'alamat'
             },
             {
-                title: "WhatsApp",
-                data: 'nowa'
-            },
-            {
-                title: "NIM / NIP",
-                data: 'nim_nip'
+                title: "Email",
+                data: 'email'
             },
             {
                 title: "Status",
                 data: 'nama_bidang'
-            },
-            {
-                title: "Fakultas / Program Studi",
-                data: 'fak_prodi'
             },
             {
                 title: "Waktu Pengajuan",
@@ -517,7 +621,7 @@ function konfirmasi_izin_index()
             },
             {
                 title: "Nama Lengkap",
-                data: 'nama_lengkap'
+                data: 'nama'
             },
             {
                 title: "Status",
@@ -605,15 +709,11 @@ function daftar_keluhan_index()
             },
             {
                 title: "Nama Lengkap",
-                data: 'nama_lengkap'
+                data: 'nama'
             },
             {
                 title: "Alamat",
                 data: 'alamat'
-            },
-            {
-                title: "WhatsApp",
-                data: 'nowa'
             },
             {
                 title: "Jenis Keluhan",
@@ -624,16 +724,8 @@ function daftar_keluhan_index()
                 data: 'keluhan'
             },
             {
-                title: "NIM / NIP",
-                data: 'nim_nip'
-            },
-            {
                 title: "Status",
                 data: 'nama_bidang'
-            },
-            {
-                title: "Fakultas / Program Studi",
-                data: 'fak_prodi'
             },
             {
                 title: "Waktu Pengajuan",
@@ -677,28 +769,25 @@ function konfirmasi_keluhan_index()
                 data: 'no'
             },
             {
-                title: "Jenis",
+                title: "Nama Pengaju",
+                data: 'nama'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "Jenis Keluhan",
                 data: 'type'
             },
             {
                 title: "Keluhan",
                 data: 'keluhan'
             },
-            {
-                title: "Nama Pengaju",
-                data: 'nama_lengkap'
-            },
+           
             {
                 title: "Status",
                 data: 'nama_bidang'
-            },
-            {
-                title: "NIM / NIP",
-                data: 'nim_nip'
-            },
-            {
-                title: "Fakultas / Prodi",
-                data: 'fak_prodi'
             },
             {
                 title: "Tanggal Pengajuan",
@@ -839,6 +928,10 @@ $(document).ready(function()
         case (window.location.href.indexOf('/data_keluhan/edit') != -1 || window.location.href.indexOf('/data_keluhan/add_new') != -1): data_keluhan_edit_or_add_new();
         break;
         case (window.location.href.indexOf('/konfirmasi_keluhan') != -1): konfirmasi_keluhan_index();
+        break;
+        case (window.location.href.indexOf('/pengguna/kebutuhan') != -1): pengguna_kebutuhan_index();
+        break;
+        case (window.location.href.indexOf('/pengguna/keluhan') != -1): pengguna_keluhan_index();
         break;
     }
 });

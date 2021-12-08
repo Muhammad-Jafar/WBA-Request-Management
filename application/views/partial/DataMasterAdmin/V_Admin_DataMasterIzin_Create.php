@@ -15,31 +15,13 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Izin</label>
+                      <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
                       <div class="col-sm-9">
-                        <select name="type" class="form-control">
-                          <option disabled selected>-- Silahkan Pilih --</option>
-                          <?php
-                            $izin = array(
-                              array(
-                                'id'    => 'cuti',
-                                'nama'  => 'Cuti'
-                              ),
-                              array(
-                                'id'    => 'Pembuatan Surat',
-                                'nama'  => 'Pembuatan Surat'
-                              ),
-                              array(
-                                'id'    => 'seminar',
-                                'nama'  => 'Seminar'
-                              )
-                            );
-                            foreach($izin as $iz) {
-                          ?>
-                          <option value="<?=$iz['id'];?>"><?=$iz['nama'];?></option>
-                          <?php
-                            }
-                          ?>
+                        <select name="id_kebutuhan" class="form-control">
+                          <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
+                          <?php foreach($get_kebutuhan as $ke) : ?>
+                            <option value="<?=$ke->id_kebutuhan;?>"> <?=$ke->type;?></option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                     </div>

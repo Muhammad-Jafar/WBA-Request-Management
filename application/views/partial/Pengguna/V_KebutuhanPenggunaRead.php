@@ -11,11 +11,11 @@
               <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
             </div>
             <?php } ?>
-            <!-- <div class="card-tools">
+            <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
-                <button type="button" onclick="javascript:top.location.href='<?=base_url("/data_keluhan/add_new");?>';" class="btn btn-block btn-success"><i class="mdi mdi-plus-circle-outline"></i>Tambah baru</button>
+                <button type="button" onclick="javascript:top.location.href='<?=base_url("/pengguna/add_kebutuhan");?>';" class="btn btn-block btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Tambah baru</button>
               </div>
-            </div> -->
+            </div>
             <div class="table-responsive">
               <p>
                 <table class="data table table-striped" cellspacing="0" width="100%"></table>

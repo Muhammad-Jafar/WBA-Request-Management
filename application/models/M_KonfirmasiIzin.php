@@ -6,15 +6,17 @@ class M_KonfirmasiIzin extends CI_Model {
 	public function dkebutuhan_list_all() 
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
-								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.id_bidang, 
-								db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
-								
-				->from('tb_dkebutuhan as db')
-				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
-				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
-				->where('status', 'waiting')
-				->get();
+								bt.type, 
+								nk.nama_kebutuhan,
+								p.nama, p.alamat, p.email,
+								db.id_dkebutuhan, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+							
+					->from('tb_dkebutuhan as db')
+					->join('tb_pengguna as p', 'p.id = db.id', 'LEFT')
+					->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
+					->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
+					->join('tb_nkebutuhan as nk','nk.id_nkebutuhan = db.id_nkebutuhan', 'LEFT')
+					->get();
 		return $q->result();
 	}
 

@@ -7,13 +7,13 @@ class M_KonfirmasiKeluhan extends CI_Model {
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkeluhan, db.keluhan, db.nama_lengkap, db.nim_nip,
-								db.fak_prodi, db.tgl_pengajuan, db.status' )
+								p.nama, p.alamat, p.email,
+								db.id_dkeluhan, db.tgl_pengajuan, db.keluhan, db.status' )
 								
 				->from('tb_dkeluhan as db')
-				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
+				->join('tb_pengguna as p','p.id = db.id','LEFT')
+				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
 				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
-				->where('status', 'waiting')
 				->get();
 		return $q->result();
 	}

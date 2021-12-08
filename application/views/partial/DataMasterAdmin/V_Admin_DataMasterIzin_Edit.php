@@ -11,41 +11,24 @@
                 <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
               </div>
               <?php } ?>
-              <?=form_open('data_master/edit/nama_izin/' . $data_namaizin->id_kebutuhan, array('method'=>'post'));?>
-                <input type="hidden" name="id_kebutuhan" value="<?=$data_namaizin->id_kebutuhan;?>">
+              <?=form_open('data_master/edit/nama_izin/' . $data_namaizin->id_nkebutuhan, array('method'=>'post'));?>
+                <input type="hidden" name="id_nkebutuhan" value="<?=$data_namaizin->id_nkebutuhan;?>">
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Izin</label>
+                      <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
                       <div class="col-sm-9">
-                        <select name="type" class="form-control">
-                          <option disabled selected>-- Pilih --</option>
-                          <?php
-                            $izin = array(
-                              array(
-                                'id'    => 'cuti',
-                                'nama'  => 'Cuti'
-                              ),
-                              array(
-                                'id'    => 'Pembuatan Surat',
-                                'nama'  => 'Pembuatan Surat'
-                              ),
-                              array(
-                                'id'    => 'seminar',
-                                'nama'  => 'Seminar'
-                              )
-                            );
-                            foreach($izin as $iz) {
-                          ?>
-                          <option value="<?=$iz['id'];?>" <?=( ($iz['id']==$data_namaizin->type) ? 'selected' : '');?>><?=$iz['nama'];?></option>
-                          <?php
-                            }
-                          ?>
+                        <select name="id_kebutuhan" class="form-control">
+                          <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
+                          <?php foreach($get_kebutuhan as $ke) : ?>
+                            <option value="<?=$ke->id_kebutuhan;?>"> <?=$ke->type;?></option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> 
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -66,7 +49,7 @@
                 </div>
               <?=form_close();?>
             </div>
+            </div>
           </div>
         </div>
-    </div>
-  </div>
+      </div>

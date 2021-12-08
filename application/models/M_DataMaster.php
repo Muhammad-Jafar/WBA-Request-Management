@@ -70,6 +70,28 @@ class M_DataMaster extends CI_Model {
 	//ENDING SORTING DATA PENGGUNA
 
 	public function namaizin_list_all() {
+		$q=$this->db->select('*')
+		->from('tb_kebutuhan as k')
+		->join('tb_nkebutuhan as nk', 'k.id_kebutuhan = nk.id_kebutuhan', 'LEFT')
+		->get();
+		return $q->result();
+	}
+
+	public function get_data_namaizin($id) 
+	{ 
+		$q=$this->db->select('*')
+		->from('tb_kebutuhan as k')
+		->join('tb_nkebutuhan as nk', ' k.id_kebutuhan = nk.id_kebutuhan') 
+		->where('id_nkebutuhan', $id)->limit(1)->get();
+
+		if( $q->num_rows() < 1 ) 
+		{
+			redirect( base_url('/data_master/nama_izin') );
+		}
+		return $q->row();
+	}
+
+	public function kebutuhan_list_all() {
 		$q=$this->db->select('*')->get('tb_kebutuhan');//ini tabel awalnya
 		return $q->result();
 	}
@@ -106,14 +128,6 @@ class M_DataMaster extends CI_Model {
 	{
 		$q=$this->db->select('*')->get('tb_jabatan');
 		return $q->result();
-	}
-
-	public function get_data_namaizin($id) { 
-		$q=$this->db->select('*')->from('tb_kebutuhan')->where('id_kebutuhan', $id)->limit(1)->get();
-		if( $q->num_rows() < 1 ) {
-			redirect( base_url('/data_master/nama_izin') );
-		}
-		return $q->row();
 	}
 	
 	public function get_data_keluhan($id)
@@ -166,13 +180,14 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data bidang berhasil diubah');
 	}
 
-	public function namaizin_update($id_kebutuhan,$type,$nama_kebutuhan) {
-		$d_t_d = array(
-			'type' => $type,
-			'nama_kebutuhan' => $nama_kebutuhan
-		);
-		$this->db->where('id_kebutuhan', $id_kebutuhan)->update('tb_kebutuhan', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data Daftar Kebutuhan berhasil diubah');
+	public function namaizin_update($id_kebutuhan, $id_nkebutuhan, $nama_kebutuhan) 
+	{
+		$namakebutuhan = array( 'id_kebutuhan'  => $id_kebutuhan,
+								'id_nkebutuhan' => $id_nkebutuhan,
+								'nama_kebutuhan'=> $nama_kebutuhan );
+
+		$this->db->where('id_nkebutuhan', $id_nkebutuhan)->update('tb_nkebutuhan', $namakebutuhan);
+		$this->session->set_flashdata('msg_alert', 'Data kebutuhan baru berhasil dubah');
 	}
 
 	public function keluhan_update($id_keluhan,$type) {
@@ -248,7 +263,7 @@ class M_DataMaster extends CI_Model {
 	}
 
 	public function namaizin_delete($id) {
-		$this->db->delete('tb_kebutuhan', array('id_kebutuhan' => $id));
+		$this->db->delete('tb_nkebutuhan', array('id_nkebutuhan' => $id));
 	}
 
 	public function keluhan_delete($id) {
@@ -292,13 +307,12 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Bidang baru berhasil ditambahkan');
 	}
 
-	public function namaizin_add_new( $type,$nama_kebutuhan) 
+	public function namaizin_add_new( $id_kebutuhan,$nama_kebutuhan) 
 	{
-		$d_t_d = array(
-			'type' => $type,
-			'nama_kebutuhan' => $nama_kebutuhan
-		);
-		$this->db->insert('tb_kebutuhan', $d_t_d);
+		$namakebutuhan = array( 'id_kebutuhan'   => $id_kebutuhan,
+								'nama_kebutuhan' => $nama_kebutuhan);
+
+		$this->db->insert('tb_nkebutuhan',$namakebutuhan);
 		$this->session->set_flashdata('msg_alert', 'Data kebutuhan baru berhasil ditambahkan');
 	}
 

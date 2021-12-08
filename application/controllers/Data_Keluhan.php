@@ -8,17 +8,16 @@ class Data_Keluhan extends CI_Controller {
 	function __construct() 
 	{
 		parent::__construct();
-		isnt_adminbaak(function() {
+		isnt_admin(function() 
+		{
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_DataKeluhan');
 		$this->m_datakeluhan = $this->M_DataKeluhan;
-		if( $this->session->userdata('user_type') == 'admin' ) {
+		if( $this->session->userdata('user_type') == 'admin' ) 
+		{
 			$this->user_type = 'Admin';
 		} 
-		// else if( $this->session->userdata('user_type') == 'supervisor' ) {
-		// 	$this->user_type = 'Supervisor';
-		// }
 	}
 
 	public function index() 

@@ -23,19 +23,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('profil_pengguna');?>">
+            <a class="nav-link" href="<?=base_url('pengguna/profil');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Profil</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('mendaftar_kebutuhan');?>">
+            <a class="nav-link" href="<?=base_url('pengguna/kebutuhan');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Permintaan Kebutuhan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('mendaftar_keluhan');?>">
+            <a class="nav-link" href="<?=base_url('pengguna/keluhan');?>">
               <i class="menu-icon mdi mdi-treasure-chest"></i>
               <span class="menu-title">Permintaan Keluhan</span>
             </a>

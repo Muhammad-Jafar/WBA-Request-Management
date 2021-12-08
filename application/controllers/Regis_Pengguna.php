@@ -14,7 +14,7 @@ class Regis_Pengguna extends CI_Controller
 
 	public function index() 
 	{
-		$this->load->view('V_Regis_Pengguna');
+		$this->load->view('partial/RegisPengguna/V_Regis_Pengguna');
 		// redirect( base_url('regis_pengguna') );
 	}
 
@@ -91,8 +91,8 @@ class Regis_Pengguna extends CI_Controller
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
 		$data_content['list_fakultas'] = $this->m_regispengguna->fakultas_list_all();
 		$data_content['list_prodi'] = $this->m_regispengguna->prodi_list_all();
-		$data['content'] = $this->load->view('V_Regis_Mhs', $data_content, true);
-		$this->load->view('V_Regis_Mhs', $data);
+		$data['content'] = $this->load->view('partial/RegisPengguna/V_Regis_Mhs', $data_content, true);
+		$this->load->view('partial/RegisPengguna/V_Regis_Mhs', $data);
 	}
 
 	public function regisdosen()
@@ -165,9 +165,8 @@ class Regis_Pengguna extends CI_Controller
 		$data = generate_page('Pendaftaran Pengguna', 'regis_pengguna/regisdosen', 'Pengguna');
 		$data_content['list_bidang'] = $this->m_regispengguna->bidang_list_all();
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
-		$data['content'] = $this->load->view('V_Regis_Dosen', $data_content, true);
-		$this->load->view('V_Regis_Dosen', $data);
-	
+		$data['content'] = $this->load->view('partial/RegisPengguna/V_Regis_Dosen', $data_content, true);
+		$this->load->view('partial/RegisPengguna/V_Regis_Dosen', $data);
 	}
 
 	public function regisstaff()
@@ -233,8 +232,8 @@ class Regis_Pengguna extends CI_Controller
 		$data = generate_page('Pendaftaran Pengguna', 'regis_pengguna/regisstaff', 'Pengguna');
 		$data_content['list_bidang'] = $this->m_regispengguna->bidang_list_all();
 		$data_content['list_jabatan'] = $this->m_regispengguna->jabatan_list_all();
-		$data['content'] = $this->load->view('V_Regis_Staff', $data_content, true);
-		$this->load->view('V_Regis_Staff', $data);
+		$data['content'] = $this->load->view('partial/RegisPengguna/V_Regis_Staff', $data_content, true);
+		$this->load->view('partial/RegisPengguna/V_Regis_Staff', $data);
 	}
 	//FUNGSI TAMBAH DATA
 

@@ -14,6 +14,7 @@ class Pengguna extends CI_Controller
 		});
 		$this->load->model('M_Pengguna');
 		$this->m_cp = $this->M_Pengguna;
+		$this->load->helper('tgl_indo_helper');
 	
 		if( $this->session->userdata('user_type') == 'pengguna' ) 
 		{

@@ -29,9 +29,9 @@
                     <label style="font-size: 13px;"><?=$this->session->flashdata('msg_alert');?></label>
                   </div>
                 <?php } ?>
-                <h4 class="d-flex justify-content-center font-weight-bold">Layanan PSDM</h4>
-                <h5 class="d-flex justify-content-center">Registrasi Pengguna</h5>
-                <h7 class="d-flex justify-content-center mt-4 mb-4">Siapakah anda :</h7>
+                <h4 class="d-flex justify-content-center font-weight-semibold text-dark">Layanan PSDM</h4>
+                <h5 class="d-flex justify-content-center text-dark">Registrasi Pengguna</h5>
+                <h7 class="d-flex justify-content-center mt-4 mb-4 text-dark">Siapakah anda :</h7>
                   <div class="btn-group d-flex justify-content-center" role="group">
                     <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regismhs"); ?>';">Mahasiswa</button>
                     <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosen"); ?>';">Dosen</button>

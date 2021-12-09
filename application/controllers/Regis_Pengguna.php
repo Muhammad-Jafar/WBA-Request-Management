@@ -38,7 +38,6 @@ class Regis_Pengguna extends CI_Controller
 			$password= $this->security->xss_clean( $this->input->post('password') );
 			$id_user= $this->security->xss_clean( $this->input->post('id_user') );
 			$tanggal_regis = date('Y-m-d');
-			// $tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
 			$avatar = '';
 
 			// avatar

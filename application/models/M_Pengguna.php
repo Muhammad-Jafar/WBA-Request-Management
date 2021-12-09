@@ -14,20 +14,23 @@ class M_Pengguna extends CI_Model {
 	//BATAS UMUM
 
 	//UNTUK PROFIL
-
+	public function tanggal_regis()
+	{
+		$q=$this->db->select('tanggal_regis')->get('tb_pengguna');
+		return $q->result();
+	}
 	//BATAS PROFIL
 
 	//UNTUK KEBUTUHAN
 	public function get_data_dkebutuhan($id_dkebutuhan) 
 	{
-		$q=$this->db->select(  'b.nama_bidang, 
-								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, 
-								db.fak_prodi, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
-
-				->from ('tb_dkebutuhan as db')
-				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
-				->join ('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
+		$q=$this->db->select(  'bt.type, 
+								nk.nama_kebutuhan,
+								db.id_dkebutuhan, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+						
+				->from('tb_dkebutuhan as db')
+				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
+				->join('tb_nkebutuhan as nk','nk.id_nkebutuhan = db.id_nkebutuhan', 'LEFT')
 				->where( 'db.id_dkebutuhan', $id_dkebutuhan )
 				->limit(1)->get();
 
@@ -45,14 +48,14 @@ class M_Pengguna extends CI_Model {
 
 	public function dkebutuhan_list_all() 
 	{
-		$q=$this->db->select(  'b.nama_bidang, 
-								bt.type, bt.nama_kebutuhan, 
-								db.id_dkebutuhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip, db.fak_prodi,
-								db.id_bidang, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
-								
+		$q=$this->db->select(  'bt.type, 
+								nk.nama_kebutuhan,
+								db.id, db.id_dkebutuhan, db.tgl_pengajuan, db.tgl_mulai, db.tgl_akhir, db.status' )
+
 				->from('tb_dkebutuhan as db')
-				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
 				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
+				->join('tb_nkebutuhan as nk','nk.id_nkebutuhan = db.id_nkebutuhan', 'LEFT')
+				// ->where('db.id', 'id' )
 				->get();
 		return $q->result();
 	}

@@ -29,7 +29,8 @@
               </div>
               <?php } ?>
               <?=form_open_multipart('regis_pengguna/regismhs', array('method'=>'post'));?>
-              
+              <!-- <input type="hidden" name="id" class="form-control" value=""> -->
+
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">

@@ -28,7 +28,7 @@
                 <p class="text-center">
                   <img src="<?=assets_url('logo.png', false);?>" width="135">
                 </p>
-                <h4 class="d-flex justify-content-center mt-4 mb-3 font-weight-bold" style="color:#000;">LAYANAN PSDM</h4>
+                <h4 class="d-flex justify-content-center mt-4 mb-3 font-weight-semibold text-dark">LAYANAN PSDM</h4>
                 <?php if($this->session->flashdata('msg_alert')) : ?>
 
                 <div class="alert alert-info">

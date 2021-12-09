@@ -16,3 +16,4 @@ if( !function_exists('uploads_url') )
 		return base_url( 'uploads/' . $path . ((!$cached) ?  '?' . time() : ''));
 	}
 }
+

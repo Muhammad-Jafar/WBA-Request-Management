@@ -58,7 +58,7 @@ class M_RegisPengguna extends CI_Model
 							$id_jabatan,$id_bidang, $id_fakultas, $id_prodi, $alamat, 
 							$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar=0 )
    {
-		$this->db->trans_start();
+		// $this->db->trans_start();
 
 		//jalankan query
 		$pengguna = array ( 'nama'			=> $nama,
@@ -76,27 +76,29 @@ class M_RegisPengguna extends CI_Model
 							'avatar'		=> $avatar );
 
 		$mhs_id = $this->db->insert_id();
-		$mhs_id['id'] = $mhs_id;
+		
 
-		$mhs 	  = array ( //'id' 			== $mhs_id,
+		$mhs 	  = array ( 'id' 			=> $mhs_id,
 							'nim'			=> $nim, 
 							'id_prodi' 		=> $id_prodi, 
 							'id_fakultas' 	=> $id_fakultas );
 		
+		
 		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
-
+		return $mhs_id;
 		$this->db->insert('tb_pengguna', $pengguna);
 		$this->db->insert('tb_mhsiswa', $mhs);
-		// return $insert_id = $this->db->insert_id();
+		
+		// $this->db->trans_complete();
 
 		$this->session->set_flashdata('msg_alert', 'Pendaftaran sebagai Mahasiswa berhasil dilakukan');
-		$this->db->trans_complete();
 
-		if($this->db->trans_status() == FALSE)
-		{
-			echo 'rollback';
-		}
-		else { echo 'success'; }
+
+		// if($this->db->trans_status() == FALSE)
+		// {
+		// 	echo 'rollback';
+		// }
+		// else { echo 'success'; }
    }
 
    public function add_dosen( $nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
@@ -118,7 +120,7 @@ class M_RegisPengguna extends CI_Model
 							'avatar'		=> $avatar );
 		
 		$dosen_id = $this->db->insert_id();
-		$dosen_id['id'] = $dosen_id;
+		return $dosen_id;
 		$dosen = array( 'nip' => $nip);
 		
 		if( empty($avatar) ) { $dosen['avatar'] = 'avatar.png'; }
@@ -146,7 +148,8 @@ class M_RegisPengguna extends CI_Model
 							'tanggal_regis'=> $tanggal_regis,
 							'avatar'		=> $avatar );
 
-		// $staff_id = $this->db->insert_id();
+		$staff_id = $this->db->insert_id();
+		return $staff_id;
 		// $staff_id['id'] = $staff_id;
 		// $staff = array( 'np' => $np);
 
@@ -156,10 +159,4 @@ class M_RegisPengguna extends CI_Model
 		$this->session->set_flashdata('msg_alert', 'Pendaftaran sebagai staff berhasil dilakukan');
 	}
    //FUNSI TAMBAH DATA
-
-	// public function registrasi($email, $password) {
-	// 	$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_admin');
-	// 	return $q;
-	// }
-
 }

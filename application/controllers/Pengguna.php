@@ -13,8 +13,9 @@ class Pengguna extends CI_Controller
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_Pengguna');
-		$this->m_cp = $this->M_Pengguna;
+		$this->m_pengguna = $this->M_Pengguna;
 		$this->load->helper('tgl_indo_helper');
+		$this->load->helper('generatepage_helper');
 	
 		if( $this->session->userdata('user_type') == 'pengguna' ) 
 		{
@@ -84,17 +85,17 @@ class Pengguna extends CI_Controller
 			$id				= $this->security->xss_clean($this->input->post('id'));
 			$id_kebutuhan	= $this->security->xss_clean( $this->input->post('id_kebutuhan'));
 			$id_nkebutuhan	= $this->security->xss_clean($this->input->post('id_nkebutuhan'));
-			$tgl_pengajuan	= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
+			$tgl_pengajuan = date('d/m/y');
 			$tgl_mulai		= $this->security->xss_clean( $this->input->post('tgl_mulai'));
 			$tgl_akhir		= $this->security->xss_clean( $this->input->post('tgl_akhir') );
 			$status			= $this->security->xss_clean( $this->input->post('status') );
 
-			//validasi lagi
-			$this->form_validation->set_rules('id', 'id', 'required');
+			//validasi
+			// $this->form_validation->set_rules('id', 'id', 'required');// dilepas juga karena id akan ditarik langsung
 			$this->form_validation->set_rules('id_kebutuhan', 'Jenis Kebutuhan', 'required');
 			$this->form_validation->set_rules('id_nkebutuhan','nama kebutuhan', 'required');
 			$this->form_validation->set_rules('id_nkebutuhan', 'Permintaan', 'required');
-			$this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required');
+			// $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required');// dilepas karena tidak perlu
 			$this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'required');
 			$this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'required');
 			$this->form_validation->set_rules('status', 'Status', 'required');
@@ -102,19 +103,19 @@ class Pengguna extends CI_Controller
 			if(!$this->form_validation->run()) 
 			{
 				$this->session->set_flashdata('msg_alert', validation_errors());
-				redirect( base_url('pengguna/add_kebutuhan/') );
+				redirect( base_url('pengguna/kebutuhan/add_kebutuhan/') );
 			}
 
-			$this->m_dataizin->add_new( $id_kebutuhan, $tgl_pengajuan, $tgl_mulai, $tgl_akhir, $status);
+			$this->m_pengguna->add_kebutuhan( $id, $id_kebutuhan,$id_nkebutuhan, $tgl_pengajuan, $tgl_mulai, $tgl_akhir, $status);
 			redirect( base_url('pengguna/kebutuhan') );
 		}
 
-		$data = generate_page('Entry Data Kebutuhan', 'data_izin/add_new', $this->user_type);
+		$data = generate_page('Permintaan Kebutuhan', 'pengguna/kebutuhan/add_kebutuhan', $this->user_type);
 		$data_content['title_page'] = 'Pengajuan Permintaan Kebutuhan';
-		$data_content['bidang_list_all'] = $this->m_dataizin->bidang_list_all();
-		$data_content['get_kebutuhan'] = $this->m_dataizin->get_kebutuhan();
-		$data['content'] = $this->load->view('partial/DataIzinAdmin/V_Admin_DataIzin_Create', $data_content, true);
-		$this->load->view('V_DataIzin_Admin', $data);
+		$data_content['get_kebutuhan'] = $this->m_pengguna->get_kebutuhan();
+		$data_content['get_nkebutuhan'] = $this->m_pengguna->get_nkebutuhan();
+		$data['content'] = $this->load->view('partial/Pengguna/V_KebutuhanPenggunaCreate', $data_content, true);
+		$this->load->view('V_Pengguna', $data);
 	}
 	//BATAS KEBUTUHAN
 
@@ -131,7 +132,7 @@ class Pengguna extends CI_Controller
 	{
 		json_dump(function() 
 		{
-			$result= $this->m_pengguna->mhs_list_all();
+			$result= $this->m_pengguna->dkeluhan_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -144,6 +145,48 @@ class Pengguna extends CI_Controller
 			}
 			return array('data' => $new_arr);
 		});
+	}
+
+	public function dkeluhan_ajax($type) 
+	{
+		$this->c_type=$type;
+		json_dump(function() {
+			$result=$this->m_datakeluhan->get_keluhan($this->c_type);
+			return $result;
+		});
+	}
+
+	public function add_keluhan() 
+	{
+		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
+		{
+			$id= $this->security->xss_clean( $this->input->post('id') );
+			$id_keluhan= $this->security->xss_clean( $this->input->post('id_keluhan') );
+			$keluhan = $this->security->xss_clean( $this->input->post('keluhan'));
+			$tgl_pengajuan = date('d/m/y');
+			$status= $this->security->xss_clean( $this->input->post('status') );
+
+			// $this->form_validation->set_rules('id', 'id', 'required');
+			$this->form_validation->set_rules('id_keluhan', 'Jenis Keluhan', 'required');
+			$this->form_validation->set_rules('keluhan', 'Keluhan', 'required');
+			// $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required';
+			$this->form_validation->set_rules('status', 'Status', 'required');
+
+			if(!$this->form_validation->run()) 
+			{
+				$this->session->set_flashdata('msg_alert', validation_errors());
+				redirect( base_url('pengguna/keluhan/add_keluhan/') );
+			}
+
+			$this->m_pengguna->add_keluhan( $id, $id_keluhan, $keluhan, $tgl_pengajuan, $status);
+			redirect( base_url('pengguna/keluhan') );
+		}
+
+		$data = generate_page('Pengajuan Data Keluhan', 'pengguna/keluhan/add_keluhan', $this->user_type);
+		$data_content['title_page'] = 'Pengajuan Keluhan';
+		$data_content['get_keluhan'] = $this->m_pengguna->get_keluhan();
+		$data['content'] = $this->load->view('partial/Pengguna/V_KeluhanPenggunaCreate', $data_content, true);
+		$this->load->view('V_Pengguna', $data);
 	}
 	//BATAS KELUHAN
 }

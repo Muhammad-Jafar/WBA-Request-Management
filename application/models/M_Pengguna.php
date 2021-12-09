@@ -14,7 +14,7 @@ class M_Pengguna extends CI_Model {
 	//BATAS UMUM
 
 	//UNTUK PROFIL
-	public function tanggal_regis()
+	public function swap_pengguna()
 	{
 		$q=$this->db->select('tanggal_regis')->get('tb_pengguna');
 		return $q->result();
@@ -45,8 +45,13 @@ class M_Pengguna extends CI_Model {
 		$q=$this->db->select('*')->get('tb_kebutuhan');
 		return $q->result();
 	}
+	public function get_nkebutuhan() 
+	{
+		$q=$this->db->select('*')->get('tb_nkebutuhan');
+		return $q->result();
+	}
 
-	public function dkebutuhan_list_all() 
+	public function dkebutuhan_list_all($user_id) 
 	{
 		$q=$this->db->select(  'bt.type, 
 								nk.nama_kebutuhan,
@@ -55,7 +60,7 @@ class M_Pengguna extends CI_Model {
 				->from('tb_dkebutuhan as db')
 				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
 				->join('tb_nkebutuhan as nk','nk.id_nkebutuhan = db.id_nkebutuhan', 'LEFT')
-				// ->where('db.id', 'id' )
+				->where('db.id', $user_id )
 				->get();
 		return $q->result();
 	}
@@ -90,24 +95,20 @@ class M_Pengguna extends CI_Model {
 		return $new_arr;
 	}
 
-	public function add_kebutuhan( $id_kebutuhan, $id_bidang, $nama_lengkap, $alamat, $nowa, $nim_nip,
-	                         $fak_prodi, $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
+	public function add_kebutuhan( $id, $id_kebutuhan, $id_nkebutuhan,
+	                         	   $tgl_pengajuan, $tgl_mulai , $tgl_akhir, $status ) 
 
 	{
-		$d_t_d = array(
-			'id_kebutuhan'	=> $id_kebutuhan,      
-			// 'nama_kebutuhan'=> $nama_kebutuhan,
-			'nama_lengkap' 	=> $nama_lengkap,
-			'alamat' 		=> $alamat,
-			'nim_nip' 		=> $nim_nip,
-			'nowa' 			=> $nowa,
-			'id_bidang'		=> $id_bidang,
-			'fak_prodi'		=> $fak_prodi,
-			'tgl_pengajuan' => $tgl_pengajuan,
-			'tgl_mulai' 	=> $tgl_mulai,
-			'tgl_akhir' 	=> $tgl_akhir,
-			'status' 		=> $status
-		);
+		$d_t_d = array( 'id'			=> $id,      
+						'id_kebutuhan'	=> $id_kebutuhan,
+						'id_nkebutuhan'	=> $id_nkebutuhan,
+						'tgl_pengajuan' => $tgl_pengajuan,
+						'tgl_mulai' 	=> $tgl_mulai,
+						'tgl_akhir' 	=> $tgl_akhir,
+						'status' 		=> $status );
+
+		
+		
 		$this->db->insert('tb_dkebutuhan', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Kebutuhan berhasil ditambahkan');
 	}
@@ -169,7 +170,6 @@ class M_Pengguna extends CI_Model {
 		return $q->result();
 	}
 
-	// YANG BARU
 	public function dkeluhan_list_all() 
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
@@ -180,6 +180,7 @@ class M_Pengguna extends CI_Model {
 				->from('tb_dkeluhan as db')
 				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
 				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
+				->where('db.id', 'id')
 				->get();
 		return $q->result();
 	}
@@ -211,19 +212,14 @@ class M_Pengguna extends CI_Model {
 		return $new_arr;
 	}
 
-	public function add_keluhan( $nama_lengkap, $alamat, $nowa, $id_keluhan, $keluhan, 
-							 $nim_nip, $id_bidang, $fak_prodi, $tgl_pengajuan, $status ) 
+	public function add_keluhan( $id, $id_keluhan, $keluhan, $tgl_pengajuan, $status ) 
 	{
-		$d_t_d = array( 'nama_lengkap' 	=> $nama_lengkap,
-						'alamat' 		=> $alamat,
-						'nim_nip'		=> $nim_nip,
-						'nowa' 			=> $nowa,
+		$d_t_d = array( 'id'			=> $id,
 						'id_keluhan'	=> $id_keluhan,
 						'keluhan'		=> $keluhan,
-						'id_bidang'		=> $id_bidang,
-						'fak_prodi' 	=> $fak_prodi,
 						'tgl_pengajuan' => $tgl_pengajuan,
 						'status' 		=> $status );
+
 		$this->db->insert('tb_dkeluhan', $d_t_d);
 		$this->session->set_flashdata('msg_alert', 'Pengajuan Permintaan Keluhan berhasil ditambahkan');
 	}

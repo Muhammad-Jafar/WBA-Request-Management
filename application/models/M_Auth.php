@@ -82,7 +82,7 @@ class M_Auth extends CI_Model
 			else 
 			{
 				$id_jabatan = '0';
-				$nama_jabatan = 'Unknown';
+				$nama_jabatan = '-';
 			}
 			$this->session->set_userdata('user_id_jabatan', $id_jabatan);
 			$this->session->set_userdata('user_nama_jabatan', $nama_jabatan);
@@ -97,7 +97,7 @@ class M_Auth extends CI_Model
 			else 
 			{
 				$id_bidang = '0';
-				$nama_bidang = 'Unknown';
+				$nama_bidang = '-';
 			}
 
 			$this->session->set_userdata('user_id_bidang', $id_bidang);
@@ -116,9 +116,9 @@ class M_Auth extends CI_Model
 			else 
 			{
 				$id_mhs = '0';
-				$nim = 'Unknown';
-				$id_prodi = 'Unknown';
-				$id_fakultas = 'Unknown';
+				$nim = '-';
+				$id_prodi = '0';
+				$id_fakultas = '0';
 			}
 
 			$this->session->set_userdata('id_mhs', $id_mhs);
@@ -136,7 +136,7 @@ class M_Auth extends CI_Model
 			else 
 			{
 				$id_prodi = '0';
-				$nama_prodi = 'Unknown';
+				$nama_prodi = '-';
 				
 			}
 
@@ -153,7 +153,7 @@ class M_Auth extends CI_Model
 			else 
 			{
 				$id_fakultas = '0';
-				$nama_fakultas = 'Unknown';
+				$nama_fakultas = '-';
 			}
 
 			$this->session->set_userdata('id_fakultas', $id_fakultas);
@@ -171,7 +171,7 @@ class M_Auth extends CI_Model
 			else 
 			{	
 				$id_dosen = '0';
-				$nip = 'Unknown';
+				$nip = '-';
 			}
 
 			$this->session->set_userdata('id_dosen', $id_dosen);
@@ -189,7 +189,7 @@ class M_Auth extends CI_Model
 			else 
 			{	
 				$id_staff = '0';
-				$np = 'Unknown';
+				$np = '-';
 			}
 
 			$this->session->set_userdata('id_staff', $id_staff);

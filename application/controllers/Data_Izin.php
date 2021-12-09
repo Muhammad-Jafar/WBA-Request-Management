@@ -57,7 +57,7 @@ class Data_Izin extends CI_Controller {
 			$nim_nip= $this->security->xss_clean( $this->input->post('nim_nip'));
 			$id_bidang= $this->security->xss_clean($this->input->post('id_bidang'));
 			$fak_prodi= $this->security->xss_clean($this->input->post('fak_prodi'));
-			$tgl_pengajuan= $this->security->xss_clean($this->input->post('tgl_pengajuan'));
+			$tgl_pengajuan = date('d/m/y');
 			$tgl_mulai= $this->security->xss_clean( $this->input->post('tgl_mulai'));
 			$tgl_akhir= $this->security->xss_clean( $this->input->post('tgl_akhir') );
 			$status= $this->security->xss_clean( $this->input->post('status') );

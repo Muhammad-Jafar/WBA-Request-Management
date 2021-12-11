@@ -53,18 +53,8 @@ class Pengguna extends CI_Controller
 	{
 		json_dump(function() 
 		{
-			$result= $this->m_pengguna->dkebutuhan_list_all();
-			$new_arr=array();$i=1;
-			foreach ($result as $key => $value) 
-			{
-				$value->no=$i;
-				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
-				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
-				$i++;
-			}
-			return array('data' => $new_arr);
+			$result=$this->m_pengguna->dkebutuhan_list_ajax( $this->m_pengguna->dkebutuhan_list_all() );
+			return array('data' => $result);
 		});
 	}
 
@@ -132,18 +122,8 @@ class Pengguna extends CI_Controller
 	{
 		json_dump(function() 
 		{
-			$result= $this->m_pengguna->dkeluhan_list_all();
-			$new_arr=array();$i=1;
-			foreach ($result as $key => $value) 
-			{
-				$value->no=$i;
-				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
-				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
-				$i++;
-			}
-			return array('data' => $new_arr);
+			$result=$this->m_pengguna->dkeluhan_list_ajax( $this->m_pengguna->dkeluhan_list_all() );
+			return array('data' => $result);
 		});
 	}
 
@@ -166,10 +146,10 @@ class Pengguna extends CI_Controller
 			$tgl_pengajuan = date('d/m/y');
 			$status= $this->security->xss_clean( $this->input->post('status') );
 
-			// $this->form_validation->set_rules('id', 'id', 'required');
+			// $this->form_validation->set_rules('id', 'id', 'required');//tidak perlu karena akan langsung ditarik
 			$this->form_validation->set_rules('id_keluhan', 'Jenis Keluhan', 'required');
 			$this->form_validation->set_rules('keluhan', 'Keluhan', 'required');
-			// $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required';
+			// $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required';//tidak perlu karena otomatis oleh sistem
 			$this->form_validation->set_rules('status', 'Status', 'required');
 
 			if(!$this->form_validation->run()) 

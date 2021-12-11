@@ -3,16 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_DataKeluhan extends CI_Model {
 
+	//UNTUK MENAMPILKAN CETAK DOKUMEN
 	public function get_dkeluhan($id_dkeluhan) 
 	{
 		$q=$this->db->select(  'b.nama_bidang, 
 								bt.type,
-								db.id_dkeluhan, db.nama_lengkap, db.alamat,db.nim_nip, db.nowa, 
-								db.fak_prodi, db.tgl_pengajuan, db.keluhan, db.status' )
-
-				->from ('tb_dkeluhan as db')
-				->join ('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
-				->join ('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
+								p.nama, p.alamat, p.email,
+								db.id_dkeluhan, db.tgl_pengajuan, db.keluhan, db.status' )
+								
+				->from('tb_dkeluhan as db')
+				->join('tb_pengguna as p','p.id = db.id','LEFT')
+				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
+				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
 				->where( 'db.id_dkeluhan', $id_dkeluhan )
 				->limit(1)->get();
 
@@ -57,6 +59,7 @@ class M_DataKeluhan extends CI_Model {
 				->join('tb_pengguna as p','p.id = db.id','LEFT')
 				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
 				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
+				->where('status', 'approved')
 				->get();
 		return $q->result();
 	}

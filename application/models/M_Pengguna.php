@@ -51,7 +51,7 @@ class M_Pengguna extends CI_Model {
 		return $q->result();
 	}
 
-	public function dkebutuhan_list_all($user_id) 
+	public function dkebutuhan_list_all() 
 	{
 		$q=$this->db->select(  'bt.type, 
 								nk.nama_kebutuhan,
@@ -60,7 +60,7 @@ class M_Pengguna extends CI_Model {
 				->from('tb_dkebutuhan as db')
 				->join('tb_kebutuhan as bt', 'bt.id_kebutuhan = db.id_kebutuhan', 'LEFT')
 				->join('tb_nkebutuhan as nk','nk.id_nkebutuhan = db.id_nkebutuhan', 'LEFT')
-				->where('db.id', $user_id )
+				->where('db.id', $this->session->userdata('user_id') )
 				->get();
 		return $q->result();
 	}
@@ -172,15 +172,12 @@ class M_Pengguna extends CI_Model {
 
 	public function dkeluhan_list_all() 
 	{
-		$q=$this->db->select(  'b.nama_bidang, 
-								bt.type,
-								db.id_dkeluhan, db.nama_lengkap, db.alamat, db.nowa, db.nim_nip,
-								db.fak_prodi, db.tgl_pengajuan, db.keluhan, db.status' )
+		$q=$this->db->select(  'bt.type,
+								db.id, db.id_dkeluhan, db.tgl_pengajuan, db.keluhan, db.status' )
 								
 				->from('tb_dkeluhan as db')
-				->join('tb_bidang as b', 'b.id_bidang = db.id_bidang', 'LEFT')
 				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
-				->where('db.id', 'id')
+				->where('db.id', $this->session->userdata('user_id'))
 				->get();
 		return $q->result();
 	}

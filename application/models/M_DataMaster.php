@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_DataMaster extends CI_Model {
+class M_DataMaster extends CI_Model 
+{
 
 	//Menampilkan List semua Data per pilihan menu
 	public function admin_list_all() {
@@ -216,33 +217,33 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data admin berhasil diubah');
 	}
 
-	public function pegawai_update( 	$id, $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-										$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
-										$password,$id_user,$tanggal_regis,$avatar) 
-	{
-		$d_t_d = array(
-			'nama' => $nama,
-			'nomor_induk' => $nomor_induk,
-			'tempat_lahir' => $tempat_lahir,
-			'tanggal_lahir' => $tanggal_lahir,
-			'jenis_kelamin' => $jenis_kelamin,
-			'id_jabatan' => $id_jabatan,
-			'id_bidang' => $id_bidang,
-			'alamat' => $alamat,
-			'no_handphone' => $no_handphone,
-			'email' => $email,
-			'id_user' => $id_user,
-			'tanggal_regis' => $tanggal_regis
-		);
-		if( !empty($password) ) {
-			$d_t_d['password'] = md5($password);
-		}
-		if( !empty($avatar) ) {
-			$d_t_d['avatar'] = $avatar;
-		}
-		$this->db->where('id', $id)->update('tb_pengguna', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Data Pengguna berhasil diubah');
-	}
+	// public function pegawai_update( 	$id, $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+	// 									$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
+	// 									$password,$id_user,$tanggal_regis,$avatar) 
+	// {
+	// 	$d_t_d = array(
+	// 		'nama' => $nama,
+	// 		'nomor_induk' => $nomor_induk,
+	// 		'tempat_lahir' => $tempat_lahir,
+	// 		'tanggal_lahir' => $tanggal_lahir,
+	// 		'jenis_kelamin' => $jenis_kelamin,
+	// 		'id_jabatan' => $id_jabatan,
+	// 		'id_bidang' => $id_bidang,
+	// 		'alamat' => $alamat,
+	// 		'no_handphone' => $no_handphone,
+	// 		'email' => $email,
+	// 		'id_user' => $id_user,
+	// 		'tanggal_regis' => $tanggal_regis
+	// 	);
+	// 	if( !empty($password) ) {
+	// 		$d_t_d['password'] = md5($password);
+	// 	}
+	// 	if( !empty($avatar) ) {
+	// 		$d_t_d['avatar'] = $avatar;
+	// 	}
+	// 	$this->db->where('id', $id)->update('tb_pengguna', $d_t_d);
+	// 	$this->session->set_flashdata('msg_alert', 'Data Pengguna berhasil diubah');
+	// }
 	//FUNGSI APDET DATA
 
 	//FUNGSI HAPUS DATA
@@ -258,9 +259,9 @@ class M_DataMaster extends CI_Model {
 		$this->db->delete('tb_bidang', array('id_bidang' => $id));
 	}
 
-	public function pegawai_delete($id) {
-		$this->db->delete('tb_pengguna', array('id' => $id));
-	}
+	// public function pegawai_delete($id) {
+	// 	$this->db->delete('tb_pengguna', array('id' => $id));
+	// }
 
 	public function namaizin_delete($id) {
 		$this->db->delete('tb_nkebutuhan', array('id_nkebutuhan' => $id));
@@ -325,32 +326,32 @@ class M_DataMaster extends CI_Model {
 		$this->session->set_flashdata('msg_alert', 'Data keluhan baru berhasil ditambahkan');
 	}
 
-	public function pegawai_add_new( 	$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-										$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
-										$password,$id_user,$tanggal_regis,$avatar=0) 
-	{
-		$d_t_d = array(
-			'nama' => $nama,
-			'nomor_induk' => $nomor_induk,
-			'tempat_lahir' => $tempat_lahir,
-			'tanggal_lahir' => $tanggal_lahir,
-			'jenis_kelamin' => $jenis_kelamin,
-			'id_jabatan' => $id_jabatan,
-			'id_bidang' => $id_bidang,
-			'alamat' => $alamat,
-			'no_handphone' => $no_handphone,
-			'email' => $email,
-			'password' => md5($password),
-			'id_user' => $id_user,
-			'tanggal_regis' => $tanggal_regis,
-			'avatar' => $avatar
-		);
-		if( empty($avatar) ) {
-			$d_t_d['avatar'] = 'avatar.png';
-		}
-		$this->db->insert('tb_pengguna', $d_t_d);
-		$this->session->set_flashdata('msg_alert', 'Pengguna baru berhasil ditambahkan');
-	}
+	// public function pegawai_add_new( 	$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+	// 									$id_jabatan,$id_bidang,$alamat,$no_handphone,$email,
+	// 									$password,$id_user,$tanggal_regis,$avatar=0) 
+	// {
+	// 	$d_t_d = array(
+	// 		'nama' => $nama,
+	// 		'nomor_induk' => $nomor_induk,
+	// 		'tempat_lahir' => $tempat_lahir,
+	// 		'tanggal_lahir' => $tanggal_lahir,
+	// 		'jenis_kelamin' => $jenis_kelamin,
+	// 		'id_jabatan' => $id_jabatan,
+	// 		'id_bidang' => $id_bidang,
+	// 		'alamat' => $alamat,
+	// 		'no_handphone' => $no_handphone,
+	// 		'email' => $email,
+	// 		'password' => md5($password),
+	// 		'id_user' => $id_user,
+	// 		'tanggal_regis' => $tanggal_regis,
+	// 		'avatar' => $avatar
+	// 	);
+	// 	if( empty($avatar) ) {
+	// 		$d_t_d['avatar'] = 'avatar.png';
+	// 	}
+	// 	$this->db->insert('tb_pengguna', $d_t_d);
+	// 	$this->session->set_flashdata('msg_alert', 'Pengguna baru berhasil ditambahkan');
+	// }
 	//FUNGSI TAMBAH DATA BARU
 
 }

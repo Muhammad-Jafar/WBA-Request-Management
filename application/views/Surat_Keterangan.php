@@ -20,7 +20,7 @@
 
   body {
     width: 8.5in;
-    margin: 0;
+    margin: 0;  
     padding: 0;
     font-family: 'Open Sans';
   }
@@ -53,9 +53,9 @@
 
         <p><?=$data->tempat;?>, <?=date("d M Y");?></p>
 
-        <p>Hal : Surat Keterangan Izin</p>
+        <p>Hal : Pengajuan Kebutuhan </p>
 
-        <p>Kepada Yth,<br>Ka. BAAK<br>Di Tempat</p>
+        <p>Kepada Yth,<br>Bidang PSDM<br>Di Tempat</p>
 
         <p>Dengan hormat,</p>
 

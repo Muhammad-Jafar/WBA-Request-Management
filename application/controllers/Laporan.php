@@ -23,6 +23,11 @@ class Laporan extends CI_Controller
 
 	public function index() 
 	{
+		redirect(base_url('dashboard'));
+	}
+
+	public function lihat_laporan()
+	{
 		
 	}
 

@@ -21,7 +21,8 @@ class Surat_Keterangan extends CI_Controller {
 
 	public function print()
 	{
-		if( empty($this->uri->segment('3'))) {
+		if( empty($this->uri->segment('3'))) 
+		{
 			redirect( base_url('/dashboard') );
 		}
 
@@ -29,36 +30,37 @@ class Surat_Keterangan extends CI_Controller {
 		$data['dl'] = false;
 		$data['id'] = $id;
 		$data['user_name'] = $this->session->userdata('user_name');
-		$data['data'] = $this->m_dataizin->get_data_izin($id);
+		$data['data'] = $this->m_dataizin->get_data_dkebutuhan($id);
 
-		$data['nama_izin'] = $data['data']->nama_izin;
+		$data['nama_kebutuhan'] = $data['data']->nama_kebutuhan;
 		$data['type'] = $data['data']->type;
-		switch ($data['type']) {
-			case 'cuti':
+
+		switch ($data['type']) 
+		{
+			case 'Cuti':
 					$data['type_id'] = '001';
 				break;
-			case 'sekolah':
+			case 'Pembuatan Surat':
 					$data['type_id'] = '002';
 				break;
-			case 'seminar':
-					$data['type_id'] = '003';
-				break;
 		}
-		if( $_SERVER['REQUEST_METHOD'] == 'GET') {
+		if( $_SERVER['REQUEST_METHOD'] == 'GET') 
+		{
 			if( isset($_GET['dl']) ) {
 				$data['dl'] = true;
 				header("Content-type: application/vnd.ms-word");
-				header("Content-Disposition: attachment; filename=SkBAAK-{$data['type_id']}-{$id}.doc");
+				header("Content-Disposition: attachment; filename=SK-{$data['type_id']}-{$id}.docx");
 			}
 		}
+
 		$data['tempat_lahir'] = strtoupper($data['data']->tempat_lahir);
 		$data['tanggal_lahir'] = date_format( date_create($data['data']->tanggal_lahir), 'd M Y');
 		$data['alamat'] = $data['data']->alamat;
 		$data['nama'] = explode(' ', $data['data']->nama)[0];
-		$diff  = date_diff( date_create($data['data']->tglawal), date_create($data['data']->tglakhir) );
+		$diff  = date_diff( date_create($data['data']->tgl_awal), date_create($data['data']->tgl_akhir) );
 		$data['selama'] = $diff->format('%d hari');
-		$data['tglawal'] = date_format( date_create($data['data']->tglawal), 'd M Y');
-		$data['tglakhir'] = date_format( date_create($data['data']->tglakhir), 'd M Y');
+		$data['tgl_mulai'] = date_format( date_create($data['data']->tgl_mulai), 'd M Y');
+		$data['tgl_akhir'] = date_format( date_create($data['data']->tgl_akhir), 'd M Y');
 		$this->load->view('Surat_Keterangan_New', $data);
 	}
 }

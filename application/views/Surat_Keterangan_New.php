@@ -39,8 +39,8 @@
   <tr> 
     <td> 
       <div align="center">
-        <b class="kop-surat">PT. Fadilus Media</b><br>
-        Gandaria Office Tower 8 Lt.20 Unit B-C, Gandaria City
+        <b class="kop-surat">Universitas Teknologi Sumbawa</b><br>
+        Jalan Raya Olat Maras, Batu Alang, Sumbawa Besar - NTB
       </div>
       <hr size="2" align="center" width="100%" color="#000000"/>
     </td>
@@ -48,7 +48,7 @@
   <tr> 
     <td> 
       <div align="center" class="title"><b>SURAT 
-        KETERANGAN</b><br>
+        PENGAJUAN KELUHAN</b><br>
       <font class="eng"><i>To Whom It May Concern</i></font>
       </div>
     </td>
@@ -57,7 +57,7 @@
     <td>&nbsp;<br></td>
   </tr>
   <tr>
-    <td style="text-align: right;">Jakarta, <?=date("d M Y");?></td>
+    <td style="text-align: right;">Sumbawa, <?=date("d M Y");?></td>
   </tr>
   <tr> 
     <td>&nbsp;<br></td>
@@ -68,14 +68,14 @@
       <table width="100%" border="0" cellspacing="1" cellpadding="1">
         <tr> 
           <td width="13%">Nomor / <font class="eng">Number</font></td>
-          <td width="70%">: <?=$type_id;?>/0<?=$id;?>/BAAK-Sket/<?=date('Y');?></td>
+          <td width="70%">: <?=$type_id;?>/0<?=$id;?> / Pengajuan Keluhan /<?=date('Y');?></td>
         </tr>
         <tr> 
           <td width="13%">Hal / <font class="eng">Case</font></td>
           <td width="70%">: Izin</td>
         </tr>
       </table>
-    </td>
+      </td>
     </div>
   </tr>
   <tr> 

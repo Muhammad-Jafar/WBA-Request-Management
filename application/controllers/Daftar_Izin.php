@@ -8,7 +8,7 @@ class Daftar_Izin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		isnt_pegawai(function() {
+		isnt_pengguna(function() {
 			redirect( base_url('auth/login') );
 		});
 		$this->load->model('M_DaftarIzin');

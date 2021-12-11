@@ -13,10 +13,10 @@
             <?php } ?>
 
             <div class="card-tools">
-              <div class="card-header" style="background-color: white;">
-                <ul class="nav nav-pills card-header-pills">
+              <div class="card-header">
+                <ul class="nav">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="true" href="<?=base_url("/data_master/pegawai/mahasiswa");?>">Mahasiswa</a>
+                    <a class="nav-link" active href="<?=base_url("/data_master/pegawai/mahasiswa");?>">Mahasiswa</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="<?=base_url("/data_master/pegawai/dosen");?>">Dosen</a>

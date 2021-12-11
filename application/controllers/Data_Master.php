@@ -94,6 +94,26 @@ class Data_Master extends CI_Controller {
 		$this->load->view('V_DataMaster_Admin', $data);
 	}
 
+	public function pegawai_ajax() 
+	{
+		json_dump(function() 
+		{
+
+			$result= $this->m_datamaster->mhs_list_all();
+			$new_arr=array();$i=1;
+			foreach ($result as $key => $value) 
+			{
+				$value->no=$i;
+				$new_arr[]=$value;
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$i++;
+			}
+			return array('data' => $new_arr);
+		});
+	}
+
 	public function mahasiswa_ajax() 
 	{
 		json_dump(function() 
@@ -225,7 +245,7 @@ class Data_Master extends CI_Controller {
 				$this->session->set_flashdata('msg_alert', 'Data jabatan berhasil dihapus');
 				redirect( base_url('data_master/jabatan') );
 				break;
-			case 'nilai':
+			case 'bidang':
 				$this->m_datamaster->bidang_delete($id);
 				$this->session->set_flashdata('msg_alert', 'Data Status Civitas berhasil dihapus');
 				redirect( base_url('data_master/bidang') );
@@ -435,74 +455,74 @@ class Data_Master extends CI_Controller {
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
 
-			case 'pegawai':
-				if( $_SERVER['REQUEST_METHOD'] == 'POST') 
-				{
-					$nama= $this->security->xss_clean( $this->input->post('nama') );
-					$nomor_induk= $this->security->xss_clean( $this->input->post('nomor_induk') );
-					$tempat_lahir= $this->security->xss_clean( $this->input->post('tempat_lahir') );
-					$tanggal_lahir= $this->security->xss_clean( $this->input->post('tanggal_lahir') );
-					$jenis_kelamin= $this->security->xss_clean( $this->input->post('jenis_kelamin') );
-					$id_jabatan= $this->security->xss_clean( $this->input->post('id_jabatan') );
-					$id_bidang= $this->security->xss_clean( $this->input->post('id_bidang') );
-					$alamat= $this->security->xss_clean( $this->input->post('alamat') );
-					$no_handphone= $this->security->xss_clean( $this->input->post('no_handphone') );
-					$email= $this->security->xss_clean( $this->input->post('email') );
-					$password= $this->security->xss_clean( $this->input->post('password') );
-					$id_user= $this->security->xss_clean( $this->input->post('id_user') );
-					$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
-					$avatar = '';
+			// case 'pegawai':
+			// 	if( $_SERVER['REQUEST_METHOD'] == 'POST') 
+			// 	{
+			// 		$nama= $this->security->xss_clean( $this->input->post('nama') );
+			// 		$nomor_induk= $this->security->xss_clean( $this->input->post('nomor_induk') );
+			// 		$tempat_lahir= $this->security->xss_clean( $this->input->post('tempat_lahir') );
+			// 		$tanggal_lahir= $this->security->xss_clean( $this->input->post('tanggal_lahir') );
+			// 		$jenis_kelamin= $this->security->xss_clean( $this->input->post('jenis_kelamin') );
+			// 		$id_jabatan= $this->security->xss_clean( $this->input->post('id_jabatan') );
+			// 		$id_bidang= $this->security->xss_clean( $this->input->post('id_bidang') );
+			// 		$alamat= $this->security->xss_clean( $this->input->post('alamat') );
+			// 		$no_handphone= $this->security->xss_clean( $this->input->post('no_handphone') );
+			// 		$email= $this->security->xss_clean( $this->input->post('email') );
+			// 		$password= $this->security->xss_clean( $this->input->post('password') );
+			// 		$id_user= $this->security->xss_clean( $this->input->post('id_user') );
+			// 		$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
+			// 		$avatar = '';
 
-					// avatar
-					if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) 
-					{
-						$config['upload_path']          = './uploads/avatar/';
-						$config['allowed_types']        = 'jpg|jpeg|png';
-						$config['max_size']             = 2000;
-						$config['file_name']			= md5(time() . '_' . $_FILES["avatar"]['name']);
+			// 		// avatar
+			// 		if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) 
+			// 		{
+			// 			$config['upload_path']          = './uploads/avatar/';
+			// 			$config['allowed_types']        = 'jpg|jpeg|png';
+			// 			$config['max_size']             = 2000;
+			// 			$config['file_name']			= md5(time() . '_' . $_FILES["avatar"]['name']);
 				 
-						$this->load->library('upload', $config);
+			// 			$this->load->library('upload', $config);
 				 
-						if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) {
-							$this->session->set_flashdata('msg_alert', $this->upload->display_errors());
-							redirect( base_url('data_master/edit/' . $name . '/' . $id) );
-						} else {
-							$avatar = $this->upload->data()['file_name'];
-						}
-					}
-					// validasi
-					$this->form_validation->set_rules('nama', 'Nama', 'required');
-					$this->form_validation->set_rules('nomor_induk', 'Nomor Induk', 'required');
-					$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
-					$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-					$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
-					$this->form_validation->set_rules('id_jabatan', 'Nama Jabatan', 'required');
-					$this->form_validation->set_rules('id_bidang', 'Status Civitas', 'required');
-					$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-					$this->form_validation->set_rules('no_handphone', 'No Handphone', 'required');
-					$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-					$this->form_validation->set_rules('password', 'Password', 'required');
-					$this->form_validation->set_rules('id_user', 'ID User', 'required');
-					$this->form_validation->set_rules('tanggal_regis', 'Tanggal Registrasi', 'required');
+			// 			if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) {
+			// 				$this->session->set_flashdata('msg_alert', $this->upload->display_errors());
+			// 				redirect( base_url('data_master/edit/' . $name . '/' . $id) );
+			// 			} else {
+			// 				$avatar = $this->upload->data()['file_name'];
+			// 			}
+			// 		}
+			// 		// validasi
+			// 		$this->form_validation->set_rules('nama', 'Nama', 'required');
+			// 		$this->form_validation->set_rules('nomor_induk', 'Nomor Induk', 'required');
+			// 		$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
+			// 		$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+			// 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+			// 		$this->form_validation->set_rules('id_jabatan', 'Nama Jabatan', 'required');
+			// 		$this->form_validation->set_rules('id_bidang', 'Status Civitas', 'required');
+			// 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+			// 		$this->form_validation->set_rules('no_handphone', 'No Handphone', 'required');
+			// 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+			// 		$this->form_validation->set_rules('password', 'Password', 'required');
+			// 		$this->form_validation->set_rules('id_user', 'ID User', 'required');
+			// 		$this->form_validation->set_rules('tanggal_regis', 'Tanggal Registrasi', 'required');
 					
-					if(!$this->form_validation->run()) {
-						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect( base_url('data_master/edit/' . $name . '/' .$id) );
-					}
-					// to-do
-					$this->m_datamaster->pegawai_add_new(	$id,$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-															$id_jabatan,$id_bidang,$alamat, $no_handphone,$email, 
-															$password,$id_user,$tanggal_regis,$avatar);
-					redirect( base_url('data_master/' . $name) );
-				}
+			// 		if(!$this->form_validation->run()) {
+			// 			$this->session->set_flashdata('msg_alert', validation_errors());
+			// 			redirect( base_url('data_master/edit/' . $name . '/' .$id) );
+			// 		}
+			// 		// to-do
+			// 		$this->m_datamaster->pegawai_add_new(	$id,$nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+			// 												$id_jabatan,$id_bidang,$alamat, $no_handphone,$email, 
+			// 												$password,$id_user,$tanggal_regis,$avatar);
+			// 		redirect( base_url('data_master/' . $name) );
+			// 	}
 
-				$data = generate_page('Edit Data Pengguna', 'data_master/edit/pegawai', 'Admin');
-				$data_content['list_bidang'] = $this->m_datamaster->get_list_bidang();
-				$data_content['list_jabatan'] = $this->m_datamaster->get_list_jabatan();
-				$data_content['title_page'] = 'Data Pengguna';
-				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Edit', $data_content, true);
-				$this->load->view('V_DataMaster_Admin', $data);
-				break;
+			// 	$data = generate_page('Edit Data Pengguna', 'data_master/edit/pegawai', 'Admin');
+			// 	$data_content['list_bidang'] = $this->m_datamaster->get_list_bidang();
+			// 	$data_content['list_jabatan'] = $this->m_datamaster->get_list_jabatan();
+			// 	$data_content['title_page'] = 'Data Pengguna';
+			// 	$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Edit', $data_content, true);
+			// 	$this->load->view('V_DataMaster_Admin', $data);
+			// 	break;
 		}
 	}
 
@@ -649,70 +669,70 @@ class Data_Master extends CI_Controller {
 				$this->load->view('V_DataMaster_Admin', $data);
 				break;
 
-			case 'pegawai':
-				if( $_SERVER['REQUEST_METHOD'] == 'POST') {
-					$nama= $this->security->xss_clean( $this->input->post('nama') );
-					$nomor_induk= $this->security->xss_clean( $this->input->post('nomor_induk') );
-					$tempat_lahir= $this->security->xss_clean( $this->input->post('tempat_lahir') );
-					$tanggal_lahir= $this->security->xss_clean( $this->input->post('tanggal_lahir') );
-					$jenis_kelamin= $this->security->xss_clean( $this->input->post('jenis_kelamin') );
-					$id_jabatan= $this->security->xss_clean( $this->input->post('id_jabatan') );
-					$id_bidang= $this->security->xss_clean( $this->input->post('id_bidang') );
-					$alamat= $this->security->xss_clean( $this->input->post('alamat') );
-					$no_handphone= $this->security->xss_clean( $this->input->post('no_handphone') );
-					$email= $this->security->xss_clean( $this->input->post('email') );
-					$password= $this->security->xss_clean( $this->input->post('password') );
-					$id_user= $this->security->xss_clean( $this->input->post('id_user') );
-					$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
-					$avatar = '';
-					// avatar
-					if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) {
-						$config['upload_path']          = './uploads/avatar/';
-						$config['allowed_types']        = 'jpg|jpeg|png';
-						$config['max_size']             = 2000;
-						$config['file_name']			= md5(time() . '_' . $_FILES["avatar"]['name']);
+			// case 'pegawai':
+			// 	if( $_SERVER['REQUEST_METHOD'] == 'POST') {
+			// 		$nama= $this->security->xss_clean( $this->input->post('nama') );
+			// 		$nomor_induk= $this->security->xss_clean( $this->input->post('nomor_induk') );
+			// 		$tempat_lahir= $this->security->xss_clean( $this->input->post('tempat_lahir') );
+			// 		$tanggal_lahir= $this->security->xss_clean( $this->input->post('tanggal_lahir') );
+			// 		$jenis_kelamin= $this->security->xss_clean( $this->input->post('jenis_kelamin') );
+			// 		$id_jabatan= $this->security->xss_clean( $this->input->post('id_jabatan') );
+			// 		$id_bidang= $this->security->xss_clean( $this->input->post('id_bidang') );
+			// 		$alamat= $this->security->xss_clean( $this->input->post('alamat') );
+			// 		$no_handphone= $this->security->xss_clean( $this->input->post('no_handphone') );
+			// 		$email= $this->security->xss_clean( $this->input->post('email') );
+			// 		$password= $this->security->xss_clean( $this->input->post('password') );
+			// 		$id_user= $this->security->xss_clean( $this->input->post('id_user') );
+			// 		$tanggal_regis= $this->security->xss_clean( $this->input->post('tanggal_regis') );
+			// 		$avatar = '';
+			// 		// avatar
+			// 		if ( $this->security->xss_clean( $_FILES["avatar"] ) && $_FILES['avatar']['name'] ) {
+			// 			$config['upload_path']          = './uploads/avatar/';
+			// 			$config['allowed_types']        = 'jpg|jpeg|png';
+			// 			$config['max_size']             = 2000;
+			// 			$config['file_name']			= md5(time() . '_' . $_FILES["avatar"]['name']);
 				 
-						$this->load->library('upload', $config);
+			// 			$this->load->library('upload', $config);
 				 
-						if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) {
-							$this->session->set_flashdata('msg_alert', $this->upload->display_errors());
-							redirect( base_url('data_master/edit/' . $name . '/' . $id) );
-						} else {
-							$avatar = $this->upload->data()['file_name'];
-						}
-					}
-					// validasi
-					$this->form_validation->set_rules('nama', 'Nama', 'required');
-					$this->form_validation->set_rules('nomor_induk', 'Nomor Induk', 'required');
-					$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
-					$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-					$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
-					$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
-					$this->form_validation->set_rules('id_bidang', 'Status Civitas', 'required');
-					$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-					$this->form_validation->set_rules('no_handphone', 'No Handphone', 'required');
-					$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-					$this->form_validation->set_rules('password', 'Password', 'required');
-					$this->form_validation->set_rules('id_user', 'ID User', 'required');
-					$this->form_validation->set_rules('tanggal_regis', 'Tanggal Pengangkatan', 'required');
+			// 			if ( !$this->upload->do_upload('avatar') && !empty($_FILES['avatar']['name'])) {
+			// 				$this->session->set_flashdata('msg_alert', $this->upload->display_errors());
+			// 				redirect( base_url('data_master/edit/' . $name . '/' . $id) );
+			// 			} else {
+			// 				$avatar = $this->upload->data()['file_name'];
+			// 			}
+			// 		}
+			// 		// validasi
+			// 		$this->form_validation->set_rules('nama', 'Nama', 'required');
+			// 		$this->form_validation->set_rules('nomor_induk', 'Nomor Induk', 'required');
+			// 		$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
+			// 		$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+			// 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+			// 		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
+			// 		$this->form_validation->set_rules('id_bidang', 'Status Civitas', 'required');
+			// 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+			// 		$this->form_validation->set_rules('no_handphone', 'No Handphone', 'required');
+			// 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+			// 		$this->form_validation->set_rules('password', 'Password', 'required');
+			// 		$this->form_validation->set_rules('id_user', 'ID User', 'required');
+			// 		$this->form_validation->set_rules('tanggal_regis', 'Tanggal Pengangkatan', 'required');
 					
-					if(!$this->form_validation->run()) {
-						$this->session->set_flashdata('msg_alert', validation_errors());
-						redirect( base_url('data_master/add_new/' . $name) );
-					}
-					// to-do
-					$this->m_datamaster->pegawai_add_new( $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,
-														  $jenis_kelamin,$id_jabatan,$id_bidang,$alamat, 
-														  $no_handphone,$email, $password,$id_user,$tanggal_regis,$avatar );
-					redirect( base_url('data_master/' . $name) );
-				}
-				$data = generate_page('Tambah Data Pengguna', 'data_master/add_new/pegawai', 'Admin');
-				$data_content['list_bidang'] = $this->m_datamaster->get_list_bidang();
-				$data_content['list_jabatan'] = $this->m_datamaster->get_list_jabatan();
-				$data_content['title_page'] = 'Data Pengguna';
-				$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Create', $data_content, true);
-				$this->load->view('V_DataMaster_Admin', $data);
-				break;
+			// 		if(!$this->form_validation->run()) {
+			// 			$this->session->set_flashdata('msg_alert', validation_errors());
+			// 			redirect( base_url('data_master/add_new/' . $name) );
+			// 		}
+			// 		// to-do
+			// 		$this->m_datamaster->pegawai_add_new( $nama,$nomor_induk,$tempat_lahir,$tanggal_lahir,
+			// 											  $jenis_kelamin,$id_jabatan,$id_bidang,$alamat, 
+			// 											  $no_handphone,$email, $password,$id_user,$tanggal_regis,$avatar );
+			// 		redirect( base_url('data_master/' . $name) );
+			// 	}
+			// 	$data = generate_page('Tambah Data Pengguna', 'data_master/add_new/pegawai', 'Admin');
+			// 	$data_content['list_bidang'] = $this->m_datamaster->get_list_bidang();
+			// 	$data_content['list_jabatan'] = $this->m_datamaster->get_list_jabatan();
+			// 	$data_content['title_page'] = 'Data Pengguna';
+			// 	$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Create', $data_content, true);
+			// 	$this->load->view('V_DataMaster_Admin', $data);
+			// 	break;
 		}
 	}
 }

@@ -75,19 +75,22 @@ class M_RegisPengguna extends CI_Model
 							'tanggal_regis'	=> $tanggal_regis,
 							'avatar'		=> $avatar );
 
-		$mhs_id = $this->db->insert_id();
-		
+		// $mhs_id = $this->db->insert_id()
 
-		$mhs 	  = array ( 'id' 			=> $mhs_id,
+		
+		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
+		// return $mhs_id;
+		$this->db->insert('tb_pengguna', $pengguna);
+		$mhs_id = $this->db->insert_id();
+		$mhs 	  = array ( 
+			'id' 			=> $mhs_id,
 							'nim'			=> $nim, 
 							'id_prodi' 		=> $id_prodi, 
 							'id_fakultas' 	=> $id_fakultas );
 		
-		
-		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
-		return $mhs_id;
-		$this->db->insert('tb_pengguna', $pengguna);
-		$this->db->insert('tb_mhsiswa', $mhs);
+							$this->db->insert('tb_mhsiswa', $mhs);
+
+		// var_dump($mhs_id); die;
 		
 		// $this->db->trans_complete();
 

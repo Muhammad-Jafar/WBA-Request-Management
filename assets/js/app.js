@@ -892,6 +892,454 @@ function daftar_izin_ajukan()
     });
 }
 
+//AJAX KEBUTUHAN DATA PENGGUNA DI LAPORAN
+function data_kebutuhan_mahasiswa_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/kebutuhan_mahasiswa_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Kebutuhan",
+                data: 'type'
+            },
+            {
+                title: "Permintaan",
+                data: 'nama_kebutuhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "NIM",
+                data: 'nim'
+            },
+            {
+                title: "Fakultas",
+                data: 'nama_fakultas'
+            },
+            {
+                title: "Prodi",
+                data: 'nama_prodi'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ]
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+
+function data_kebutuhan_dosen_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/kebutuhan_dosen_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Kebutuhan",
+                data: 'type'
+            },
+            {
+                title: "Permintaan",
+                data: 'nama_kebutuhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "NIP / NIDN",
+                data: 'nip'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+
+function data_kebutuhan_staff_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/kebutuhan_staff_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Kebutuhan",
+                data: 'type'
+            },
+            {
+                title: "Permintaan",
+                data: 'nama_kebutuhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+//ENDING DATA PENGGUNA DI LAPORAN
+
+//AJAX KEBUTUHAN DATA PENGGUNA DI KELUHAN
+function data_keluhan_mahasiswa_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/keluhan_mahasiswa_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Keluhan",
+                data: 'keluhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "NIM",
+                data: 'nim'
+            },
+            {
+                title: "Fakultas",
+                data: 'nama_fakultas'
+            },
+            {
+                title: "Prodi",
+                data: 'nama_prodi'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         // html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+
+function data_keluhan_dosen_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/keluhan_dosen_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Keluhan",
+                data: 'keluhan'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "NIP / NIDN",
+                data: 'nip'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+
+function data_keluhan_staff_index() 
+{
+    $('table.data').DataTable({
+        ajax: {
+            url: base_url + 'laporan/keluhan_staff_ajax',
+        },
+        columns: [{
+                title: "No.",
+                data: 'no'
+            },
+            {
+                title: "Jenis Keluhan",
+                data: 'type'
+            },
+            {
+                title: "Keluhan",
+                data: 'keluhan'
+            },
+            {
+                title: "Nomor Pegawai",
+                data: 'np'
+            },
+            {
+                title: "Nama Lengkap",
+                data: 'nama'
+            },
+            {
+                title: "Jenis Kelamin",
+                data: 'jenis_kelamin'
+            },
+            {
+                title: "Status Civitas",
+                data: 'nama_bidang'
+            },
+            {
+                title: "Alamat",
+                data: 'alamat'
+            },
+            {
+                title: "No. Handphone",
+                data: 'no_handphone'
+            },
+            {
+                title: "Email",
+                data: 'email'
+            },
+            {
+                title: "Tanggal Pengajuan",
+                data: 'tgl_pengajuan'
+            },
+            {
+                title: "Status",
+                data: 'status'
+            }
+            // {
+            //     title: "Action",
+            //     data: 'id'
+            // }
+        ],
+        // createdRow: function(row, data, index) {
+        //     $('td', row).eq(0).html(index + 1);
+        //     if (data['id']) {
+        //         var id = data['id'],
+        //             html = '';
+        //         html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/edit/pegawai/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
+        //         html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'data_master/delete/pegawai/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+        //         $('td', row).eq(-1).html(html);
+        //     }
+        // }
+    });
+}
+//ENDING DATA PENGGUNA DI LAPORAN
+
 
 $(document).ready(function() 
 {
@@ -933,5 +1381,20 @@ $(document).ready(function()
         break;
         case (window.location.href.indexOf('/pengguna/keluhan') != -1): pengguna_keluhan_index();
         break;
+
+        case (window.location.href.indexOf('/laporan/kebutuhan/mahasiswa') != -1): data_kebutuhan_mahasiswa_index();
+        break;
+        case (window.location.href.indexOf('/laporan/kebutuhan/dosen') != -1): data_kebutuhan_dosen_index();
+        break;
+        case (window.location.href.indexOf('/laporan/kebutuhan/staff') != -1): data_kebutuhan_staff_index();
+        break;
+
+        case (window.location.href.indexOf('/laporan/keluhan/mahasiswa') != -1): data_keluhan_mahasiswa_index();
+        break;
+        case (window.location.href.indexOf('/laporan/keluhan/dosen') != -1): data_keluhan_dosen_index();
+        break;
+        case (window.location.href.indexOf('/laporan/keluhan/staff') != -1): data_keluhan_staff_index();
+        break;
+        
     }
 });

@@ -23,6 +23,7 @@ class Regis_Pengguna extends CI_Controller
 	{
 		if( $_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
+			// var_dump($this->input->post()); die;
 			$nama= $this->security->xss_clean( $this->input->post('nama') );
 			$nim= $this->security->xss_clean( $this->input->post('nim') );
 			$tempat_lahir= $this->security->xss_clean( $this->input->post('tempat_lahir') );
@@ -80,7 +81,7 @@ class Regis_Pengguna extends CI_Controller
 				redirect( base_url('regis_pengguna/regismhs/') );
 			}
 			//langsung regis
-			$this->m_regispengguna->add_mhs ( 	$nama,$nim,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+			$this->m_regispengguna->add_mhs($nama,$nim,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
 												$id_jabatan,$id_bidang, $id_fakultas, $id_prodi, $alamat, 
 												$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar );
 			redirect( base_url('regis_pengguna') );

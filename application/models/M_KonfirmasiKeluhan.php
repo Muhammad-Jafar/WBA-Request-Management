@@ -14,6 +14,7 @@ class M_KonfirmasiKeluhan extends CI_Model {
 				->join('tb_pengguna as p','p.id = db.id','LEFT')
 				->join('tb_bidang as b', 'b.id_bidang = p.id_bidang', 'LEFT')
 				->join('tb_keluhan as bt', 'bt.id_keluhan = db.id_keluhan', 'LEFT')
+				->where('status', 'waiting')
 				->get();
 		return $q->result();
 	}

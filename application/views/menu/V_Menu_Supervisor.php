@@ -35,11 +35,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url('laporan');?>">
-              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
-              <span class="menu-title">Koleksi Data</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
+              <i class="menu-icon mdi mdi-treasure-chest"></i>
+              <span class="menu-title">KOleksi Data</span>
+              <i class="menu-arrow"></i>
             </a>
-        </li>
+            <div class="collapse" id="ui-dm">
+              <ul class="nav flex-column sub-menu">
+                <?=generate_navlink($path_page, 'laporan/kebutuhan', 'Laporan Kebutuhan');?>
+                <?=generate_navlink($path_page, 'laporan/keluhan', 'Laporan Keluhan');?>  
+              </ul>
+            </div>
+          </li>
       </ul>
     </nav>
 <div class="main-panel">

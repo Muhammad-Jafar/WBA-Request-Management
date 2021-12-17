@@ -30,41 +30,45 @@ class Laporan extends CI_Controller
 	{
 		$data = generate_page('Koleksi Data Kebutuhan', 'laporan/list_kebutuhan_all', $this->user_type);
 		$data_content['title_page'] = 'Koleksi Data Kebutuhan';
-		$data_content['mhs_list_all'] = $this->m_laporan->kebutuhan_mhs_list_all();
-		$data_content['dosen_list_all'] = $this->m_laporan->kebutuhan_dosen_list_all();
-		$data_content['staff_list_all'] = $this->m_laporan->kebutuhan_staff_list_all();
+		$data_content['dosentetap_list_all'] = $this->m_laporan->dosentetap_list_all();
+		$data_content['dosensks_list_all'] = $this->m_laporan->dosensks_list_all();
+		$data_content['tedik_list_all'] = $this->m_laporan->tedik_list_all();
+		$data_content['tepen_list_all'] = $this->m_laporan->tepen_list_all();
 		$data['content'] = $this->load->view('partial/Laporan/V_Laporan_Kebutuhan', $data_content, true);
 		$this->load->view('V_Laporan', $data);
 	}
 
 	//EXPORT KEBUTUHAN KE EXCEL 
-	public function export_kebutuhan_excel()
-	{
-		$data = array('title' 		=> 'Koleksi Data Kebutuhan',
-									'Mahasiswa' => $this->m_laporan-> kebutuhan_mhs_list_all(),
-									'Dosen' 		=> $this->m_laporan-> kebutuhan_dosen_list_all(),
-									'Staff' 		=> $this->m_laporan-> kebutuhan_staff_list_all()
-											);
+	// public function export_kebutuhan_excel()
+	// {
+	// 	$data = array('title' 		=> 'Koleksi Data Kebutuhan',
+	// 								'Dosentetap'=> $this->m_laporan-> dosentetap_list_all(),
+	// 								'Dosensks' 	=> $this->m_laporan-> dosensks_list_all(),
+	// 								'Tedik' 		=> $this->m_laporan-> tedik_list_all(),
+	// 								'Tepen' 		=> $this->m_laporan-> tepen_list_all()
+	// 							 );
 
-		$this->load->view('partial/ExportLaporan/V_LaporanK_Excel', $data);
-	}
-	public function exportk_excel()
+	// 	$this->load->view('partial/ExportLaporan/V_LaporanK_Excel', $data);
+	// }
+	public function export_kebutuhan_excel()
 	{ 
 		$data = array('title' 		=> 'Koleksi Data Kebutuhan',
-									'Mahasiswa' => $this->m_laporan-> kebutuhan_mhs_list_all(),
-									'Dosen' 		=> $this->m_laporan-> kebutuhan_dosen_list_all(),
-									'Staff' 		=> $this->m_laporan-> kebutuhan_staff_list_all()
+									'Dosentetap'=> $this->m_laporan-> dosentetap_list_all(),
+									'Dosensks' 	=> $this->m_laporan-> dosensks_list_all(),
+									'Tedik' 		=> $this->m_laporan-> tedik_list_all(),
+									'Tepen' 		=> $this->m_laporan-> tepen_list_all()
 											);
 
 		$this->load->view('partial/ExportLaporan/Export_K_Excel', $data);
 	}
 
 
-	public function kebutuhan_mahasiswa_ajax() 
+	public function kebutuhan_dosentetap_ajax() 
 	{
 		json_dump(function() 
 		{
-			$result= $this->m_laporan->kebutuhan_mhs_list_all();
+
+			$result= $this->m_laporan->dosentetap_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -79,12 +83,12 @@ class Laporan extends CI_Controller
 		});
 	}
 
-	public function kebutuhan_dosen_ajax() 
+	public function kebutuhan_dosensks_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_laporan->Kebutuhan_dosen_list_all();
+			$result= $this->m_laporan->dosensks_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -99,12 +103,32 @@ class Laporan extends CI_Controller
 		});
 	}
 
-	public function kebutuhan_staff_ajax() 
+	public function kebutuhan_tenagapendidik_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_laporan->kebutuhan_staff_list_all();
+			$result= $this->m_laporan->tedik_list_all();
+			$new_arr=array();$i=1;
+			foreach ($result as $key => $value) 
+			{
+				$value->no=$i;
+				$new_arr[]=$value;
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$i++;
+			}
+			return array('data' => $new_arr);
+		});
+	}
+
+	public function kebutuhan_tenagapenunjang_ajax() 
+	{
+		json_dump(function() 
+		{
+
+			$result= $this->m_laporan->tepen_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -133,20 +157,44 @@ class Laporan extends CI_Controller
 	{
 		$data = generate_page('Koleksi Data Keluhan', 'laporan/list_keluhan_all', $this->user_type);
 		$data_content['title_page'] = 'Koleksi Data Keluhan';
-		$data_content['mhs_list_all'] = $this->m_laporan->keluhan_mhs_list_all();
-		$data_content['dosen_list_all'] = $this->m_laporan->keluhan_dosen_list_all();
-		$data_content['staff_list_all'] = $this->m_laporan->keluhan_staff_list_all();
+		$data_content['dosentetap_list_all'] = $this->m_laporan->k_dosentetap_list_all();
+		$data_content['dosensks_list_all'] = $this->m_laporan->k_dosensks_list_all();
+		$data_content['tedik_list_all'] = $this->m_laporan->k_tedik_list_all();
+		$data_content['tepen_list_all'] = $this->m_laporan->k_tepen_list_all();
 		$data['content'] = $this->load->view('partial/Laporan/V_Laporan_Keluhan', $data_content, true);
 		$this->load->view('V_Laporan', $data);
 	}
 
+	// public function export_keluhan_excel()
+	// { 
+	// 	$data = array('title' 		=> 'Koleksi Data Keluhan',
+	// 								'Dosentetap'=> $this->m_laporan-> k_dosentetap_list_all(),
+	// 								'Dosensks' 	=> $this->m_laporan-> k_dosensks_list_all(),
+	// 								'Tedik' 		=> $this->m_laporan-> k_tedik_list_all(),
+	// 								'Tepen' 		=> $this->m_laporan-> k_tepen_list_all()
+	// 										);
+
+	// 	$this->load->view('partial/ExportLaporan/V_LaporanC_Excel', $data);
+	// }
+
+	public function export_keluhan_excel()
+	{ 
+		$data = array('title' 		=> 'Koleksi Data Keluhan',
+									'Dosentetap'=> $this->m_laporan-> k_dosentetap_list_all(),
+									'Dosensks' 	=> $this->m_laporan-> k_dosensks_list_all(),
+									'Tedik' 		=> $this->m_laporan-> k_tedik_list_all(),
+									'Tepen' 		=> $this->m_laporan-> k_tepen_list_all()
+											);
+
+		$this->load->view('partial/ExportLaporan/Export_C_Excel', $data);
+	}
 	
-	public function keluhan_mahasiswa_ajax() 
+	public function keluhan_dosentetap_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_laporan->keluhan_mhs_list_all();
+			$result= $this->m_laporan->k_dosentetap_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -161,12 +209,12 @@ class Laporan extends CI_Controller
 		});
 	}
 
-	public function keluhan_dosen_ajax() 
+	public function keluhan_dosensks_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_laporan->keluhan_dosen_list_all();
+			$result= $this->m_laporan->k_dosensks_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
@@ -181,12 +229,31 @@ class Laporan extends CI_Controller
 		});
 	}
 
-	public function keluhan_staff_ajax() 
+	public function keluhan_tedik_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_laporan->keluhan_staff_list_all();
+			$result= $this->m_laporan->k_tedik_list_all();
+			$new_arr=array();$i=1;
+			foreach ($result as $key => $value) 
+			{
+				$value->no=$i;
+				$new_arr[]=$value;
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$i++;
+			}
+			return array('data' => $new_arr);
+		});
+	}
+	public function keluhan_tepen_ajax() 
+	{
+		json_dump(function() 
+		{
+
+			$result= $this->m_laporan->k_tepen_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{

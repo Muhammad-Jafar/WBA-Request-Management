@@ -4,7 +4,7 @@
             <div class="nav-link">
               <div class="user-wrapper" style="margin-bottom: 0px;">
                 <div class="profile-image">
-                  <img src="<?=$user_avatar;?>" alt="profile image">
+                  <img class="img-xs rounded-circle" src="<?=$user_avatar;?>" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name"><?=$user_name;?></p>
@@ -18,26 +18,26 @@
 
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('dashboard');?>">
-              <i class="menu-icon mdi mdi-television"></i>
+              <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_izin');?>">
-              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
+              <i class="menu-icon mdi mdi-file-document"></i>
               <span class="menu-title">Konfirmasi Kebutuhan</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_keluhan');?>">
-              <i class="menu-icon mdi mdi-checkbox-multiple-marked-outline"></i>
+              <i class="menu-icon mdi mdi-file-check"></i>
               <span class="menu-title">Konfirmasi Keluhan</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
-              <i class="menu-icon mdi mdi-treasure-chest"></i>
-              <span class="menu-title">KOleksi Data</span>
+              <i class="menu-icon mdi mdi-database"></i>
+              <span class="menu-title">Koleksi Data</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-dm">

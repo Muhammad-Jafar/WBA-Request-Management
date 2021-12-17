@@ -64,7 +64,7 @@
               <h3 style="text-align:center; font-family: 'Times New Roman', Times, serif;">
                 <b style="font-size:27px;">UNIVERSITAS TEKNOLOGI SUMBAWA</b>
                 <br>
-                <b style="font-size:25px;">Bidang Pengembangan Sumber Daya Manusia</b>
+                <b style="font-size:25px;">Direktorat Pengembangan Sumber Daya Manusia</b>
                 <br>
                 <i style="font-size:20px;">Jalan Raya Olat Maras, Batu Alang, Sumbawa Besar - NTB</i>
               </h3>

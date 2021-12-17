@@ -54,112 +54,132 @@ class M_RegisPengguna extends CI_Model
    }
 
    //FUNSI TAMBAH DATA
-   public function add_mhs( $nama,$nim,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-							$id_jabatan,$id_bidang, $id_fakultas, $id_prodi, $alamat, 
-							$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar=0 )
+   public function add_dosentetap( $nama,$nip,$tempat_lahir,$tanggal_lahir,
+	 																 $jenis_kelamin, $id_jabatan,$id_bidang, $alamat, 
+																	 $no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar=0 )
    {
-		// $this->db->trans_start();
-
 		//jalankan query
-		$pengguna = array ( 'nama'			=> $nama,
-							'tempat_lahir'	=> $tempat_lahir,
-							'tanggal_lahir'	=> $tanggal_lahir,
-							'jenis_kelamin'	=> $jenis_kelamin,
-							'id_jabatan'	=> $id_jabatan,
-							'id_bidang'		=> $id_bidang,
-							'alamat'		=> $alamat,
-							'no_handphone'	=> $no_handphone,
-							'email'			=> $email,
-							'password'		=> md5($password), 
-							'id_user'		=> $id_user,
-							'tanggal_regis'	=> $tanggal_regis,
-							'avatar'		=> $avatar );
+		$pengguna = array ( 'nama'					=> $nama,
+												'tempat_lahir'	=> $tempat_lahir,
+												'tanggal_lahir'	=> $tanggal_lahir,
+												'jenis_kelamin'	=> $jenis_kelamin,
+												'id_jabatan'		=> $id_jabatan,
+												'id_bidang'			=> $id_bidang,
+												'alamat'				=> $alamat,
+												'no_handphone'	=> $no_handphone,
+												'email'					=> $email,
+												'password'			=> md5($password), 
+												'id_user'				=> $id_user,
+												'tanggal_regis'	=> $tanggal_regis,
+												'avatar'				=> $avatar );
 
-		// $mhs_id = $this->db->insert_id()
-
-		
 		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
-		// return $mhs_id;
+
+		//NARIK ID DARI TABEL A KE TABEL B
 		$this->db->insert('tb_pengguna', $pengguna);
-		$mhs_id = $this->db->insert_id();
-		$mhs 	  = array ( 
-			'id' 			=> $mhs_id,
-							'nim'			=> $nim, 
-							'id_prodi' 		=> $id_prodi, 
-							'id_fakultas' 	=> $id_fakultas );
-		
-							$this->db->insert('tb_mhsiswa', $mhs);
+		$dosentetap_id = $this->db->insert_id();
 
-		// var_dump($mhs_id); die;
-		
-		// $this->db->trans_complete();
+		$dosentetap = array ('id' => $dosentetap_id, 'nip' => $nip );
+		$this->db->insert('tb_dosentetap', $dosentetap);
 
-		$this->session->set_flashdata('msg_alert', 'Pendaftaran sebagai Mahasiswa berhasil dilakukan');
-
-
-		// if($this->db->trans_status() == FALSE)
-		// {
-		// 	echo 'rollback';
-		// }
-		// else { echo 'success'; }
+		$this->session->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
    }
 
-   public function add_dosen( $nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-							$id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
-							$password, $id_user,$tanggal_regis,$avatar=0 )
+	  public function add_dosensks( $nama,$tempat_lahir,$tanggal_lahir,
+	 																$jenis_kelamin, $id_jabatan,$id_bidang, $alamat, 
+																	$no_handphone,$email, $password, $id_user,$tanggal_regis,$avatar=0 )
+   	{
+		//jalankan query
+		$pengguna = array ( 'nama'					=> $nama,
+												'tempat_lahir'	=> $tempat_lahir,
+												'tanggal_lahir'	=> $tanggal_lahir,
+												'jenis_kelamin'	=> $jenis_kelamin,
+												'id_jabatan'		=> $id_jabatan,
+												'id_bidang'			=> $id_bidang,
+												'alamat'				=> $alamat,
+												'no_handphone'	=> $no_handphone,
+												'email'					=> $email,
+												'password'			=> md5($password), 
+												'id_user'				=> $id_user,
+												'tanggal_regis'	=> $tanggal_regis,
+												'avatar'				=> $avatar );
+
+		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
+
+		//NARIK ID DARI TABEL A KE TABEL B
+		$this->db->insert('tb_pengguna', $pengguna);
+
+		$dosensks_id = $this->db->insert_id();
+		$dosensks = array (	'id' 	=> $dosensks_id, 
+													// 'nip' => $nip 
+												);
+		$this->db->insert('tb_dosensks', $dosensks);
+
+		$this->session->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
+   }
+
+   public function add_tedik( $nama,$nip,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+															$id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
+															$password, $id_user,$tanggal_regis,$avatar=0 )
    {
-		$pengguna = array ( 'nama'			=> $nama,
-							'tempat_lahir'	=> $tempat_lahir,
-							'tanggal_lahir'	=> $tanggal_lahir,
-							'jenis_kelamin'	=> $jenis_kelamin,
-							'id_jabatan'	=> $id_jabatan,
-							'id_bidang'		=> $id_bidang,
-							'alamat'		=> $alamat,
-							'no_handphone'	=> $no_handphone,
-							'email'			=> $email,
-							'password'		=> md5($password),
-							'id_user'		=> $id_user,
-							'tanggal_regis'	=> $tanggal_regis,
-							'avatar'		=> $avatar );
-		
-		$dosen_id = $this->db->insert_id();
-		return $dosen_id;
-		$dosen = array( 'nip' => $nip);
-		
+		$pengguna = array ( 'nama'					=> $nama,
+												'tempat_lahir'	=> $tempat_lahir,
+												'tanggal_lahir'	=> $tanggal_lahir,
+												'jenis_kelamin'	=> $jenis_kelamin,
+												'id_jabatan'		=> $id_jabatan,
+												'id_bidang'			=> $id_bidang,
+												'alamat'				=> $alamat,
+												'no_handphone'	=> $no_handphone,
+												'email'					=> $email,
+												'password'			=> md5($password),
+												'id_user'				=> $id_user,
+												'tanggal_regis'	=> $tanggal_regis,
+												'avatar'				=> $avatar );
+
 		if( empty($avatar) ) { $dosen['avatar'] = 'avatar.png'; }
 
+		//NARIK ID DARI TABEL A KE TABEL B
 		$this->db->insert('tb_pengguna', $pengguna);
-		$this->db->insert('tb_dosen', $dosen);
-		$this->session->set_flashdata('msg_alert', 'Pendaftaran sebagai dosen berhasil dilakukan');
+
+		$tedik_id = $this->db->insert_id();
+		$tedik = array (	'id' 	=> $tedik_id, 
+													'nip' => $nip 
+												);
+		$this->db->insert('tb_tedik', $tedik);
+
+		$this->session->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
    }
 
-   public function add_staff( $nama,$tempat_lahir,$tanggal_lahir,$jenis_kelamin,
-							  $id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
-							  $password, $id_user,$tanggal_regis,$avatar=0 )
-	{
-		$pengguna = array ( 'nama'			=> $nama,
-							'tempat_lahir'	=> $tempat_lahir,
-							'tanggal_lahir'=> $tanggal_lahir,
-							'jenis_kelamin'=> $jenis_kelamin,
-							'id_jabatan'	=> $id_jabatan,
-							'id_bidang'	=> $id_bidang,
-							'alamat'		=> $alamat,
-							'no_handphone'	=> $no_handphone,
-							'email'		=> $email,
-							'password'		=> md5($password),
-							'id_user'		=> $id_user,
-							'tanggal_regis'=> $tanggal_regis,
-							'avatar'		=> $avatar );
+   public function add_tepen( $nama,$nik, $tempat_lahir,$tanggal_lahir,$jenis_kelamin,
+															$id_jabatan,$id_bidang, $alamat, $no_handphone,$email, 
+															$password, $id_user,$tanggal_regis,$avatar=0 )
+   {
+		$pengguna = array ( 'nama'					=> $nama,
+												'tempat_lahir'	=> $tempat_lahir,
+												'tanggal_lahir'	=> $tanggal_lahir,
+												'jenis_kelamin'	=> $jenis_kelamin,
+												'id_jabatan'		=> $id_jabatan,
+												'id_bidang'			=> $id_bidang,
+												'alamat'				=> $alamat,
+												'no_handphone'	=> $no_handphone,
+												'email'					=> $email,
+												'password'			=> md5($password),
+												'id_user'				=> $id_user,
+												'tanggal_regis'	=> $tanggal_regis,
+												'avatar'				=> $avatar );
 
-		$staff_id = $this->db->insert_id();
-		return $staff_id;
-		// $staff_id['id'] = $staff_id;
-		// $staff = array( 'np' => $np);
+		if( empty($avatar) ) { $dosen['avatar'] = 'avatar.png'; }
 
-		if( empty($avatar) ) { $pengguna['avatar'] = 'avatar.png'; }
-
+		//NARIK ID DARI TABEL A KE TABEL B
 		$this->db->insert('tb_pengguna', $pengguna);
-		$this->session->set_flashdata('msg_alert', 'Pendaftaran sebagai staff berhasil dilakukan');
-	}
+
+		$tepen_id = $this->db->insert_id();
+		$tepen = array (	'id' 	=> $tepen_id, 
+											'nik' => $nik 
+									 );
+		$this->db->insert('tb_tepen', $tepen);
+
+		$this->session->set_flashdata('msg_alert', 'Pendaftaran anda berhasil dilakukan');
+   }
    //FUNSI TAMBAH DATA
 }

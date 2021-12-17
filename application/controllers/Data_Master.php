@@ -12,6 +12,7 @@ class Data_Master extends CI_Controller {
 		});
 		$this->load->model('M_DataMaster');
 		$this->m_datamaster = $this->M_DataMaster;
+		$this->load->helper('tgl_indo');
 	}
 
 	public function index() {
@@ -87,87 +88,89 @@ class Data_Master extends CI_Controller {
 	{
 		$data = generate_page('Data Pengguna', 'data_master/pegawai', 'Admin');
 		$data_content['title_page'] = 'Data Pengguna';
-		$data_content['mhs_list_all'] = $this->m_datamaster->mhs_list_all();
-		$data_content['dosen_list_all'] = $this->m_datamaster->dosen_list_all();
-		$data_content['staff_list_all'] = $this->m_datamaster->staff_list_all();
+		// $data['tanggal'] = tgl_indo(date('d m Y'));
+		$data_content['dosentetap_list_all'] = $this->m_datamaster->dosentetap_list_all();
+		$data_content['dosensks_list_all'] = $this->m_datamaster->dosensks_list_all();
+		$data_content['tedik_list_all'] = $this->m_datamaster->tedik_list_all();
+		$data_content['tepen_list_all'] = $this->m_datamaster->tepen_list_all();
 		$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterPegawai_Read', $data_content, true);
 		$this->load->view('V_DataMaster_Admin', $data);
 	}
 
-	public function pegawai_ajax() 
+	public function dosentetap_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_datamaster->mhs_list_all();
+			$result= $this->m_datamaster->dosentetap_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
 				$value->no=$i;
 				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd M Y');
 				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd M Y');
 				$i++;
 			}
 			return array('data' => $new_arr);
 		});
 	}
 
-	public function mahasiswa_ajax() 
+	public function dosensks_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_datamaster->mhs_list_all();
+			$result= $this->m_datamaster->dosensks_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
 				$value->no=$i;
 				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd M Y');
 				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd M Y');
 				$i++;
 			}
 			return array('data' => $new_arr);
 		});
 	}
 
-	public function dosen_ajax() 
+	public function tenagapendidik_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_datamaster->dosen_list_all();
+			$result= $this->m_datamaster->tedik_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
 				$value->no=$i;
 				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd M Y');
 				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd M Y');
 				$i++;
 			}
 			return array('data' => $new_arr);
 		});
 	}
 
-	public function staff_ajax() 
+	public function tenagapenunjang_ajax() 
 	{
 		json_dump(function() 
 		{
 
-			$result= $this->m_datamaster->staff_list_all();
+			$result= $this->m_datamaster->tepen_list_all();
 			$new_arr=array();$i=1;
 			foreach ($result as $key => $value) 
 			{
 				$value->no=$i;
 				$new_arr[]=$value;
-				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd/m/Y');
+				$value->tanggal_lahir = date_format( date_create($value->tanggal_lahir), 'd M Y');
 				$value->avatar = '<img src="' . uploads_url('avatar/'.$value->avatar) . '" alt="image" />';
-				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd/m/Y');
+				$value->tanggal_regis = date_format( date_create($value->tanggal_regis), 'd M Y');
 				$i++;
 			}
 			return array('data' => $new_arr);

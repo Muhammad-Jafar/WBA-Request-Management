@@ -70,23 +70,23 @@ class M_Dashboard extends CI_Model {
 	//UNTUK PENGGUNA
 	public function permintaan_kebutuhan()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status !='approved' ) AS TOTAL");
-		return $q->row_array()['TOTAL'];
+		$q=$this->db->query("SELECT COUNT(*) FROM tb_dkebutuhan AS i LEFT JOIN tb_kebutuhan AS ni ON i.id_kebutuhan=ni.id_kebutuhan WHERE i.status='waiting' AND i.id='{$this->session->userdata('user_id')}'");
+		return $q->row_array()['COUNT(*)'];
 	}
 	public function permintaan_keluhan()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status != 'approved' ) AS TOTAL");
-		return $q->row_array()['TOTAL'];
+		$q=$this->db->query("SELECT COUNT(*) FROM tb_dkeluhan AS i LEFT JOIN tb_keluhan AS ni ON i.id_keluhan=ni.id_keluhan WHERE i.status='waiting' AND i.id='{$this->session->userdata('user_id')}'");
+		return $q->row_array()['COUNT(*)'];
 	}
 	public function permintaan_kebutuhanterkonfirmasi()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkebutuhan WHERE status != 'approved' ) AS TOTAL");
-		return $q->row_array()['TOTAL'];
+		$q=$this->db->query("SELECT COUNT(*) FROM tb_dkebutuhan AS i LEFT JOIN tb_kebutuhan AS ni ON i.id_kebutuhan=ni.id_kebutuhan WHERE i.status='approved' AND i.id='{$this->session->userdata('user_id')}'");
+		return $q->row_array()['COUNT(*)'];
 	}
 	public function permintaan_keluhanterkonfirmasi()
 	{
-		$q=$this->db->query("SELECT ( SELECT COUNT(*) FROM tb_dkeluhan WHERE status != 'approved' ) AS TOTAL");
-		return $q->row_array()['TOTAL'];
+		$q=$this->db->query("SELECT COUNT(*) FROM tb_dkeluhan AS i LEFT JOIN tb_keluhan AS ni ON i.id_keluhan=ni.id_keluhan WHERE i.status='approved' AND i.id='{$this->session->userdata('user_id')}'");
+		return $q->row_array()['COUNT(*)'];
 	}
 	//BATAS PENGGUNA
 

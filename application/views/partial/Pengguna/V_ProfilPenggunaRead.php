@@ -27,8 +27,8 @@
 										</li>
 										<li class="list-group-item" style="text-align:center">
 											<div class="btn-group">
-											<button type="button" class="btn btn-facebook m-1">Edit Data</button>
-											<button type="button" class="btn btn-facebook m-1">Ubah Sandi</button>
+											<!-- <button type="button" class="btn btn-facebook m-1">Edit Data</button>
+											<button type="button" class="btn btn-facebook m-1">Ubah Sandi</button> -->
 											</div>
 										</li>
 									</ul>
@@ -46,24 +46,11 @@
 											<td><?= $user_name; ?></td>
 										</tr>
 										<tr>
-											<th scope="row">NIM</th>
-											<td> <?= $nim; ?> </td>
-										</tr>
-										<tr>
-											<th scope="row">NIP</th>
-											<td> <?= $nip; ?> </td>
-										</tr>
-										<tr>
-											<th scope="row">Nomor Pegawai</th>
-											<td> <?= $np; ?> </td>
-										</tr>
-										<tr>
-											<th scope="row">Program Studi</th>
-											<td> <?= $prodi; ?> </td>
-										</tr>
-										<tr>
-											<th scope="row">Fakultas</th>
-											<td> <?= $fakultas; ?> </td>
+											<th scope="row">Nomor Induk</th>
+											<td> <?= $nik; ?> 
+													 <?= $nip; ?> 
+													 <?= $nip_tedik; ?> 
+										  </td>
 										</tr>
 										<tr>
 											<th scope="row">Tempat Lahir</th>

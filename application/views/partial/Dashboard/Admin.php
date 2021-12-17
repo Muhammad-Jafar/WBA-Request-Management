@@ -3,20 +3,20 @@
       <div class="row">
         
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics card-rounded">
+          <div class="card card-statistics card-rounded" style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
                   <i class="mdi mdi-account-star text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Admin</h4>
+                  <h4 class="font-weight-medium text-right">Admin</h4>
                   <div class="fluid-container text-right">
                     <h7 class="text-right mb-4"><?=$total_admin;?> Orang</h7>
                   </div>
                 </div>
               </div>
-              <p class="text-muted mt-3 mb-0">
+              <p class="text-muted mt-5 mb-0">
                 <i class="mdi mdi-account-star mr-1" aria-hidden="true"></i> Jumlah pengelola
               </p>
             </div>
@@ -24,49 +24,49 @@
         </div>
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics card-rounded">
+          <div class="card card-statistics card-rounded"  style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
+                  <i class="mdi mdi-file-document text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Konfirmasi Kebutuhan</h4>
+                  <h4 class="font-weight-medium text-right">Konfirmasi Kebutuhan</h4>
                   <div class="fluid-container text-right">
                     <h7 class="text-right mb-4"><?=$total_kebutuhanterkonfirmasi;?> Permintaan telah disetujui</h7>
                   </div>
                 </div>
               </div>
-              <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_kebutuhanterkonfirmasi;?> permintaan
+              <p class="text-muted mt-5 mb-0">
+                <i class="mdi mdi-file-document mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_kebutuhanterkonfirmasi;?> permintaan
               </p>
             </div>
           </div>
         </div>
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics card-rounded">
+          <div class="card card-statistics card-rounded"  style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="mdi mdi-checkbox-multiple-marked-outline text-success icon-lg"></i>
+                  <i class="mdi mdi-file-check text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Konfirmasi Keluhan</h4>
+                  <h4 class="font-weight-medium text-right">Konfirmasi Keluhan</h4>
                   <div class="fluid-container text-right">
                     <h7 class=" text-right mb-0"><?=$total_keluhanterkonfirmasi;?> keluhan telah diperhatikan</h7>
                   </div>
                 </div>
               </div>
-              <p class="text-muted mt-3 mb-0">
-                <i class="mdi mdi-checkbox-multiple-marked-outline mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_keluhanterkonfirmasi?> keluhan
+              <p class="text-muted mt-5 mb-0">
+                <i class="mdi mdi-file-check mr-1" aria-hidden="true"></i> Tersisa <?=$sisa_keluhanterkonfirmasi?> keluhan
               </p>
             </div>
           </div>
         </div>
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div class="card card-statistics card-rounded">
+          <div class="card card-statistics card-rounded"  style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
@@ -79,7 +79,7 @@
                   </div>
                 </div>
               </div>
-              <p class="text-muted mt-3 mb-0">
+              <p class="text-muted mt-5 mb-0">
                 <i class="mdi mdi-account-location mr-1" aria-hidden="true"></i> Jumlah pegawai
               </p>
             </div>

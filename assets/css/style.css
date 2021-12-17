@@ -14141,17 +14141,19 @@ input:focus {
       .navbar.default-layout .navbar-brand-wrapper .navbar-brand:active, .navbar.default-layout .navbar-brand-wrapper .navbar-brand:focus, .navbar.default-layout .navbar-brand-wrapper .navbar-brand:hover {
         color: #424546; }
       .navbar.default-layout .navbar-brand-wrapper .navbar-brand img {
-        width: calc(255px - 130px);
+        width: calc(255px - 120px);
         max-width: 100%;
-        height: 28px;
+        height: 50px;
         margin: auto;
-        vertical-align: middle; }
+        vertical-align: middle;
+        }
     .navbar.default-layout .navbar-brand-wrapper .brand-logo-mini {
-      display: none; }
+      display: none;
+      background-color: transparent; }
       .navbar.default-layout .navbar-brand-wrapper .brand-logo-mini img {
-        width: calc(70px - 50px);
+        width: calc(60px - 30px);
         max-width: 100%;
-        height: 28px;
+        height: 30px;
         margin: auto; }
   .navbar.default-layout .navbar-menu-wrapper {
     transition: width 0.25s ease;
@@ -14168,7 +14170,9 @@ input:focus {
         width: auto; } }
     .navbar.default-layout .navbar-menu-wrapper .navbar-toggler {
       border: 0;
-      color: inherit; }
+      color: inherit;
+      /* font-size: 1rem; */
+     }
       @media (max-width: 991px) {
         .navbar.default-layout .navbar-menu-wrapper .navbar-toggler:not(.navbar-toggler-right) {
           display: none; } }

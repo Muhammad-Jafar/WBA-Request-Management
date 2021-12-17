@@ -13,16 +13,19 @@
             <?php } ?>
 
             <div class="card-tools">
-              <div class="card-header" style="width:25%; background-color:transparent;" >
+              <div class="card-header" style="width:45%; background-color:transparent;" >
                 <ul class="nav">
                   <li class="nav-item">
-                    <a class="nav-link" active href="<?=base_url("/data_master/pegawai/mahasiswa");?>">Mahasiswa</a>
+                    <a class="nav-link" active href="<?=base_url("/data_master/pegawai/dosentetap");?>">Dosen Tetap</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url("/data_master/pegawai/dosen");?>">Dosen</a>
+                    <a class="nav-link" href="<?=base_url("/data_master/pegawai/dosensks");?>">Dosen SKS</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url("/data_master/pegawai/staff");?>">Staff</a>
+                    <a class="nav-link" href="<?=base_url("/data_master/pegawai/tedik");?>">Tenaga Pendidik</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url("/data_master/pegawai/tepen");?>">Tenaga Penunjang</a>
                   </li>
                 </ul>
               </div>

@@ -49,15 +49,15 @@
                       <input type="checkbox" name="remember" class="form-check-input" checked> Tetap masuk
                     </label>
                   </div>
-                  <a href="<?=base_url('auth/lost_password');?>" class="text-small forgot-password text-black">Lupa password</a>
+                  <!-- <a href="<?=base_url('auth/lost_password');?>" class="text-small forgot-password text-black">Lupa password</a> -->
                 </div>
 
-                <div class="form-group d-flex justify-content-around">
-                  <button class="btn btn-danger" style="width: 160px; height: 40px;">Masuk</button>
+                <div class="form-group d-flex justify-content-around" >
+                  <button class="form-button btn btn-danger" style="width:150px;">Masuk</button>
                   <div>
-                    <large class="designation text-muted mr-4 ml-4">--- OR ---</large>
+                    <large class="designation text-muted mr-2 ml-2"> atau </large>
                   </div>
-                  <button class="btn btn-outline-danger" style="width: 160px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna"); ?>';" >Registrasi</button>
+                  <button class="btn btn-outline-danger" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna"); ?>';" >Registrasi</button>
                 </div>
               <?=form_close();?>
           </div>

@@ -20,6 +20,78 @@ class Auth extends CI_Controller {
 		});
 	}
 
+	public function logingoogle() 
+	{
+		//TAMBAHAN LOGIN WITH GOOGLE
+		include_once APPPATH . "libraries/vendor/autoload.php";
+		
+		//buat permintaan client untuk akses data dari google API
+		$google_client = new Google_Client();
+		$google_client->setClientId('628818189431-v14kq9lcpo3ro0nbanjn7nn9kmu7cg88.apps.googleusercontent.com'); //Define your ClientID
+		$google_client->setClientSecret('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'); //Define your Client Secret Key
+		$google_client->setRedirectUri('http://localhost/simpsdm/auth/login'); //Define your Redirect Uri
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
+
+		//validasi token
+		if(isset($_GET["code"]))
+		{
+			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+			if(!isset($token["error"]))
+			{
+					$google_client->setAccessToken($token['access_token']);
+					$this->session->set_userdata('access_token', $token['access_token']);
+
+					//kirim permintaan tadi
+					$google_service = new Google_Service_Oauth2($google_client);
+					$data = $google_service->userinfo->get();
+					$current_datetime = date('Y-m-d H:i:s');
+
+					if($this->google_login_model->Is_already_register($data['id']))
+    			{
+						//update data
+						$user_data = array(
+																'first_name' => $data['nama_depan'],
+																'last_name'  => $data['nama_belakang'],
+																'email_address' => $data['email'],
+																'gender' => $data['jenis_kelamin'],
+																'profile_picture'=> $data['avatar'],
+																'updated_at' => $current_datetime
+																);
+
+     				$this->m_auth->Update_user_data($user_data, $data['id']);
+					}
+					else
+					{
+					//insert data
+					$user_data = array(
+														'login_oauth_uid' => $data['id'],
+														'first_name'  => $data['nama_depan'],
+														'last_name'   => $data['nama_belakang'],
+														'email_address'  => $data['email'],
+														'gender' => $data['jenis_kelamin'],
+														'profile_picture' => $data['avatar'],
+														'created_at'  => $current_datetime
+														);
+
+					$this->google_login_model->Insert_user_data($user_data);
+    			}
+					$this->session->set_userdata('user_data', $user_data);
+			}
+			$login_button = '';
+			if(!$this->session->userdata('access_token'))
+			{
+				$login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="'.base_url('').'" /></a>';
+				$data['login_button'] = $login_button;
+				$this->load->view('auth/login', $data);
+			}
+			else
+			{
+			$this->load->view('auth/login', $data);
+			}
+		}
+	}
+
 	public function login() 
 	{
 		is_login(function() 
@@ -27,6 +99,7 @@ class Auth extends CI_Controller {
 			redirect( base_url('dashboard') ); 
 		});
 
+		//LOGIN BIASA KE DATABASE LANGSUNG
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) 
 		{
 			$email= $this->security->xss_clean( $this->input->post('email') );

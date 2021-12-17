@@ -3,6 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Auth extends CI_Model 
 {
+	//FUNGSI LOGIN WITH GOOGLE
+	function Is_already_register($id)
+	{
+		$this->db->where('login_oauth_uid', $id);
+		$query = $this->db->get('tb_pengguna');
+		if($query->num_rows() > 0)
+		{
+		return true;
+		}
+		else
+		{
+		return false;
+		}
+	}
+
+	function Update_user_data($data, $id)
+	{
+		$this->db->where('login_oauth_uid', $id);
+		$this->db->update('tb_pengguna', $data);
+	}
+
+	function Insert_user_data($data)
+	{
+		$this->db->insert('tb_pengguna', $data);
+	}
+
+	//FUNGSI LOGIN BIASA
 	private function loginSupervisor($email, $password) 
 	{
 		$q=$this->db->select('*')->where(array('email' => $email, 'password' => md5($password)))->get('tb_admin');
@@ -72,6 +99,7 @@ class M_Auth extends CI_Model
 			$this->session->set_userdata('tanggal_regis', $d->tanggal_regis);
 			$this->session->set_userdata('user_avatar', uploads_url('avatar/' . $d->avatar));
 			
+			//DARI TABEL JABATAN
 			$ambil_jabatan=$this->db->select('*')->where('id_jabatan', $d->id_jabatan)->get('tb_jabatan');
 			if( $ambil_jabatan->num_rows() ) 
 			{
@@ -87,6 +115,7 @@ class M_Auth extends CI_Model
 			$this->session->set_userdata('user_id_jabatan', $id_jabatan);
 			$this->session->set_userdata('user_nama_jabatan', $nama_jabatan);
 			
+			//DARI TABEL BIDANG
 			$ambil_bidang=$this->db->select('*')->where('id_bidang', $d->id_bidang)->get('tb_bidang');
 			if( $ambil_bidang->num_rows() ) 
 			{
@@ -103,98 +132,74 @@ class M_Auth extends CI_Model
 			$this->session->set_userdata('user_id_bidang', $id_bidang);
 			$this->session->set_userdata('user_nama_bidang', $nama_bidang);
 
-			//Tabel Mahasiswa
-			$ambil_nim=$this->db->select('*')->where('id', $d->id)->get('tb_mhsiswa');
-			if( $ambil_nim->num_rows() ) 
+			//DARI TABEL DOSEN TETAP
+			$ambil_nip=$this->db->select('*')->where('id', $d->id)->get('tb_dosentetap');
+			if( $ambil_nip->num_rows() ) 
 			{
-				$data_mhsiswa = $ambil_nim->row();
-				$id_mhs = $data_mhsiswa->id_mhs;
-				$nim = $data_mhsiswa->nim;
-				$id_prodi = $data_mhsiswa->id_prodi;
-				$id_fakultas = $data_mhsiswa->id_fakultas;
+				$data_dosentetap = $ambil_nip->row();
+				$id_dosentetap = $data_dosentetap->id_dosentetap;
+				$nip = $data_dosentetap->nip;
 			} 
 			else 
 			{
-				$id_mhs = '0';
-				$nim = '-';
-				$id_prodi = '0';
-				$id_fakultas = '0';
+				$id_dosentetap = ' - ';
+				$nip = '';
 			}
 
-			$this->session->set_userdata('id_mhs', $id_mhs);
-			$this->session->set_userdata('nim', $nim);
-			$this->session->set_userdata('id_prodi', $id_prodi);
-			$this->session->set_userdata('id_fakultas', $id_fakultas);
-
-			$ambil_prodi=$this->db->select('*')->where('id_prodi', $data_mhsiswa->id_prodi)->get('tb_prodi');
-			if( $ambil_prodi->num_rows() ) 
+			$this->session->set_userdata('id_dosentetap', $id_dosentetap);
+			$this->session->set_userdata('nip', $nip);
+		
+			//DARI TABEL DOSEN SKS
+			$ambil_nip=$this->db->select('*')->where('id', $d->id)->get('tb_dosensks');
+			if( $ambil_nip->num_rows() ) 
 			{
-				$data_prodi = $ambil_prodi->row();
-				$id_prodi = $data_prodi->id_prodi;
-				$nama_prodi = $data_prodi->nama_prodi;
+				$data_dosensks = $ambil_nip->row();
+				$id_dosensks = $data_dosensks->id_dosensks;
+				// $nama_prodi = $data_prodi->nama_prodi;
 			} 
 			else 
 			{
-				$id_prodi = '0';
+				$id_prodi = ' - ';
 				$nama_prodi = '-';
 				
 			}
 
-			$this->session->set_userdata('id_prodi', $id_prodi);
-			$this->session->set_userdata('nama_prodi', $nama_prodi);
+			$this->session->set_userdata('id_dosensks', $id_dosensks);
+			// $this->session->set_userdata('nama_prodi', $nama_prodi);
 
-			$ambil_fakultas=$this->db->select('*')->where('id_fakultas', $data_prodi->id_fakultas)->get('tb_fakultas');
-			if( $ambil_fakultas->num_rows() ) 
+			//DARI TABEL TENAGA PENDIDIK
+			$ambil_tepen=$this->db->select('*')->where('id', $d->id)->get('tb_tepen');
+			if( $ambil_tepen->num_rows() ) 
 			{
-				$data_fakultas = $ambil_fakultas->row();
-				$id_fakultas = $data_fakultas->id_fakultas;
-				$nama_fakultas = $data_fakultas->nama_fakultas;
+				$data_tepen = $ambil_tepen->row();
+				$id_tepen = $data_tepen->id_tepen;
+				$nik = $data_tepen->nik;
 			} 
 			else 
 			{
-				$id_fakultas = '0';
-				$nama_fakultas = '-';
+				$id_tepen = '0';
+				$nik = '';
 			}
 
-			$this->session->set_userdata('id_fakultas', $id_fakultas);
-			$this->session->set_userdata('nama_fakultas', $nama_fakultas);
-			//batas Mahasiswa
+			$this->session->set_userdata('id_tepen', $id_tepen);
+			$this->session->set_userdata('nik', $nik);
 
-			//tabel Dosen
-			$ambil_nip=$this->db->select('*')->where('id', $d->id)->get('tb_dosen');
+			//DARI TABEL TENAGA PENUNJANG
+			$ambil_nip=$this->db->select('*')->where('id', $d->id)->get('tb_tedik');
 			if( $ambil_nip->num_rows() ) 
 			{
 				$data_nip = $ambil_nip->row();
-				$id_dosen = $data_nip->id_dosen;
+				$id_tedik = $data_nip->id_tedik;
 				$nip = $data_nip->nip;
 			} 
 			else 
 			{	
-				$id_dosen = '0';
-				$nip = '-';
+				$id_tedik = '0';
+				$nip = '';
 			}
 
-			$this->session->set_userdata('id_dosen', $id_dosen);
-			$this->session->set_userdata('nip', $nip);
-			//batas dosen
-
-			//tabel staff
-			$ambil_np=$this->db->select('*')->where('id', $d->id)->get('tb_staff');
-			if( $ambil_np->num_rows() ) 
-			{
-				$data_np = $ambil_np->row();
-				$id_staff = $data_np->id_staff;
-				$np = $data_np->np;
-			} 
-			else 
-			{	
-				$id_staff = '0';
-				$np = '-';
-			}
-
-			$this->session->set_userdata('id_staff', $id_staff);
-			$this->session->set_userdata('np', $np);
-			//batas staff
+			$this->session->set_userdata('id_tedik', $id_tedik);
+			$this->session->set_userdata('nip_tedik', $nip);
 
 			redirect( base_url('dashboard') );
 		}
@@ -208,7 +213,7 @@ class M_Auth extends CI_Model
 
 	public function doResetPassword($email) 
 	{
-		$cek_email=$this->db->select('*')->where('email', $email)->get('tb_admin');
+		$cek_email=$this->db->select('*')->where('email', $email)->get('tb_pengguna');
 		if( !$cek_email->num_rows() ) 
 		{
 			$this->session->set_flashdata('msg_alert', 'Email tidak terdaftar');

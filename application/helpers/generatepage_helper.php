@@ -43,11 +43,10 @@ if( !function_exists('generate_page') )
 		$data_menu['user_avatar'] = $ci->session->userdata('user_avatar');
 		$data_menu['jabatan'] = $ci->session->userdata('user_nama_jabatan');
 		$data_menu['bidang'] = $ci->session->userdata('user_nama_bidang');
-		$data_menu['nim'] = $ci->session->userdata('nim');
-		$data_menu['prodi'] = $ci->session->userdata('nama_prodi');
-		$data_menu['fakultas'] = $ci->session->userdata('nama_fakultas');
+		$data_menu['Bidangnya'] = "Dosen Tetap";
 		$data_menu['nip'] = $ci->session->userdata('nip');
-		$data_menu['np'] = $ci->session->userdata('np');
+		$data_menu['nik'] = $ci->session->userdata('nik');
+		$data_menu['nip_tedik'] = $ci->session->userdata('nip_tedik');
 		$data['menu'] = $ci->load->view('menu/V_Menu_' . $user_type, $data_menu, true);
 
 		$data['footer'] = $ci->load->view('default/V_Footer', '', true);

@@ -32,12 +32,17 @@
                 <h4 class="d-flex justify-content-center font-weight-semibold text-dark">Layanan PSDM</h4>
                 <h5 class="d-flex justify-content-center text-dark">Registrasi Pengguna</h5>
                 <h7 class="d-flex justify-content-center mt-4 mb-4 text-dark">Siapakah anda :</h7>
-                  <div class="btn-group d-flex justify-content-center" role="group">
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regismhs"); ?>';">Mahasiswa</button>
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosen"); ?>';">Dosen</button>
-                    <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 150px; height: 40px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisstaff"); ?>';">Staff</button>
+                  <div class="align-center">
+                    <div class="btn-group d-flex justify-content-center m-2">
+                      <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 170px; height: 40px; border-radius:7px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosentetap"); ?>';">Dosen Tetap</button>
+                      <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 170px; height: 40px; border-radius:7px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/regisdosensks"); ?>';">Dosen SKS</button>
+                    </div>
+                    <div class="btn-group d-flex justify-content-center m-2">
+                      <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 170px; height: 40px; border-radius:7px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/registedik"); ?>';">Tenaga Pendidik</button>
+                      <button class="btn btn-youtube mr-2 ml-2 font-weight-semibold" style="width: 170px; height: 40px; border-radius:7px;" type="button" onclick="javascript:top.location.href='<?=base_url("regis_pengguna/registepen"); ?>';">Tenaga Penunjang</button>
+                    </div>
                   </div>
-                  <div class="btn btn-social-outline-reddit d-flex justify-content-center mt-4" type="button" onclick="javascript:top.location.href='<?=base_url("auth/login"); ?>';">Kembali ke login</div>
+                  <div class=" mr-auto ml-auto mt-4 d-flex justify-content-center align-center btn btn-social-outline-reddit col-md-9" type="button" onclick="javascript:top.location.href='<?=base_url("auth/login"); ?>';">Kembali ke login</div>
               </div>
 
               

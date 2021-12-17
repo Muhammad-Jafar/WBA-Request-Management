@@ -13,19 +13,22 @@
             <?php } ?>
             <div class="card-tools">
                 <div class="d-flex justify-content-around grid-column " style="width: 320px; margin-left: auto;">
-                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/");?>';" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Cetak Laporan</button>
-                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/export_kebutuhan_excel");?>';" class="btn btn-success btn-sm"><i class="mdi mdi-plus-circle-outline"></i> Ekspor ke Excel</button>
+                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/");?>';" class="btn btn-primary btn-sm"><i class="mdi mdi-printer icon-sm"></i> Cetak Laporan</button>
+                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/export_kebutuhan_excel");?>';" class="btn btn-success btn-sm"><i class="mdi mdi-file-excel icon-sm"></i> Ekspor ke Excel</button>
                 </div>
-              <div class="card-header" style="width:25%; background-color:transparent;" >
+                <div class="card-header" style=" background-color:transparent;" >
                 <ul class="nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/mahasiswa");?>"> <b>Mahasiswa</b> </a>
+                    <a class="nav-link" active href="<?=base_url("/laporan/kebutuhan/dosentetap");?>"> <b>Dosen Tetap</b></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/dosen");?>"> <b>Dosen</b> </a>
+                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/dosensks");?>"> <b>Dosen SKS</b></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/staff");?>"> <b>Staff</b> </a>
+                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/tedik");?>"> <b>Tenaga Pendidik</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url("/laporan/kebutuhan/tepen");?>"> <b>Tenaga Penunjang</b></a>
                   </li>
                 </ul>
               </div>

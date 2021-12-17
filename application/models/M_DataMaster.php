@@ -31,44 +31,55 @@ class M_DataMaster extends CI_Model
 	}
 
 	//TAMBAHAN BARU UNTUK SORTING DATA PENGGUNA
-	public function mhs_list_all() 
+	public function dosentetap_list_all() 
 	{
 		$q=$this->db->select('*')	
 		->from('tb_pengguna as pg')
-		->join('tb_mhsiswa as mhs', 'mhs.id = pg.id', 'LEFT')
+		->join('tb_dosentetap as dt', 'dt.id = pg.id', 'LEFT')
 		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
-		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
-		->join('tb_fakultas as fak', 'fak.id_fakultas = mhs.id_fakultas', 'LEFT')
-		->join('tb_prodi as prod', 'prod.id_prodi = mhs.id_prodi', 'LEFT')
-		->where('nama_bidang','Mahasiswa')
+		// ->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Dosen Tetap')
 		->get();
 		return $q->result();
 	}
 
-	public function dosen_list_all() 
+	public function dosensks_list_all() 
 	{
 		$q=$this->db->select('*')	
 		->from('tb_pengguna as pg')
-		->join('tb_dosen as do', 'do.id = pg.id', 'LEFT')
+		->join('tb_dosensks as ds', 'ds.id = pg.id', 'LEFT')
 		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
-		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
-		->where('nama_bidang','Dosen')
+		// ->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Dosen SKS')
 		->get();
 		return $q->result();
 	}
 
-	public function staff_list_all() 
+	public function tedik_list_all() 
 	{
 		$q=$this->db->select('*')	
 		->from('tb_pengguna as pg')
-		->join('tb_staff as stf', 'stf.id = pg.id', 'LEFT')
+		->join('tb_tedik as td', 'td.id = pg.id', 'LEFT')
 		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
-		->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
-		->where('nama_bidang','Staff UTS')
+		// ->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Tenaga Pendidik')
+		->get();
+		return $q->result();
+	}
+
+	public function tepen_list_all() 
+	{
+		$q=$this->db->select('*')	
+		->from('tb_pengguna as pg')
+		->join('tb_tepen as tp', 'tp.id = pg.id', 'LEFT')
+		->join('tb_bidang as b', 'b.id_bidang = pg.id_bidang', 'LEFT')
+		// ->join('tb_jabatan as j', 'j.id_jabatan = pg.id_jabatan', 'LEFT')
+		->where('nama_bidang','Tenaga Penunjang')
 		->get();
 		return $q->result();
 	}
 	//ENDING SORTING DATA PENGGUNA
+
 
 	public function namaizin_list_all() {
 		$q=$this->db->select('*')

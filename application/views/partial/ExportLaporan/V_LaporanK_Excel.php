@@ -95,7 +95,7 @@
               <h3 style="text-align:center; font-family: 'Times New Roman', Times, serif;">
                 <b style="font-size:27px;">UNIVERSITAS TEKNOLOGI SUMBAWA</b>
                 <br>
-                <b style="font-size:25px;">Bidang Pengembangan Sumber Daya Manusia</b>
+                <b style="font-size:25px;">Direktorat Pengembangan Sumber Daya Manusia</b>
                 <br>
                 <i style="font-size:20px;">Jalan Raya Olat Maras, Batu Alang, Sumbawa Besar - NTB</i>
               </h3>
@@ -111,16 +111,14 @@
 
     <div class="page-content">
       <p><a href="<?php echo base_url('laporan/exportk_excel') ?>"> <b>Export ke Excel</b></a></p>
-      <h5>Tabel Mahasiswa</h5>
+      <h5>Tabel Dosen Tetap</h5>
       <table border="1" width="100%">
                 <thead>
                      <tr>
                           <th>Jenis Kebutuhan</th>
                           <th>Permintaan</th>
                           <th>Nama Lengkap</th>
-                          <th>NIM</th>
-                          <th>Fakultas</th>
-                          <th>Prodi</th>
+                          <th>NIDN / NIP</th>
                           <th>Jenis Kelamin</th>
                           <th>Status Civitas</th>
                           <th>Alamat</th>
@@ -131,27 +129,61 @@
                      </tr>
                 </thead>
                 <tbody>
-                     <?php $i=1; foreach($Mahasiswa as $Mahasiswa) { ?>
+                     <?php $i=1; foreach($Dosentetap as $Dosentetap) { ?>
                      <tr>
-                          <td><?php echo $Mahasiswa->type; ?></td>
-                          <td><?php echo $Mahasiswa->nama_kebutuhan; ?></td>
-                          <td><?php echo $Mahasiswa->nama; ?></td>
-                          <td><?php echo $Mahasiswa->nim; ?></td>
-                          <td><?php echo $Mahasiswa->nama_fakultas; ?></td>
-                          <td><?php echo $Mahasiswa->nama_prodi; ?></td>
-                          <td><?php echo $Mahasiswa->jenis_kelamin; ?></td>
-                          <td><?php echo $Mahasiswa->nama_bidang; ?></td>
-                          <td><?php echo $Mahasiswa->alamat; ?></td>
-                          <td><?php echo $Mahasiswa->no_handphone; ?></td>
-                          <td><?php echo $Mahasiswa->email; ?></td>
-                          <td><?php echo $Mahasiswa->tgl_pengajuan; ?></td>
-                          <td><?php echo $Mahasiswa->status; ?></td>
+                          <td><?php echo $Dosentetap->type; ?></td>
+                          <td><?php echo $Dosentetap->nama_kebutuhan; ?></td>
+                          <td><?php echo $Dosentetap->nama; ?></td>
+                          <td><?php echo $Dosentetap->nip; ?></td>
+                          <td><?php echo $Dosentetap->jenis_kelamin; ?></td>
+                          <td><?php echo $Dosentetap->nama_bidang; ?></td>
+                          <td><?php echo $Dosentetap->alamat; ?></td>
+                          <td><?php echo $Dosentetap->no_handphone; ?></td>
+                          <td><?php echo $Dosentetap->email; ?></td>
+                          <td><?php echo $Dosentetap->tgl_pengajuan; ?></td>
+                          <td><?php echo $Dosentetap->status; ?></td>
                      </tr>
                      <?php $i++; } ?>
                 </tbody>
            </table>
            <br>
-           <h5>Tabel Dosen</h5>
+           <h5>Tabel Dosen SKS</h5>
+            <table border="1" width="100%">
+                <thead>
+                     <tr>
+                          <th>Jenis Kebutuhan</th>
+                          <th>Permintaan</th>
+                          <th>Nama Lengkap</th>
+                          <th>NIDN / NIP</th>
+                          <th>Jenis Kelamin</th>
+                          <th>Status Civitas</th>
+                          <th>Alamat</th>
+                          <th>Kontak</th>
+                          <th>Email</th>
+                          <th>Tanggal Pengajuan</th>
+                          <th>Status</th>
+                     </tr>
+                </thead>
+                <tbody>
+                     <?php $i=1; foreach($Dosensks as $Dosensks) { ?>
+                     <tr>
+                          <td><?php echo $Dosensks->type; ?></td>
+                          <td><?php echo $Dosensks->nama_kebutuhan; ?></td>
+                          <td><?php echo $Dosensks->nama; ?></td>
+                          <td> - </td>
+                          <td><?php echo $Dosensks->jenis_kelamin; ?></td>
+                          <td><?php echo $Dosensks->nama_bidang; ?></td>
+                          <td><?php echo $Dosensks->alamat; ?></td>
+                          <td><?php echo $Dosensks->no_handphone; ?></td>
+                          <td><?php echo $Dosensks->email; ?></td>
+                          <td><?php echo $Dosensks->tgl_pengajuan; ?></td>
+                          <td><?php echo $Dosensks->status; ?></td>
+                     </tr>
+                     <?php $i++; } ?>
+                </tbody>
+            </table>
+            <br>
+            <h5>Tabel Tenaga Pendidik</h5>
             <table border="1" width="100%">
                 <thead>
                      <tr>
@@ -169,31 +201,32 @@
                      </tr>
                 </thead>
                 <tbody>
-                     <?php $i=1; foreach($Dosen as $Dosen) { ?>
+                     <?php $i=1; foreach($Tedik as $Tedik) { ?>
                      <tr>
-                          <td><?php echo $Dosen->type; ?></td>
-                          <td><?php echo $Dosen->nama_kebutuhan; ?></td>
-                          <td><?php echo $Dosen->nama; ?></td>
-                          <td><?php echo $Dosen->nip; ?></td>
-                          <td><?php echo $Dosen->jenis_kelamin; ?></td>
-                          <td><?php echo $Dosen->nama_bidang; ?></td>
-                          <td><?php echo $Dosen->alamat; ?></td>
-                          <td><?php echo $Dosen->no_handphone; ?></td>
-                          <td><?php echo $Dosen->email; ?></td>
-                          <td><?php echo $Dosen->tgl_pengajuan; ?></td>
-                          <td><?php echo $Dosen->status; ?></td>
+                          <td><?php echo $Tedik->type; ?></td>
+                          <td><?php echo $Tedik->nama_kebutuhan; ?></td>
+                          <td><?php echo $Tedik->nama; ?></td>
+                          <td><?php echo $Tedik->nip; ?></td>
+                          <td><?php echo $Tedik->jenis_kelamin; ?></td>
+                          <td><?php echo $Tedik->nama_bidang; ?></td>
+                          <td><?php echo $Tedik->alamat; ?></td>
+                          <td><?php echo $Tedik->no_handphone; ?></td>
+                          <td><?php echo $Tedik->email; ?></td>
+                          <td><?php echo $Tedik->tgl_pengajuan; ?></td>
+                          <td><?php echo $Tedik->status; ?></td>
                      </tr>
                      <?php $i++; } ?>
                 </tbody>
             </table>
             <br>
-            <h5>Tabel Staff</h5>
+            <h5>Tabel Tenaga Penunjang</h5>
             <table border="1" width="100%">
                 <thead>
                      <tr>
                           <th>Jenis Kebutuhan</th>
                           <th>Permintaan</th>
                           <th>Nama Lengkap</th>
+                          <th>NITK / NIP</th>
                           <th>Jenis Kelamin</th>
                           <th>Status Civitas</th>
                           <th>Alamat</th>
@@ -204,18 +237,19 @@
                      </tr>
                 </thead>
                 <tbody>
-                     <?php $i=1; foreach($Staff as $Staff) { ?>
+                     <?php $i=1; foreach($Tepen as $Tepen) { ?>
                      <tr>
-                          <td><?php echo $Staff->type; ?></td>
-                          <td><?php echo $Staff->nama_kebutuhan; ?></td>
-                          <td><?php echo $Staff->nama; ?></td>
-                          <td><?php echo $Staff->jenis_kelamin; ?></td>
-                          <td><?php echo $Staff->nama_bidang; ?></td>
-                          <td><?php echo $Staff->alamat; ?></td>
-                          <td><?php echo $Staff->no_handphone; ?></td>
-                          <td><?php echo $Staff->email; ?></td>
-                          <td><?php echo $Staff->tgl_pengajuan; ?></td>
-                          <td><?php echo $Staff->status; ?></td>
+                          <td><?php echo $Tepen->type; ?></td>
+                          <td><?php echo $Tepen->nama_kebutuhan; ?></td>
+                          <td><?php echo $Tepen->nama; ?></td>
+                          <td><?php echo $Tepen->nik; ?></td>
+                          <td><?php echo $Tepen->jenis_kelamin; ?></td>
+                          <td><?php echo $Tepen->nama_bidang; ?></td>
+                          <td><?php echo $Tepen->alamat; ?></td>
+                          <td><?php echo $Tepen->no_handphone; ?></td>
+                          <td><?php echo $Tepen->email; ?></td>
+                          <td><?php echo $Tepen->tgl_pengajuan; ?></td>
+                          <td><?php echo $Tepen->status; ?></td>
                      </tr>
                      <?php $i++; } ?>
                 </tbody>

@@ -13,7 +13,7 @@
             <?php } ?>
             <div class="card-tools">
                 <div class="d-flex justify-content-around grid-column " style="width: 320px; margin-left: auto;">
-                  <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/");?>';" class="btn btn-primary btn-sm"><i class="mdi mdi-printer icon-sm"></i> Cetak Laporan</button>
+                  <!-- <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/");?>';" class="btn btn-primary btn-sm"><i class="mdi mdi-printer icon-sm"></i> Cetak Laporan</button> -->
                   <button type="button" onclick="javascript:top.location.href='<?=base_url("/laporan/export_kebutuhan_excel");?>';" class="btn btn-success btn-sm"><i class="mdi mdi-file-excel icon-sm"></i> Ekspor ke Excel</button>
                 </div>
                 <div class="card-header" style=" background-color:transparent;" >

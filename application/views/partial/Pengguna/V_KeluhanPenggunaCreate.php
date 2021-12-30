@@ -13,7 +13,6 @@
             <?php endif; ?>
 
               <?=form_open('pengguna/add_keluhan', array('method'=>'post'));?>
-              <input type="hidden" name="id" class="form-control" value="<?=$user_id;?>">
             
                 <!-- <div class="row"> -->
                   <div class="col-md-6">

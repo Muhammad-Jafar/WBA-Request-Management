@@ -35,6 +35,27 @@ function data_keluhan_edit_or_add_new()
     });
 }
 
+function permintaan_kebutuhan() 
+{
+    sl_t = $('select[name="type"]'), sl_iz = $('select[name="id_dkebutuhan"]');
+    sl_t.change(function(event) 
+    {
+        sl_iz.html($('<option></option>').text('-- Pilih --').attr({
+            disabled: 'disabled',
+            selected: 'selected'
+        }));
+
+        $.get(base_url + 'pengguna/dkebutuhan_ajax/' + sl_t.val(), function(data) 
+        {
+            for (row in data) 
+            {
+                sl_iz.append($('<option></option>').attr('value', data[row].id_kebutuhan).text(data[row].type));
+            }
+        });
+    });
+}
+
+
 //AJAX KEBUTUHAN DATA PENGGUNA DI ADMIN
 function data_dosentetap_index() 
 {
@@ -361,15 +382,15 @@ function pengguna_kebutuhan_index()
             },
             {
                 title: "Action",
-                data: 'id'
+                data: 'id_dkebutuhan'
             }
         ],
         createdRow: function(row, data, index) 
         {
             $('td', row).eq(0).html(index + 1);
-            if (data['id']) {
+            if (data['id_dkebutuhan']) {
                 var type = data['type'],
-                    id = data['id'],
+                    id = data['id_dkebutuhan'],
                     html = '';
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'pengguna/edit_kebutuhan/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'SK_KebutuhanCuti/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
@@ -409,7 +430,7 @@ function pengguna_keluhan_index()
             },
             {
                 title: "Action",
-                data: 'id'
+                data: 'id_dkeluhan'
             }
         ],
         createdRow: function(row, data, index) 
@@ -423,7 +444,7 @@ function pengguna_keluhan_index()
                 html += '<button type="button" onclick="javascript:top.location.href=\'' + base_url + 'pengguna/edit_keluhan/' + id + '\';" class="btn btn-warning btn-icons btn-rounded"><i class="mdi mdi-pencil-box-outline"></i></button>';
                 // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '\';" class="btn btn-info btn-icons btn-rounded" title="Print surat"><i class="mdi mdi-printer"></i></button>';
                 // html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'surat_keterangan/print/' + id + '?dl\';" class="btn btn-success btn-icons btn-rounded" title="Download file .doc"><i class="mdi mdi-download"></i></button>';
-                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'pengguna/delete/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
+                html += ' <button type="button" onclick="javascript:top.location.href=\'' + base_url + 'pengguna/delete_keluhan/' + id + '\';" class="btn btn-icons btn-rounded btn-inverse-danger"><i class="mdi mdi-delete"></i></button>';
                 $('td', row).eq(-1).html(html);
             }
         }
@@ -1743,6 +1764,18 @@ $(document).ready(function()
 {
     switch (true) 
     {
+        //PENGGUNA
+        case (window.location.href.indexOf('/pengguna/kebutuhan') != -1): pengguna_kebutuhan_index();
+        break;
+        case (window.location.href.indexOf('/pengguna/keluhan') != -1): pengguna_keluhan_index();
+        break;
+        // case (window.location.href.indexOf('/pengguna/kebutuhan/edit_kebutuhan') != -1): permirtaan_kebutuhan();
+        // break;
+        // case (window.location.href.indexOf('/pengguna/keluhan/edit_keluhan') != -1): pengajuan_keluhan();
+        // break;
+
+        //ADMIN
+        //DATA MASTER UMUM
         case (window.location.href.indexOf('/data_master/admin') != -1): data_admin_index();
         break;
         case (window.location.href.indexOf('/data_master/jabatan') != -1): data_jabatan_index();
@@ -1750,6 +1783,21 @@ $(document).ready(function()
         case (window.location.href.indexOf('/data_master/bidang') != -1): data_bidang_index();
         break;
 
+        //DATA MASTER TAMBAH KEBUTUHAN DAN KELUHAN
+        case (window.location.href.indexOf('/data_master/nama_izin') != -1): data_namaizin_index();
+        break;
+        case (window.location.href.indexOf('/data_master/keluhan') != -1): data_keluhan_index();
+        break; 
+        case (window.location.href.indexOf('/data_izin/edit') != -1 || window.location.href.indexOf('/data_izin/add_new') != -1): data_izin_edit_or_add_new();
+        break;
+        case (window.location.href.indexOf('/data_izin') != -1): data_izin_index();
+        break;
+        case (window.location.href.indexOf('/data_keluhan') != -1): daftar_keluhan_index();
+        break;
+        case (window.location.href.indexOf('/data_keluhan/edit') != -1 || window.location.href.indexOf('/data_keluhan/add_new') != -1): data_keluhan_edit_or_add_new();
+        break;
+
+        //DATA PENGGUNA
         case (window.location.href.indexOf('/data_master/pegawai/dosentetap') != -1): data_dosentetap_index();
         break;
         case (window.location.href.indexOf('/data_master/pegawai/dosensks') != -1): data_dosensks_index();
@@ -1759,31 +1807,19 @@ $(document).ready(function()
         case (window.location.href.indexOf('/data_master/pegawai/tepen') != -1): data_tepen_index();
         break;
 
+       
         case (window.location.href.indexOf('/daftar_izin/ajukan') != -1 || window.location.href.indexOf('/daftar_izin/edit') != -1): daftar_izin_ajukan();
         break;
         case (window.location.href.indexOf('/daftar_izin') != -1): daftar_izin_index();
         break;
-        case (window.location.href.indexOf('/data_master/nama_izin') != -1): data_namaizin_index();
-        break;
-        case (window.location.href.indexOf('/data_master/keluhan') != -1): data_keluhan_index();
-        break;
+       
+        //KONFIRMASI 
         case (window.location.href.indexOf('/konfirmasi_izin') != -1): konfirmasi_izin_index();
-        break;
-        case (window.location.href.indexOf('/data_izin/edit') != -1 || window.location.href.indexOf('/data_izin/add_new') != -1): data_izin_edit_or_add_new();
-        break;
-        case (window.location.href.indexOf('/data_izin') != -1): data_izin_index();
-        break;
-        case (window.location.href.indexOf('/data_keluhan') != -1): daftar_keluhan_index();
-        break;
-        case (window.location.href.indexOf('/data_keluhan/edit') != -1 || window.location.href.indexOf('/data_keluhan/add_new') != -1): data_keluhan_edit_or_add_new();
         break;
         case (window.location.href.indexOf('/konfirmasi_keluhan') != -1): konfirmasi_keluhan_index();
         break;
-        case (window.location.href.indexOf('/pengguna/kebutuhan') != -1): pengguna_kebutuhan_index();
-        break;
-        case (window.location.href.indexOf('/pengguna/keluhan') != -1): pengguna_keluhan_index();
-        break;
 
+        //LAPORAN KEBUTUHAN
         case (window.location.href.indexOf('/laporan/kebutuhan/dosentetap') != -1): data_kebutuhan_dosentetap_index();
         break;
         case (window.location.href.indexOf('/laporan/kebutuhan/dosensks') != -1): data_kebutuhan_dosensks_index();
@@ -1793,6 +1829,7 @@ $(document).ready(function()
         case (window.location.href.indexOf('/laporan/kebutuhan/tepen') != -1): data_kebutuhan_tepen_index();
         break;
 
+        //LAPORAN KELUHAN
         case (window.location.href.indexOf('/laporan/keluhan/dosentetap') != -1): data_keluhan_dosentetap_index();
         break;
         case (window.location.href.indexOf('/laporan/keluhan/dosensks') != -1): data_keluhan_dosensks_index();

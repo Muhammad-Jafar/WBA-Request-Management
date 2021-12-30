@@ -6,25 +6,20 @@ PHP 7.4.9
 RDBMS using MySQL
 
 ## Overview
-This work is belongs to my assingment
+This work is belongs to my assingment in University
 
 ## Usage
 You can see the full of website on http://localhost/simpsdm
 
 Have 2 level of user :
 
-- Administrator
+- Admin
 
   - E-mail : admin@gmail.com
-  - Password : 123
+  - Password : admin
 
-- Supervisor / Head Of PSDM
+- Head of PSDM
 
-  - E-mail : kepalapsdm@uts.ac.id
-  - Password : 123
-
-- User normal
-
-  - E-mail : taufik@gmail.com
-  - Password : 123
+  - E-mail : psdm@gmail.com
+  - Password : psdm
 

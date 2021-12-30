@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.base.css');?>">
   <link rel="stylesheet" href="<?=assets_url('vendors/css/vendor.bundle.addons.css');?>">
   <link rel="stylesheet" href="<?=assets_url('css/style.css', false);?>">
-  <link rel="shortcut icon" href="<?=assets_url('images/favicon.png');?>" />
+  <link rel="shortcut icon" href=" <?=assets_url('logo-toh.png');?> " />
  
 </head>
 

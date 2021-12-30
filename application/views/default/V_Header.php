@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="<?=assets_url('css/style.css', false);?>">
   <!-- <link rel="stylesheet" href="<?=assets_url('css/bootstrap.css', false);?>"> -->
   <link rel="shortcut icon" href="<?=assets_url('logo-toh.png');?>" />
-  <script type="application/ld+json">
+  <!-- <script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "Application",
@@ -24,5 +24,5 @@
       "https://www.instagram.com/fadhiilrachman",
     }
   }
-  </script>
+  </script> -->
 </head>

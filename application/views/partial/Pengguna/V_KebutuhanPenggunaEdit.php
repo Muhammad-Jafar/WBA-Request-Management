@@ -18,10 +18,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Surat</label>
                       <div class="col-sm-9">
                         <select name="id_kebutuhan" class="form-control">
-                          <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
+                          <option disabled selected>-- Pilih Jenis Surat --</option>
                           <?php foreach($get_kebutuhan as $bid) : ?>
                               <option value="<?=$bid->id_kebutuhan;?>" > <?=$bid->type;?> </option>
                               <!-- <option value="<?=$bid->id_kebutuhan;?>" <?=( ($bid->id_kebutuhan == $data_kebutuhan->id_kebutuhan) ? 'selected' : '');?> > <?=$data_kebutuhan->type;?> </option> -->
@@ -33,10 +33,10 @@
 
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Permintaan</label>
+                      <label class="col-sm-3 col-form-label">Nama Surat</label>
                       <div class="col-sm-9">
                         <select name="id_nkebutuhan" class="form-control">
-                          <option disabled selected>-- Pilih Jenis Permintaan --</option>
+                          <option disabled selected>-- Pilih Nama Surat --</option>
                           <?php foreach($get_nkebutuhan as $bid) : ?>
                               <option value="<?=$bid->id_nkebutuhan;?>" > <?=$bid->nama_kebutuhan;?> </option>
                               <!-- <option value="<?=$bid->id_nkebutuhan;?>" <?=( ($bid->id_nkebutuhan == $data_kebutuhan->id_nkebutuhan) ? 'selected' : '');?> > <?=$data_kebutuhan->nama_kebutuhan;?> </option> -->

@@ -179,8 +179,8 @@ class Data_Master extends CI_Controller {
 
 	public function nama_izin() 
 	{
-		$data = generate_page('Data Daftar Kebutuhan', 'data_master/nama_izin', 'Admin');
-		$data_content['title_page'] = 'Data Daftar Kebutuhan';
+		$data = generate_page('Data Jenis Surat', 'data_master/nama_izin', 'Admin');
+		$data_content['title_page'] = 'Data Jenis Surat';
 		$data['content'] = $this->load->view('partial/DataMasterAdmin/V_Admin_DataMasterIzin_Read', $data_content, true);
 		$this->load->view('V_DataMaster_Admin', $data);
 	}

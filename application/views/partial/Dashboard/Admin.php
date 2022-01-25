@@ -31,7 +31,7 @@
                   <i class="mdi mdi-file-document text-success icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium text-right">Konfirmasi Kebutuhan</h4>
+                  <h4 class="font-weight-medium text-right">Permohonan Terkonfirmasi</h4>
                   <div class="fluid-container text-right">
                     <h7 class="text-right mb-4"><?=$total_kebutuhanterkonfirmasi;?> Permintaan telah disetujui</h7>
                   </div>
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div class="card card-statistics card-rounded"  style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
@@ -63,7 +63,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div class="card card-statistics card-rounded"  style="border-radius:20px;">

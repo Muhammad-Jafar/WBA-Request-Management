@@ -31,15 +31,15 @@
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('pengguna/kebutuhan');?>">
               <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Permintaan Kebutuhan</span>
+              <span class="menu-title">Permohonan Surat</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url('pengguna/keluhan');?>">
               <i class="menu-icon mdi mdi-file-check"></i>
               <span class="menu-title">Permintaan Keluhan</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
 <div class="main-panel">

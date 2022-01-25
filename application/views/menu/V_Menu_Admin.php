@@ -36,8 +36,8 @@
                 <!-- <?=generate_navlink($path_page, 'data_master/jabatan', 'Data Jabatan di PSDM');?>   -->
                 <?=generate_navlink($path_page, 'data_master/bidang', 'Data Status Civitas');?>
                 <?=generate_navlink($path_page, 'data_master/pegawai', 'Data Pengguna');?>
-                <?=generate_navlink($path_page, 'data_master/nama_izin', 'Data Kebutuhan');?>
-                <?=generate_navlink($path_page, 'data_master/keluhan', 'Data Keluhan');?>
+                <?=generate_navlink($path_page, 'data_master/nama_izin', 'Jenis Surat');?>
+                <!-- <?=generate_navlink($path_page, 'data_master/keluhan', 'Data Keluhan');?> -->
               </ul>
             </div>
           </li>
@@ -45,16 +45,16 @@
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_izin');?>">
               <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Permintaan Kebutuhan</span>
+              <span class="menu-title">Permohonan Surat</span>
             </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url('data_keluhan');?>">
               <i class="menu-icon mdi mdi-file-check"></i>
               <span class="menu-title">Permintaan Keluhan</span>
             </a>
-          </li>
+          </li> -->
           
         </ul>
       </nav>

@@ -25,16 +25,23 @@
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_izin');?>">
               <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Konfirmasi Kebutuhan</span>
+              <span class="menu-title">Konfirmasi Permohonan</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url('konfirmasi_keluhan');?>">
               <i class="menu-icon mdi mdi-file-check"></i>
               <span class="menu-title">Konfirmasi Keluhan</span>
             </a>
-          </li>
+          </li> -->
+
           <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('Laporan/kebutuhan');?>">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title">Koleksi Data</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-dm" aria-expanded="false" aria-controls="ui-dm">
               <i class="menu-icon mdi mdi-database"></i>
               <span class="menu-title">Koleksi Data</span>
@@ -46,7 +53,7 @@
                 <?=generate_navlink($path_page, 'laporan/keluhan', 'Laporan Keluhan');?>  
               </ul>
             </div>
-          </li>
+          </li> -->
       </ul>
     </nav>
 <div class="main-panel">

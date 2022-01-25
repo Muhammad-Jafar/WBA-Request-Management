@@ -15,10 +15,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Jenis Kebutuhan</label>
+                      <label class="col-sm-3 col-form-label">Jenis Surat</label>
                       <div class="col-sm-9">
                         <select name="id_kebutuhan" class="form-control">
-                          <option disabled selected>-- Pilih Jenis Kebutuhan --</option>
+                          <option disabled selected>-- Pilih Jenis Surat --</option>
                           <?php foreach($get_kebutuhan as $ke) : ?>
                             <option value="<?=$ke->id_kebutuhan;?>"> <?=$ke->type;?></option>
                           <?php endforeach; ?>
@@ -30,7 +30,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Nama Kebutuhan</label>
+                      <label class="col-sm-3 col-form-label">Nama Surat</label>
                       <div class="col-sm-9">
                         <input type="text" name="nama_kebutuhan" class="form-control" />
                       </div>

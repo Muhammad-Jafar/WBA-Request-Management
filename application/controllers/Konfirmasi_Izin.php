@@ -32,8 +32,8 @@ class Konfirmasi_Izin extends CI_Controller {
 	}
 
 	public function index() {
-		$data = generate_page('Konfirmasi Kebutuhan', 'konfirmasi_izin', $this->user_type);
-		$data_content['title_page'] = 'Konfirmasi Kebutuhan';
+		$data = generate_page('Konfirmasi Permohonan Surat', 'konfirmasi_izin', $this->user_type);
+		$data_content['title_page'] = 'Konfirmasi Permohonan Surat';
 		$data['content'] = $this->load->view('partial/KonfirmasiIzinAdmin/V_KonfirmasiIzinAdmin', $data_content, true);
 		$this->load->view('V_KonfirmasiIzin_Admin', $data);
 	}

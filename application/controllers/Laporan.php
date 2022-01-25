@@ -28,8 +28,8 @@ class Laporan extends CI_Controller
 
 	public function kebutuhan()
 	{
-		$data = generate_page('Koleksi Data Kebutuhan', 'laporan/list_kebutuhan_all', $this->user_type);
-		$data_content['title_page'] = 'Koleksi Data Kebutuhan';
+		$data = generate_page('Koleksi Data Permohonan Surat', 'laporan/list_kebutuhan_all', $this->user_type);
+		$data_content['title_page'] = 'Koleksi Data Permohonan Surat';
 		$data_content['dosentetap_list_all'] = $this->m_laporan->dosentetap_list_all();
 		$data_content['dosensks_list_all'] = $this->m_laporan->dosensks_list_all();
 		$data_content['tedik_list_all'] = $this->m_laporan->tedik_list_all();
@@ -52,7 +52,7 @@ class Laporan extends CI_Controller
 	// }
 	public function export_kebutuhan_excel()
 	{ 
-		$data = array('title' 		=> 'Koleksi Data Kebutuhan',
+		$data = array('title' 		=> 'Koleksi Data Permohonan Surat',
 									'Dosentetap'=> $this->m_laporan-> dosentetap_list_all(),
 									'Dosensks' 	=> $this->m_laporan-> dosensks_list_all(),
 									'Tedik' 		=> $this->m_laporan-> tedik_list_all(),

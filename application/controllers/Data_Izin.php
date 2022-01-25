@@ -23,8 +23,8 @@ class Data_Izin extends CI_Controller {
 
 	public function index() 
 	{
-		$data = generate_page('Permintaan Kebutuhan', 'data_izin', $this->user_type);
-		$data_content['title_page'] = 'Permintaan Kebutuhan';
+		$data = generate_page('Permohonan Surat', 'data_izin', $this->user_type);
+		$data_content['title_page'] = 'Permohonan Surat';
 		$data['content'] = $this->load->view('partial/DataIzinAdmin/V_Admin_DataIzin_Read', $data_content, true);
 		$this->load->view('V_DataIzin_Admin', $data);
 	}

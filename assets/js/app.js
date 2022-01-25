@@ -353,11 +353,11 @@ function pengguna_kebutuhan_index()
                 data: 'no'
             },
             {
-                title: "Jenis Kebutuhan",
+                title: "Jenis Surat",
                 data: 'type'
             },
             {
-                title: "Permintaan",
+                title: "Nama Surat",
                 data: 'nama_kebutuhan'
             },
             {
@@ -572,11 +572,11 @@ function data_namaizin_index()
                 data: 'no'
             },
             {
-                title: "Jenis kebutuhan",
+                title: "Jenis Surat",
                 data: 'type'
             },
             {
-                title: "Nama Kebutuhan",
+                title: "Nama Surat",
                 data: 'nama_kebutuhan'
             },
             {
@@ -608,41 +608,41 @@ function data_izin_index()
                 data: 'no'
             },
             {
-                title: "Jenis Kebutuhan",
+                title: "Jenis Surat",
                 data: 'type'
             },
             {
-                title: "Permintaan",
+                title: "Nama Surat",
                 data: 'nama_kebutuhan'
             },
             {
                 title: "Nama Lengkap",
                 data: 'nama'
             },
-            {
-                title: "Alamat",
-                data: 'alamat'
-            },
+            // {
+            //     title: "Alamat",
+            //     data: 'alamat'
+            // },
             {
                 title: "Email",
                 data: 'email'
             },
             {
-                title: "Status",
+                title: "Kategori",
                 data: 'nama_bidang'
             },
             {
                 title: "Waktu Pengajuan",
                 data: 'tgl_pengajuan'
             },
-            {
-                title: "Tanggal Mulai",
-                data: 'tgl_mulai'
-            },
-            {
-                title: "Tanggal Berakhir",
-                data: 'tgl_akhir'
-            },
+            // {
+            //     title: "Tanggal Mulai",
+            //     data: 'tgl_mulai'
+            // },
+            // {
+            //     title: "Tanggal Berakhir",
+            //     data: 'tgl_akhir'
+            // },
             {
                 title: "Durasi",
                 data: 'lama_izin'
@@ -684,11 +684,11 @@ function konfirmasi_izin_index()
                 data: 'no'
             },
             {
-                title: "Jenis Kebutuhan",
+                title: "Jenis Surat",
                 data: 'type'
             },
             {
-                title:  "Permintaan",
+                title:  "Nama Surat",
                 data: 'nama_kebutuhan'
             },
             {
@@ -703,14 +703,14 @@ function konfirmasi_izin_index()
                 title: "Waktu Pengajuan",
                 data: 'tgl_pengajuan'
             },
-            {
-                title: "Tanggal Mulai",
-                data: 'tgl_mulai'
-            },
-            {
-                title: "Tanggal Berakhir",
-                data: 'tgl_akhir'
-            },
+            // {
+            //     title: "Tanggal Mulai",
+            //     data: 'tgl_mulai'
+            // },
+            // {
+            //     title: "Tanggal Berakhir",
+            //     data: 'tgl_akhir'
+            // },
             {
                 title: "Durasi",
                 data: 'lama_izin'

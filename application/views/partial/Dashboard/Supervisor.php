@@ -10,7 +10,7 @@
                   <i class="mdi mdi-file-document text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-left">Permintaan Kebutuhan</h4>
+                  <h4 class="font-weight-medium mb-2 text-left">Permintaan Surat</h4>
                   <div class="fluid-container text-right">
                     <h7 class="text-right mb-4"><?=$total_kebutuhan;?> Permintaan</h7>
                   </div>
@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div class="card card-statistics card-rounded" style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
@@ -42,7 +42,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div class="card card-statistics card-rounded" style="border-radius:20px;">
@@ -52,7 +52,7 @@
                   <i class="mdi mdi-file-document-box text-info icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <h4 class="font-weight-medium mb-2 text-right">Kebutuhan Terkonfirmasi</h4>
+                  <h4 class="font-weight-medium mb-2 text-right">Permintaan Terkonfirmasi</h4>
                   <div class="fluid-container text-right">
                     <h7 class=" text-right mb-4"><?=$kebutuhan_terkonfirmasi;?> Telah disetujui</h7>
                   </div>
@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div class="card card-statistics card-rounded" style="border-radius:20px;">
             <div class="card-body">
               <div class="clearfix">
@@ -85,7 +85,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
             
     </div>
   </div>

@@ -43,8 +43,8 @@ class Pengguna extends CI_Controller
 	//UNTUK KEBUTUHAN
 	public function kebutuhan()
 	{
-		$data = generate_page('Kebutuhan Anda', 'Pengguna/kebutuhan','Pengguna');
-		$data_content['title_page'] = 'Kebutuhan Anda';
+		$data = generate_page('Permohonoan Surat Anda', 'Pengguna/kebutuhan','Pengguna');
+		$data_content['title_page'] = 'Permohonoan Surat Anda';
 		$data['content'] = $this->load->view('partial/Pengguna/V_KebutuhanPenggunaRead', $data_content, true);
 		$this->load->view('V_Pengguna', $data);
 	}
